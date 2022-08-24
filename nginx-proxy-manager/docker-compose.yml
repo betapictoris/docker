@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  nginx-proxy-manager:
+    image: jc21/nginx-proxy-manager:latest
+    container_name: nginx-proxy-manager
+    restart: unless-stopped
+    
+    volumes:
+      - ~/containers/nginx-proxy-manager/data
+      - ~/containers/nginx-proxy-manager/letsencrypt:/etc/letsencrypt
+
+    #network_mode: host
+    ports:
+      - 80:80    # HTTP port
+      - 443:443  # HTTPS port
+      - 9091:81  # Web UI port
+    labels:
+      - flame.type=app
+      - flame.name="Nginx Proxy Manager"
+      - flame.url=http://localhost:9091
+      - flame.icon=arrow-decision-outline

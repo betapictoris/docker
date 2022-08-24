@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  lldap:
+    image: nitnelave/lldap:stable
+    container_name: lldap
+    restart: unless-stopped
+
+    volumes:
+      - ~/containers/lldap/data:/data
+    
+    ports:
+      - 3890:3890  # LDAP Port
+      - 9093:17170 # Admin web UI port
+    labels:
+      - traefik.http.routers.lldap.rule=Host(`lldap.space.localhost`)
+      - traefik.http.routers.lldap.service=lldap
+      - traefik.http.services.lldap.loadbalancer.server.port=17170
+      - flame.type=app
+      - flame.name=LLDAP
+      - flame.url=http://localhost:9093
+      - flame.icon=account-cog

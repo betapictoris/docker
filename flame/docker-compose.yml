@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  flame:
+    image: pawelmalak/flame:multiarch
+    container_name: flame
+    restart: unless-stopped
+
+    volumes:
+      - ~/containers/flame/data:/app/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    
+    ports:
+      - 8080:5005 # Flame port
+    labels:
+      - traefik.http.routers.flame.rule=Host(`flame.space.localhost`)
+      - traefik.http.routers.flame.service=flame
+      - traefik.http.services.flame.loadbalancer.server.port=5005

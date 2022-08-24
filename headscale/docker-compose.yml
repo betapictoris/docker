@@ -1,0 +1,31 @@
+version: '3.5'
+
+services:
+  headscale:
+    image: headscale/headscale:latest-alpine
+    command: headscale serve
+    container_name: headscale
+    restart: unless-stopped
+    
+    volumes:
+      - ~/containers/headscale/config:/etc/headscale
+      - ~/containers/headscale/data:/var/lib/headscale
+    
+    ports:
+      - 27896:8080
+  
+  headscale-ui:
+    image: ghcr.io/gurucomputing/headscale-ui:latest
+    container_name: headscale-ui
+    restart: unless-stopped
+
+    ports:
+      - 9095:443
+    labels:
+      - traefik.http.routers.headscale.rule=Host(`headscale.space.localhost`)
+      - traefik.http.routers.headscale.service=headscale
+      - traefik.http.services.headscale.loadbalancer.server.port=443
+      - flame.type=app
+      - flame.name=Headscale
+      - flame.url=http://localhost:9095
+      - flame.icon=vpn

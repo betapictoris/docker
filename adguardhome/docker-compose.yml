@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  adguardhome:
+    image: adguard/adguardhome
+    container_name: adguardhome
+    restart: unless-stopped
+
+    volumes:
+      - ~/containers/adguardhome/work:/opt/adguardhome/work
+      - ~/containers/adguardhome/config:/opt/adguardhome/conf
+
+    ports:
+      - 53:53/tcp     #  DNS
+      - 53:53/udp     # <-^
+      - 3095:3000/tcp # Temp. setup panel
+      - 9095:80/tcp   # webui
+    labels:
+      - traefik.http.routers.adguardhome.rule=Host(`adguardhome.space.localhost`)
+      - traefik.http.routers.adguardhome.service=adguardhome
+      - traefik.http.services.adguardhome.loadbalancer.server.port=443
+      - flame.type=app
+      - flame.name=AdGuard Home
+      - flame.url=http://localhost:9095
+      - flame.icon=dns
