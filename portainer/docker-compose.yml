@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  portainer:
+    image: portainer/portainer-ce
+    container_name: portainer
+    restart: unless-stopped
+
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ~/containers/portainer/data:/data
+    
+    ports:
+      - 8000:8000
+      - 9092:9443
+      # - 9000:9000
+    labels:
+      - traefik.http.routers.portainer.rule=Host(`portainer.space.localhost`)
+      - traefik.http.routers.portainer.service=portainer
+      - traefik.http.services.portainer.loadbalancer.server.port=9000
+      - flame.type=app
+      - flame.name=Portainer
+      - flame.url=http://localhost:9092
+      - flame.icon=train-car-container
