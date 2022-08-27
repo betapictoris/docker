@@ -1,0 +1,30 @@
+version: "3.5"
+
+services:
+  scrutiny:
+    image: ghcr.io/analogj/scrutiny:master-omnibus
+    container_name: scrutiny
+    restart: unless-stopped
+    
+    cap_add:
+      - SYS_RAWIO
+
+    volumes:
+      - /run/udev:/run/udev:ro
+      - ~/containers/scrutiny/config:/opt/scrutiny/config
+      - ~/containers/scrutiny/db:/opt/scrutiny/influxdb
+    devices:
+      - "/dev/sda"
+      - "/dev/sdb"
+      
+    ports:
+      - "7080:8080" # webapp
+      - "9097:8086" # influxDB admin
+    labels:
+      - traefik.http.routers.scrutiny.rule=Host(`scrutiny.space.localhost`)
+      - traefik.http.routers.scrutiny.service=scrutiny
+      - traefik.http.services.scrutiny.loadbalancer.server.port=8080
+      - flame.type=app
+      - flame.name=scrutiny
+      - flame.url=http://localhost:7080
+      - flame.icon=harddisk
