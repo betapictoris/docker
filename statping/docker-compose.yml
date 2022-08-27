@@ -11,3 +11,11 @@ services:
     
     ports:
       - 8086:8080
+    labels:
+      - traefik.http.routers.statping.rule=Host(`statping.space.localhost`)
+      - traefik.http.routers.statping.service=statping
+      - traefik.http.services.statping.loadbalancer.server.port=8080
+      - flame.type=app
+      - flame.name=Statping
+      - flame.url=http://localhost:8086
+      - flame.icon=train-car-container
