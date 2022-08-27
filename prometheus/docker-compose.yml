@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    restart: unless-stopped
+
+    volumes:
+      - ~/containers/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+
+    ports:
+      - 6081:9090
+    labels:
+      - traefik.http.routers.prometheus.rule=Host(`prometheus.space.localhost`)
+      - traefik.http.routers.prometheus.service=prometheus
+      - traefik.http.services.prometheus.loadbalancer.server.port=9090
+      - flame.type=app
+      - flame.name=Prometheus
+      - flame.url=http://localhost:6080
+      - flame.icon=database-outline
