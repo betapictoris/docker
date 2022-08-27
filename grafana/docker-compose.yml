@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  grafana:
+    image: grafana/grafana-oss
+    container_name: grafana
+    restart: unless-stopped
+
+    ports:
+      - 6080:3000
+    labels:
+      - traefik.http.routers.grafana.rule=Host(`grafana.space.localhost`)
+      - traefik.http.routers.grafana.service=grafana
+      - traefik.http.services.grafana.loadbalancer.server.port=3000
+      - flame.type=app
+      - flame.name=Grafana
+      - flame.url=http://localhost:6080
+      - flame.icon=chart-bell-curve-cumulative
