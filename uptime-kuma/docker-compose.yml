@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  uptime-kuma:
+    image: louislam/uptime-kuma:base-alpine
+    container_name: uptime-kuma
+    restart: unless-stopped
+    
+    ports:
+      - 6082:8080
+    labels:
+      - traefik.http.routers.uptimekuma.rule=Host(`uptimekuma.space.localhost`)
+      - traefik.http.routers.uptimekuma.service=uptimekuma
+      - traefik.http.services.uptimekuma.loadbalancer.server.port=8080
+      - flame.type=app
+      - flame.name=Uptime Kuma
+      - flame.url=http://localhost:6082
+      - flame.icon=list-status
