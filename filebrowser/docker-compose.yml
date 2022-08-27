@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  filebrowser:
+    image: filebrowser/filebrowser
+    container_name: filebrowser
+    restart: unless-stopped
+
+    volumes:
+      - ~/backup:/srv
+      - ~/containers/filebrowser/db:/database.db
+      - ~/containers/filebrowser/filebrowser.json:/.filebrowser.json
+    
+    ports:
+      - 8088:80
+    labels:
+      - traefik.http.routers.filebrowser.rule=Host(`filebrowser.space.localhost`)
+      - traefik.http.routers.filebrowser.service=filebrowser
+      - traefik.http.services.filebrowser.loadbalancer.server.port=80
+      - flame.type=app
+      - flame.name=File Browser
+      - flame.url=http://localhost:8088
+      - flame.icon=folder
