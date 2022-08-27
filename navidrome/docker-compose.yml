@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  navidrome:
+    image: deluan/navidrome:latest
+    container_name: navidrome
+    restart: unless-stopped
+
+    volumes:
+      - ~/containers/navidrome/data:/data
+      - ~/backup/Media/Music:/music:ro
+    
+    ports:
+      - 4533:4533
+    labels:
+      - traefik.http.routers.navidrome.rule=Host(`navidrome.space.localhost`)
+      - traefik.http.routers.navidrome.service=navidrome
+      - traefik.http.services.navidrome.loadbalancer.server.port=4533
+      - flame.type=app
+      - flame.name=Navidrome
+      - flame.url=http://localhost:4533
+      - flame.icon=music
