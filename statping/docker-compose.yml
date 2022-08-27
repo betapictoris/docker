@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  statping:
+    image: statping/statping:dev
+    container_name: statping
+    restart: unless-stopped
+
+    volumes:
+      - ~/containers/statping/app:/app
+    
+    ports:
+      - 8086:8080
