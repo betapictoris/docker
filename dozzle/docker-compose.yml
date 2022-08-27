@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  dozzle:
+    image: amir20/dozzle
+    container_name: dozzle
+    restart: unless-stopped
+    
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    
+    ports:
+      - 6083:8080
+    labels:
+      - traefik.http.routers.dozzle.rule=Host(`dozzle.space.localhost`)
+      - traefik.http.routers.dozzle.service=dozzle
+      - traefik.http.services.dozzle.loadbalancer.server.port=8080
+      - flame.type=app
+      - flame.name=Dozzle
+      - flame.url=http://localhost:6083
+      - flame.icon=alert-circle
