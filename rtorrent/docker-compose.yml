@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  rtorrent:
+    image: jesec/rtorrent
+    command: -o network.port_range.set=6881-6881,system.daemon.set=true
+    container_name: rtorrent
+    restart: unless-stopped
+    
+    environment:
+      HOME: /config
+    
+    volumes:
+      - ~/containers/rtorrent/config:/config
+      - ~/backup/Downloads:/data
+    
+    ports:
+      - 7084:6881
+    labels:
+      - traefik.http.routers.rtorrent.rule=Host(`rtorrent.space.localhost`)
+      - traefik.http.routers.rtorrent.service=rtorrent
+      - traefik.http.services.rtorrent.loadbalancer.server.port=6881
+      - flame.type=app
+      - flame.name=rTorrent
+      - flame.url=http://localhost:7084
+      - flame.icon=download-circle
