@@ -1,0 +1,48 @@
+services:
+  flood:
+    image: jesec/flood
+    command: --port 3001 --allowedpath /data
+    container_name: flood
+    restart: unless-stopped
+
+    environment:
+      HOME: /config
+ 
+    volumes:
+      - ~/containers/flood/config:/config
+      - ~/backup/Downloads:/data
+
+    ports:
+      - 7082:3001
+    labels:
+      - traefik.http.routers.flood.rule=Host(`flood.space.localhost`)
+      - traefik.http.routers.flood.service=flood
+      - traefik.http.services.flood.loadbalancer.server.port=8080
+      - flame.type=app
+      - flame.name=Flood
+      - flame.url=http://localhost:3001
+      - flame.icon=cloud-download
+
+  rtorrent:
+    image: jesec/rtorrent
+    command: -o network.port_range.set=6881-6881,system.daemon.set=true
+    container_name: rtorrentflood
+    restart: unless-stopped
+    
+    environment:
+      HOME: /config
+    
+    volumes:
+      - ~/containers/rtorrent/config:/config
+      - ~/backup/Downloads:/data
+    
+    ports:
+      - 7083:6881
+    labels:
+      - traefik.http.routers.rtorrentflood.rule=Host(`rtorrentflood.space.localhost`)
+      - traefik.http.routers.rtorrentflood.service=rtorrentflood
+      - traefik.http.services.rtorrentflood.loadbalancer.server.port=6881
+      - flame.type=app
+      - flame.name=rTorrent Flood
+      - flame.url=http://localhost:7083
+      - flame.icon=download-circle-outline
