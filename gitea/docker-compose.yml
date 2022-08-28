@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  server:
+    image: gitea/gitea:1.17.1-rootless
+    container_name: gitea
+    restart: unless-stopped
+    
+    volumes:
+      - ~/containers/gitea/data:/var/lib/gitea
+      - ~/containers/gitea/config:/etc/gitea
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    
+    ports:
+      - "8089:3000"
+      - "2222:2222"
+    labels:
+      - traefik.http.routers.gitea.rule=Host(`gitea.space.localhost`)
+      - traefik.http.routers.gitea.service=gitea
+      - traefik.http.services.gitea.loadbalancer.server.port=3000
+      - flame.type=app
+      - flame.name=Gitea
+      - flame.url=http://localhost:8089
+      - flame.icon=git
