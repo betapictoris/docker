@@ -1,0 +1,13 @@
+version: "3"
+services:
+  podgrab:
+    image: akhilrex/podgrab
+    container_name: podgrab
+    restart: unless-stopped
+
+    volumes:
+      - ~/containers/podgrab/config:/config
+      - ~/containers/podgrab/data:/assets
+    
+    ports:
+      - 8080:8080
