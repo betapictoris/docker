@@ -23,4 +23,4 @@ services:
       - flame.type=app
       - flame.name=Airsonic
       - flame.url=http://localhost:8180
-      - flame.icon=home
+      - flame.icon=music-box-outline
