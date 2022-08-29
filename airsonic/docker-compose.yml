@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  airsonic-advanced:
+    image: lscr.io/linuxserver/airsonic-advanced:latest
+    container_name: airsonic-advanced
+    restart: unless-stopped
+
+    volumes:
+      - ~/containers/airsonic-advanced/config:/config
+      - ~/backup/Media/Music:/music
+      - ~/backup/Media/Playlists:/playlists
+      - ~/backup/Media/Podcasts:/podcasts
+
+    env_file: .env
+
+    ports:
+      - 8180:4040
+    labels:
+      - traefik.http.routers.airsonic.rule=Host(`airsonic.space.localhost`)
+      - traefik.http.routers.airsonic.service=airsonic
+      - traefik.http.services.airsonic.loadbalancer.server.port=4040
+      - flame.type=app
+      - flame.name=Airsonic
+      - flame.url=http://localhost:8180
+      - flame.icon=home
