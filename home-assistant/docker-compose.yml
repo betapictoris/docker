@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  homeassistant:
+    image: ghcr.io/home-assistant/home-assistant:stable
+    container_name: homeassistant
+    restart: unless-stopped
+
+    volumes:
+      - ~/containers/homeassistant/config:/config
+    
+    network_mode: host
+    labels:
+      - traefik.http.routers.homeassistant.rule=Host(`home.space.localhost`)
+      - traefik.http.routers.homeassistant.service=homeassistant
+      - traefik.http.services.homeassistant.loadbalancer.server.port=8123
+      - flame.type=app
+      - flame.name=Home Assistant
+      - flame.url=http://localhost:8123
+      - flame.icon=home
