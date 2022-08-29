@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  deemixrr:
+    image: theultimatecoder/deemixrr:nightly
+    container_name: Deemixrr
+    restart: unless-stopped
+
+    volumes:
+     - ~/containers/deemixrr/config:/config/.config/deemix
+     - ~/backup/Media/Music:/mnt/unionfs
+    
+    env_file: .env
+
+    ports:
+     - 6582:5555
+    labels:
+      - traefik.http.routers.deemixrr.rule=Host(`deemixrr.space.localhost`)
+      - traefik.http.routers.deemixrr.service=deemixrr
+      - traefik.http.services.deemixrr.loadbalancer.server.port=5555
+      - flame.type=app
+      - flame.name=Deemixrr
+      - flame.url=http://localhost:6582
+      - flame.icon=archive-music

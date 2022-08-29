@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  deemix:
+    image: registry.gitlab.com/bockiii/deemix-docker
+    container_name: Deemix
+    restart: unless-stopped
+
+    volumes:
+     - ~/backup/Media/Music:/downloads
+     - ~/containers/deemix/config:/config
+
+    env_file: .env
+
+    ports:
+     - 6581:6595
+    labels:
+      - traefik.http.routers.deemix.rule=Host(`deemix.space.localhost`)
+      - traefik.http.routers.deemix.service=deemix
+      - traefik.http.services.deemix.loadbalancer.server.port=6595
+      - flame.type=app
+      - flame.name=Deemix
+      - flame.url=http://localhost:6581
+      - flame.icon=file-music
