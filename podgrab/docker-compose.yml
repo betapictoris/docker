@@ -10,4 +10,12 @@ services:
       - ~/containers/podgrab/data:/assets
     
     ports:
-      - 8080:8080
+      - 8084:8080
+    labels:
+      - traefik.http.routers.podgrab.rule=Host(`podgrab.space.localhost`)
+      - traefik.http.routers.podgrab.service=podgrab
+      - traefik.http.services.podgrab.loadbalancer.server.port=8080
+      - flame.type=app
+      - flame.name=Podgrab
+      - flame.url=http://localhost:8084
+      - flame.icon=folder
