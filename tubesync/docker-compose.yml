@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  tubesync:
+    image: ghcr.io/meeb/tubesync:latest
+    container_name: tubesync
+    restart: unless-stopped
+    
+    volumes:
+      - ~/containers/tubesync/config:/config
+      - ~/backup/media/youtube:/downloads
+    
+    ports:
+      - 8182:4848
+    labels:
+      - traefik.http.routers.tubesync.rule=Host(`tubesync.space.localhost`)
+      - traefik.http.routers.tubesync.service=tubesync
+      - traefik.http.services.tubesync.loadbalancer.server.port=4848
+      - flame.type=app
+      - flame.name=TubeSync
+      - flame.url=http://localhost:8182
+      - flame.icon=youtube
+    
