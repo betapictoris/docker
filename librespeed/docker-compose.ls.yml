@@ -4,12 +4,12 @@ version: '3'
 
 services:
   librespeed:
-    image: adolfintel/speedtest
+    image: linuxserver/librespeed
     container_name: librespeed
     restart: unless-stopped
     
     volumes:
-      - ~/containers/libresped/config:/config
+      - ~/containers/librespeed/config:/config
     
     ports:
       - 8090:80
