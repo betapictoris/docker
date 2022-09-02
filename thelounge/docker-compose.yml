@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  thelounge:
+    image: thelounge/thelounge:latest
+    container_name: thelounge
+
+    volumes:
+      - ~/containers/thelounge/config:/var/opt/thelounge
+
+    ports:
+      - 8185:9000
+    labels:
+      - traefik.http.routers.thelounge.rule=Host(`thelounge.space.localhost`)
+      - traefik.http.routers.thelounge.service=thelounge
+      - traefik.http.services.thelounge.loadbalancer.server.port=8080
+      - flame.type=app
+      - flame.name=The Lounge
+      - flame.url=http://localhost:8184
+      - flame.icon=alert-circle
