@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  whoogle-search:
+    image: benbusby/whoogle-search
+    container_name: whoogle-search
+    restart: unless-stopped
+
+    volumes:
+      - ~/containers/whoogle/config/:/config/
+
+    env_file: .env
+
+    ports:
+      - 8184:5000
+    labels:
+      - traefik.http.routers.whoogle.rule=Host(`whoogle.space.localhost`)
+      - traefik.http.routers.whoogle.service=whoogle
+      - traefik.http.services.whoogle.loadbalancer.server.port=8080
+      - flame.type=app
+      - flame.name=Whoogle
+      - flame.url=http://localhost:8184
+      - flame.icon=alert-circle

@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  heimdall:
+    image: lscr.io/linuxserver/heimdall:latest
+    container_name: heimdall
+    restart: unless-stopped
+
+    volumes:
+      - ~/containers/heimdall/config:/config
+
+    ports:
+      - 8183:80
+    labels:
+      - traefik.http.routers.heimdall.rule=Host(`heimdall.space.localhost`)
+      - traefik.http.routers.heimdall.service=heimdall
+      - traefik.http.services.heimdall.loadbalancer.server.port=80
