@@ -16,5 +16,5 @@ services:
       - traefik.http.services.homeassistant.loadbalancer.server.port=8123
       - flame.type=app
       - flame.name=Home Assistant
-      - flame.url=http://localhost:8123
+      - flame.url=http://home.space.localhost
       - flame.icon=home

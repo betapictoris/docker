@@ -19,5 +19,5 @@ services:
       - traefik.http.services.statping.loadbalancer.server.port=8080
       - flame.type=app
       - flame.name=Statping
-      - flame.url=http://localhost:8086
+      - flame.url=http://statping.space.localhost
       - flame.icon=train-car-container

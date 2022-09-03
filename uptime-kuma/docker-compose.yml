@@ -14,5 +14,5 @@ services:
       - traefik.http.services.uptimekuma.loadbalancer.server.port=8080
       - flame.type=app
       - flame.name=Uptime Kuma
-      - flame.url=http://localhost:6082
+      - flame.url=http://uptimekuma.space.localhost
       - flame.icon=list-status

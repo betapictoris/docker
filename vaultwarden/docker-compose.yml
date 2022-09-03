@@ -20,5 +20,5 @@ services:
       - traefik.http.services.vaultwarden.loadbalancer.server.port=80
       - flame.type=app
       - flame.name=Vaultwarden
-      - flame.url=http://localhost:8081
+      - flame.url=http://vaultwarden.space.localhost
       - flame.icon=lock

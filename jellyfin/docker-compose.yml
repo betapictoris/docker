@@ -22,5 +22,5 @@ services:
       - traefik.http.services.jellyfin.loadbalancer.server.port=8096
       - flame.type=app
       - flame.name=Jellyfin
-      - flame.url=http://localhost:8082
+      - flame.url=http://jellyfin.space.localhost
       - flame.icon=jellyfish-outline

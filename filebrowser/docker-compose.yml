@@ -14,10 +14,10 @@ services:
     ports:
       - 8088:80
     labels:
-      - traefik.http.routers.filebrowser.rule=Host(`filebrowser.space.localhost`)
+      - traefik.http.routers.filebrowser.rule=Host(`files.space.localhost`)
       - traefik.http.routers.filebrowser.service=filebrowser
       - traefik.http.services.filebrowser.loadbalancer.server.port=80
       - flame.type=app
       - flame.name=File Browser
-      - flame.url=http://localhost:8088
+      - flame.url=http://files.space.localhost
       - flame.icon=folder

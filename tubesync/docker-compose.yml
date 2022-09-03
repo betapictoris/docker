@@ -18,6 +18,6 @@ services:
       - traefik.http.services.tubesync.loadbalancer.server.port=4848
       - flame.type=app
       - flame.name=TubeSync
-      - flame.url=http://localhost:8182
+      - flame.url=http://tubesync.space.localhost
       - flame.icon=youtube
     

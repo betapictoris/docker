@@ -22,5 +22,5 @@ services:
       - traefik.http.services.airsonic.loadbalancer.server.port=4040
       - flame.type=app
       - flame.name=Airsonic
-      - flame.url=http://localhost:8180
+      - flame.url=http://airsonic.space.localhost
       - flame.icon=music-box-outline

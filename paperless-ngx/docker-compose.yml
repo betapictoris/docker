@@ -39,7 +39,7 @@ services:
       - traefik.http.services.paperlessngx.loadbalancer.server.port=8000
       - flame.type=app
       - flame.name=Paperless-ngx
-      - flame.url=http://localhost:8188
+      - flame.url=http://paperlessngx.space.localhost
       - flame.icon=file
 
 volumes:

@@ -20,5 +20,5 @@ services:
       - traefik.http.services.deemix.loadbalancer.server.port=6595
       - flame.type=app
       - flame.name=Deemix
-      - flame.url=http://localhost:6581
+      - flame.url=http://deemix.space.localhost
       - flame.icon=file-music

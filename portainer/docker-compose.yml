@@ -20,5 +20,5 @@ services:
       - traefik.http.services.portainer.loadbalancer.server.port=9000
       - flame.type=app
       - flame.name=Portainer
-      - flame.url=http://localhost:9092
+      - flame.url=http://portainer.space.localhost
       - flame.icon=train-car-container

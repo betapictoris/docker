@@ -19,5 +19,5 @@ services:
       - traefik.http.services.whoogle.loadbalancer.server.port=8080
       - flame.type=app
       - flame.name=Whoogle
-      - flame.url=http://localhost:8184
+      - flame.url=http://whoogle.space.localhost
       - flame.icon=alert-circle

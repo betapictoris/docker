@@ -20,5 +20,5 @@ services:
       - traefik.http.services.navidrome.loadbalancer.server.port=4533
       - flame.type=app
       - flame.name=Navidrome
-      - flame.url=http://localhost:4533
+      - flame.url=http://navidrome.space.localhost
       - flame.icon=music

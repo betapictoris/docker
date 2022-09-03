@@ -16,5 +16,5 @@ services:
       - traefik.http.services.guacamole.loadbalancer.server.port=8080
       - flame.type=app
       - flame.name=Guacamole
-      - flame.url=http://localhost:8187
+      - flame.url=http://guacamole.space.localhost
       - flame.icon=remote-desktop

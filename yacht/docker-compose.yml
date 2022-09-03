@@ -18,5 +18,5 @@ services:
       - traefik.http.services.yacht.loadbalancer.server.port=80
       - flame.type=app
       - flame.name=Yacht
-      - flame.url=http://localhost:9092
+      - flame.url=http://yacht.space.localhost
       - flame.icon=ferry

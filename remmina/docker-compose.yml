@@ -17,5 +17,5 @@ services:
       - traefik.http.services.remmina.loadbalancer.server.port=3000
       - flame.type=app
       - flame.name=Remmina
-      - flame.url=http://localhost:8287
+      - flame.url=http://remmina.space.localhost
       - flame.icon=dns

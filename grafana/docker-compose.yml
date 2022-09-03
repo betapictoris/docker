@@ -14,5 +14,5 @@ services:
       - traefik.http.services.grafana.loadbalancer.server.port=3000
       - flame.type=app
       - flame.name=Grafana
-      - flame.url=http://localhost:6080
+      - flame.url=http://grafana.space.localhost
       - flame.icon=chart-bell-curve-cumulative

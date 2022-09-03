@@ -19,5 +19,5 @@ services:
       - traefik.http.services.podgrab.loadbalancer.server.port=8080
       - flame.type=app
       - flame.name=Podgrab
-      - flame.url=http://localhost:8084
+      - flame.url=http://podgrab.space.localhost
       - flame.icon=folder

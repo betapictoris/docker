@@ -17,5 +17,5 @@ services:
       - traefik.http.services.prometheus.loadbalancer.server.port=9090
       - flame.type=app
       - flame.name=Prometheus
-      - flame.url=http://localhost:6080
+      - flame.url=http://prometheus.space.localhost
       - flame.icon=database-outline

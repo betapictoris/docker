@@ -26,5 +26,5 @@ services:
       - traefik.http.services.scrutiny.loadbalancer.server.port=8080
       - flame.type=app
       - flame.name=scrutiny
-      - flame.url=http://localhost:7080
+      - flame.url=http://scrutiny.space.localhost
       - flame.icon=harddisk

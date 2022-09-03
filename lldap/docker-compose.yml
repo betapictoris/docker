@@ -18,5 +18,5 @@ services:
       - traefik.http.services.lldap.loadbalancer.server.port=17170
       - flame.type=app
       - flame.name=LLDAP
-      - flame.url=http://localhost:9093
+      - flame.url=http://lldap.space.localhost
       - flame.icon=account-cog

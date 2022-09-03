@@ -22,5 +22,5 @@ services:
       - traefik.http.services.rtorrent.loadbalancer.server.port=6881
       - flame.type=app
       - flame.name=rTorrent
-      - flame.url=http://localhost:7084
+      - flame.url=http://rtorrent.space.localhost
       - flame.icon=download-circle

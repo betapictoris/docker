@@ -20,7 +20,7 @@ services:
       - traefik.http.services.flood.loadbalancer.server.port=8080
       - flame.type=app
       - flame.name=Flood
-      - flame.url=http://localhost:3001
+      - flame.url=http://flood.space.localhost
       - flame.icon=cloud-download
 
   rtorrent:
@@ -44,5 +44,5 @@ services:
       - traefik.http.services.rtorrentflood.loadbalancer.server.port=6881
       - flame.type=app
       - flame.name=rTorrent Flood
-      - flame.url=http://localhost:7083
+      - flame.url=http://rtorrentflood.space.localhost
       - flame.icon=download-circle-outline

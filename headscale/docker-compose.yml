@@ -27,5 +27,5 @@ services:
       - traefik.http.services.headscale.loadbalancer.server.port=443
       - flame.type=app
       - flame.name=Headscale
-      - flame.url=http://localhost:9095
+      - flame.url=http://headscale.space.localhost
       - flame.icon=vpn

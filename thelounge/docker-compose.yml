@@ -16,5 +16,5 @@ services:
       - traefik.http.services.thelounge.loadbalancer.server.port=8080
       - flame.type=app
       - flame.name=The Lounge
-      - flame.url=http://localhost:8184
+      - flame.url=http://thelounge.space.localhost
       - flame.icon=alert-circle

@@ -17,5 +17,5 @@ services:
       - traefik.http.services.dozzle.loadbalancer.server.port=8080
       - flame.type=app
       - flame.name=Dozzle
-      - flame.url=http://localhost:6083
+      - flame.url=http://dozzle.space.localhost
       - flame.icon=alert-circle

@@ -22,5 +22,5 @@ services:
       - traefik.http.services.pihole.loadbalancer.server.port=80
       - flame.type=app
       - flame.name=PiHole
-      - flame.url=http://localhost:9095
+      - flame.url=http://pihole.space.localhost
       - flame.icon=dns
