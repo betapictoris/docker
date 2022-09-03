@@ -1,0 +1,45 @@
+version: '3.4'
+
+services:
+  broker:
+    image: docker.io/library/redis:6.0
+    restart: unless-stopped
+
+    volumes:
+      - redisdata:/data
+
+  webserver:
+    image: ghcr.io/paperless-ngx/paperless-ngx:latest
+    restart: unless-stopped
+    
+    volumes:
+      - ~/containers/paperless-ngx/data:/usr/src/paperless/data
+      - ~/containers/paperless-ngx/media:/usr/src/paperless/media
+      - ~/containers/paperless-ngx/export:/usr/src/paperless/export
+      - ~/containers/paperless-ngx/consume:/usr/src/paperless/consume
+
+    environment:
+      PAPERLESS_REDIS: redis://broker:6379
+    env_file: docker-compose.env    
+    
+    depends_on:
+      - broker
+    healthcheck:
+      test: ["CMD", "curl", "-fs", "-S", "--max-time", "2", "http://localhost:8000"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    
+    ports:
+      - 8188:8000
+    labels:
+      - traefik.http.routers.paperlessngx.rule=Host(`paperlessngx.space.localhost`)
+      - traefik.http.routers.paperlessngx.service=paperlessngx
+      - traefik.http.services.paperlessngx.loadbalancer.server.port=8000
+      - flame.type=app
+      - flame.name=Paperless-ngx
+      - flame.url=http://localhost:8188
+      - flame.icon=file
+
+volumes:
+  redisdata:
