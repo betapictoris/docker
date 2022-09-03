@@ -10,6 +10,7 @@ services:
 
   webserver:
     image: ghcr.io/paperless-ngx/paperless-ngx:latest
+    container_name: Paperless-ngx
     restart: unless-stopped
     
     volumes:
