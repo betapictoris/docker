@@ -9,6 +9,8 @@ services:
     volumes:
       - ~/containers/statping/app:/app
     
+    env_file: docker-compose.env
+
     ports:
       - 8086:8080
     labels:

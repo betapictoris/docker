@@ -10,6 +10,8 @@ services:
       - ~/containers/vaultwarden/data:/data
       - ~/containers/vaultwarden/ssl:/ssl
     
+    env_file: docker-compose.env
+
     ports:
       - 8081:80  # Vault port
     labels:

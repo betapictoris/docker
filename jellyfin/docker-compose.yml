@@ -11,6 +11,8 @@ services:
       - ~/containers/jellyfin/cache:/cache
       #- ~/backup/Media:/media
     
+    env_file: docker-compose.env
+
     #network_mode: "host"
     ports:
       - 8082:8096 # Jellyfin port

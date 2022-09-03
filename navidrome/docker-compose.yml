@@ -10,6 +10,8 @@ services:
       - ~/containers/navidrome/data:/data
       - ~/backup/Media/Music:/music:ro
     
+    env_file: docker-compose.env
+
     ports:
       - 4533:4533
     labels:

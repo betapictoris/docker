@@ -10,6 +10,8 @@ services:
       - ~/containers/flame/data:/app/data
       - /var/run/docker.sock:/var/run/docker.sock
     
+    env_file: docker-compose.env
+
     ports:
       - 8080:5005 # Flame port
     labels:

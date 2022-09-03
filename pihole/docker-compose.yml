@@ -10,6 +10,8 @@ services:
       - ~/containers/pihole/pihole:/etc/pihole
       - ~/containers/pihole/dnsmasq.d:/etc/dnsmasq.d
 
+    env_file: docker-compose.env
+
     ports:
       - 53:53/tcp     #  DNS
       - 53:53/udp     # <-^

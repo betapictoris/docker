@@ -10,7 +10,7 @@ services:
      - ~/containers/deemixrr/config:/config/.config/deemix
      - ~/backup/Media/Music:/mnt/unionfs
     
-    env_file: .env
+    env_file: docker-compose.env
 
     ports:
      - 6582:5555

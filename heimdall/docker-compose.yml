@@ -9,6 +9,8 @@ services:
     volumes:
       - ~/containers/heimdall/config:/config
 
+    env_file: docker-compose.env
+
     ports:
       - 8183:80
     labels:

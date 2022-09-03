@@ -12,7 +12,7 @@ services:
       - ~/backup/Media/Playlists:/playlists
       - ~/backup/Media/Podcasts:/podcasts
 
-    env_file: .env
+    env_file: docker-compose.env
 
     ports:
       - 8180:4040

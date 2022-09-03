@@ -9,7 +9,7 @@ services:
     volumes:
       - ~/containers/whoogle/config/:/config/
 
-    env_file: .env
+    env_file: docker-compose.env
 
     ports:
       - 8184:5000

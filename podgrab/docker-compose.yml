@@ -9,6 +9,8 @@ services:
       - ~/containers/podgrab/config:/config
       - ~/containers/podgrab/data:/assets
     
+    env_file: docker-compose.env
+
     ports:
       - 8084:8080
     labels:

@@ -6,6 +6,8 @@ services:
     container_name: librespeed
     restart: unless-stopped
 
+    env_file: docker-compose.env
+
     ports:
       - 8090:80
     labels:

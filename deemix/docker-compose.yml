@@ -10,7 +10,7 @@ services:
      - ~/backup/Media/Music:/downloads
      - ~/containers/deemix/config:/config
 
-    env_file: .env
+    env_file: docker-compose.env
 
     ports:
      - 6581:6595
