@@ -1,0 +1,20 @@
+version: '2'
+
+services:
+  guacamole:
+    image: oznu/guacamole
+    container_name: guacamole
+    
+    volumes:
+      - postgres:/config
+    
+    ports:
+      - 8187:8080
+    labels:
+      - traefik.http.routers.guacamole.rule=Host(`guacamole.space.localhost`)
+      - traefik.http.routers.guacamole.service=guacamole
+      - traefik.http.services.guacamole.loadbalancer.server.port=8080
+      - flame.type=app
+      - flame.name=Guacamole
+      - flame.url=http://localhost:8088
+      - flame.icon=remote-desktop
