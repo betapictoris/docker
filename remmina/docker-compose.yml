@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  remmina:
+    image: lscr.io/linuxserver/remmina:latest
+    container_name: remmina
+    restart: unless-stopped
+    
+    volumes:
+      - /path/to/config:/config
+    
+    ports:
+      - 8287:3000
+    labels:
+      - traefik.http.routers.remmina.rule=Host(`remmina.space.localhost`)
+      - traefik.http.routers.remmina.service=remmina
+      - traefik.http.services.remmina.loadbalancer.server.port=3000
+      - flame.type=app
+      - flame.name=Remmina
+      - flame.url=http://localhost:8287
+      - flame.icon=dns
