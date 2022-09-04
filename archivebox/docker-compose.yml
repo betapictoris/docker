@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  archivebox:
+    image: archivebox/archivebox
+    command: server --quick-init 0.0.0.0:8000
+    container_name: archivebox
+    restart: unless-stopped
+
+    volumes:
+        - ~/containers/archivebox/data:/data
+        - ~/containers/archivebox/app:/app/archivebox
+
+    env_file: docker-compose.env
+
+    ports:
+      - 8284:8000
+    labels:
+      - traefik.http.routers.archivebox.rule=Host(`archivebox.space.localhost`)
+      - traefik.http.routers.archivebox.service=archivebox
+      - traefik.http.services.archivebox.loadbalancer.server.port=8000
+      - flame.type=app
+      - flame.name=archivebox
+      - flame.url=http://archivebox.space.localhost
+      - flame.icon=archive
