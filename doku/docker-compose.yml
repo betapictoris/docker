@@ -1,0 +1,21 @@
+# docker run --name doku -d -v /var/run/docker.sock:/var/run/docker.sock:ro -v /:/hostroot:ro -p 9090:9090 amerkurev/doku
+
+services:
+  doku:
+    image: amerkurev/doku
+    container_name: doku
+    restart: unless-stopped
+
+    volumes:
+      - ~/backup:/hostroot:ro
+    
+    ports:
+      - 8384:9090
+    labels:
+      - traefik.http.routers.doku.rule=Host(`doku.space.localhost`)
+      - traefik.http.routers.doku.service=doku
+      - traefik.http.services.doku.loadbalancer.server.port=9090
+      - flame.type=app
+      - flame.name=Doku
+      - flame.url=http://doku.space.localhost
+      - flame.icon=thermostat
