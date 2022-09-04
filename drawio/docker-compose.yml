@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  draw:
+    image: jgraph/drawio
+    container_name: drawio
+    restart: unless-stopped
+    
+    ports:
+      - 8385:8080
+      - 8386:8443
+    labels:
+      - traefik.http.routers.drawio.rule=Host(`drawio.space.localhost`)
+      - traefik.http.routers.drawio.service=drawio
+      - traefik.http.services.drawio.loadbalancer.server.port=8080
+      - flame.type=app
+      - flame.name=Drawio
+      - flame.url=http://drawio.space.localhost
+      - flame.icon=pencil
