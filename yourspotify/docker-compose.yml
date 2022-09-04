@@ -3,6 +3,7 @@ version: "3"
 services:
   server:
     image: yooooomi/your_spotify_server
+    container_name: yourspotifyserver
     restart: unless-stopped
     
     links:
@@ -14,18 +15,17 @@ services:
 
     ports:
       - 8288:8080
-
+    labels:
+      - traefik.http.routers.yourspotifyserver.rule=Host(`ys-api.space.localhost`)
+      - traefik.http.routers.yourspotifyserver.service=yourspotifyserver
+      - traefik.http.services.yourspotifyserver.loadbalancer.server.port=8080
   mongo:
-    image: mongo:4.4.8
-    container_name: mongo
+    image: mongo:4.2.22
+    container_name: yourspotifydb
     restart: unless-stopped
-    
-    volumes:
-      - ~/containers/yourspotify/db:/data/db
-
   web:
     image: yooooomi/your_spotify_client
-    container_name: web
+    container_name: yourspotifyweb
     restart: unless-stopped
 
     env_file: docker-compose.env
@@ -33,10 +33,10 @@ services:
     ports:
       - 8289:3000
     labels:
-      - traefik.http.routers.yourspotify.rule=Host(`yourspotify.space.localhost`)
+      - traefik.http.routers.yourspotify.rule=Host(`ys.space.localhost`)
       - traefik.http.routers.yourspotify.service=yourspotify
       - traefik.http.services.yourspotify.loadbalancer.server.port=3000
       - flame.type=app
       - flame.name=Your Spotify
-      - flame.url=http://yourspotify.space.localhost
-      - flame.icon=dns-outline
+      - flame.url=http://ys.space.localhost
+      - flame.icon=music-box-multiple
