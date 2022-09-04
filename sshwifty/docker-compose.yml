@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  sshwifty:
+    image: niruix/sshwifty
+    container_name: sshwifty
+
+    ports:
+      - 8281:8182
+    labels:
+      - traefik.http.routers.sshwifty.rule=Host(`sshwifty.space.localhost`)
+      - traefik.http.routers.sshwifty.service=sshwifty
+      - traefik.http.services.sshwifty.loadbalancer.server.port=8281
+      - flame.type=app
+      - flame.name=Sshwifty
+      - flame.url=http://sshwifty.space.localhost
+      - flame.icon=web
