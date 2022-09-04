@@ -1,0 +1,23 @@
+version: '2.1'
+
+services:
+  shiori:
+    image: nicholaswilde/shiori:latest
+    container_name: shiori-default
+    restart: unless-stopped
+
+    volumes:
+      - ~/containers/shiori/data:/data
+    
+    env_file: docker-compose.env
+
+    ports:
+      - 8387:8080
+    labels:
+      - traefik.http.routers.shiori.rule=Host(`shiori.space.localhost`)
+      - traefik.http.routers.shiori.service=shiori
+      - traefik.http.services.shiori.loadbalancer.server.port=8080
+      - flame.type=app
+      - flame.name=Shiori
+      - flame.url=http://shiori.space.localhost
+      - flame.icon=book-open
