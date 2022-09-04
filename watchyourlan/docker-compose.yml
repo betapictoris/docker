@@ -1,0 +1,21 @@
+version: '3'
+services:
+  watchyourlan:
+    image: aceberg/watchyourlan
+    restart: unless-stopped
+    container_name: watchyourlan
+
+    volumes:
+      - ~/containers/wyl/data:/data
+
+    env_file: docker-compose.env
+    
+    network_mode: host    
+    labels:
+      - traefik.http.routers.watchyourlan.rule=Host(`watchyourlan.space.localhost`)
+      - traefik.http.routers.watchyourlan.service=watchyourlan
+      - traefik.http.services.watchyourlan.loadbalancer.server.port=8840
+      - flame.type=app
+      - flame.name=WatchYourLAN
+      - flame.url=http://watchyourlan.space.localhost
+      - flame.icon=lan
