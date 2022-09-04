@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  2fauth:
+    image: 2fauth/2fauth
+    container_name: 2fauth
+    
+    volumes:
+      - ~/conatiners/2fauth/:/2fauth
+    
+    ports:
+      - 8283:8000/tcp
+    labels:
+      - traefik.http.routers.2fauth.rule=Host(`2fauth.space.localhost`)
+      - traefik.http.routers.2fauth.service=2fauth
+      - traefik.http.services.2fauth.loadbalancer.server.port=8000
+      - flame.type=app
+      - flame.name=2fauth
+      - flame.url=http://2fauth.space.localhost
+      - flame.icon=form-textbox-password
