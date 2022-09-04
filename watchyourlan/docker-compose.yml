@@ -2,8 +2,8 @@ version: '3'
 services:
   watchyourlan:
     image: aceberg/watchyourlan
-    restart: unless-stopped
     container_name: watchyourlan
+    restart: unless-stopped
 
     volumes:
       - ~/containers/wyl/data:/data
