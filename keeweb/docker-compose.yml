@@ -1,0 +1,24 @@
+# docker run --name keeweb -d -p 443:443 -p 80:80 -v $EXT_DIR:/etc/nginx/external/ antelle/keeweb
+
+version: '3'
+
+services:
+  keeweb:
+    image: antelle/keeweb
+    container_name: keeweb
+    restart: unless-stopped
+    
+    volumes:
+      - ~/containers/keeweb/app:/etc/nginx/external/
+    
+    ports:
+      - 8286:80
+      - 4286:443
+    labels:
+      - traefik.http.routers.keeweb.rule=Host(`keeweb.space.localhost`)
+      - traefik.http.routers.keeweb.service=keeweb
+      - traefik.http.services.keeweb.loadbalancer.server.port=80
+      - flame.type=app
+      - flame.name=KeeWeb
+      - flame.url=http://keeweb.space.localhost
+      - flame.icon=lock-outline
