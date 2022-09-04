@@ -4,6 +4,7 @@ services:
   guacamole:
     image: oznu/guacamole # Add :armhf for arm devices (ie. Raspberry Pi) 
     container_name: guacamole
+    restart: unless-stopped
 
     volumes:
       - ~/containers/guacamole/config:/config

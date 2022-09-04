@@ -4,6 +4,7 @@ services:
   2fauth:
     image: 2fauth/2fauth
     container_name: 2fauth
+    restart: unless-stopped
     
     volumes:
       - ~/conatiners/2fauth/:/2fauth

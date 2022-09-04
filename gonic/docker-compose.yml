@@ -3,6 +3,7 @@ version: '3'
 services:
   gonic:
     image: sentriz/gonic
+    restart: unless-stopped
 
     volumes:
       - ~/containers/gonic/data:/data

@@ -4,6 +4,7 @@ services:
   sshwifty:
     image: niruix/sshwifty
     container_name: sshwifty
+    restart: unless-stopped
 
     ports:
       - 8281:8182

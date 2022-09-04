@@ -4,6 +4,7 @@ services:
   thelounge:
     image: thelounge/thelounge:latest
     container_name: thelounge
+    restart: unless-stopped
 
     volumes:
       - ~/containers/thelounge/config:/var/opt/thelounge
