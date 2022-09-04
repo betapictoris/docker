@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  neko:
+    image: m1k1o/neko:brave
+    restart: unless-stopped
+    
+    shm_size: "2gb"
+    
+    env_file: docker-compose.env
+    
+    ports:
+      - 8580:8080
+      - 52000-52100:52000-52100/udp
+    labels:
+      - traefik.http.routers.neko.rule=Host(`neko.space.localhost`)
+      - traefik.http.routers.neko.service=neko
+      - traefik.http.services.neko.loadbalancer.server.port=8080
+      - flame.type=app
+      - flame.name=n.eko
+      - flame.url=http://neko.space.localhost
+      - flame.icon=web
