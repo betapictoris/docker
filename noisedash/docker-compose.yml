@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  noisedash:
+    image: noisedash/noisedash:latest
+    container_name: noisedash
+    restart: unless-stopped
+    
+    volumes:
+      - ~/containers/noisedash/db:/var/noisedash/db
+      - ~/containers/noisedash/samples:/var/noisedash/samples
+      - ~/containers/noisedash/config.json:/var/noisedash/config/default.json
+    
+    ports:
+      - 8383:1432
+    labels:
+      - traefik.http.routers.noisedash.rule=Host(`noisedash.space.localhost`)
+      - traefik.http.routers.noisedash.service=noisedash
+      - traefik.http.services.noisedash.loadbalancer.server.port=1432
+      - flame.type=app
+      - flame.name=Noisedash
+      - flame.url=http://noisedash.space.localhost
+      - flame.icon=cloud
