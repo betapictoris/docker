@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  gonic:
+    image: sentriz/gonic
+
+    volumes:
+      - ~/containers/gonic/data:/data
+      - ~/containers/gonic/cache:/cache
+      - ~/backup/Media/Music:/music:ro
+      - ~/backup/Media/Podcasts:/podcasts
+
+    env_file: docker-compose.env
+
+    ports:
+      - 8282:80
+    labels:
+      - traefik.http.routers.gonic.rule=Host(`gonic.space.localhost`)
+      - traefik.http.routers.gonic.service=gonic
+      - traefik.http.services.gonic.loadbalancer.server.port=3000
+      - flame.type=app
+      - flame.name=Gonic
+      - flame.url=http://gonic.space.localhost
+      - flame.icon=book-music
