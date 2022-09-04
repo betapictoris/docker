@@ -1,4 +1,4 @@
-# docker run --name doku -d -v /var/run/docker.sock:/var/run/docker.sock:ro -v /:/hostroot:ro -p 9090:9090 amerkurev/doku
+version: '3'
 
 services:
   doku:
