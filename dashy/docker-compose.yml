@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  dashy:
+    image: lissy93/dashy:latest
+    container_name: dashy
+    restart: unless-stopped
+
+    volumes:
+      - ~/containers/dashy/config.yml:/app/public/conf.yml
+    
+    ports:
+      - 8488:80
+    labels:
+      - traefik.http.routers.dashy.rule=Host(`dashy.space.localhost`)
+      - traefik.http.routers.dashy.service=dashy
+      - traefik.http.services.dashy.loadbalancer.server.port=80
+      - flame.type=app
+      - flame.name=Dashy
+      - flame.url=http://dashy.space.localhost
+      - flame.icon=book-music
