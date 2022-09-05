@@ -12,7 +12,7 @@
 ## Running a container
 
 1. Change into the directory of the service you want.
-2. Edit the `.env` file, if there is one present.
+2. Edit the `docker-compose.env` file, if there is one present.
 3. Edit Traefik and Flame labels to match your system/hostname.
 4. Run `docker-compose up -d` or `docker compose up -d`, this will depend on
 how you have Docker Compose setup and installed.
