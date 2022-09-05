@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  freshrss:
+    image: freshrss/freshrss
+    container_name: freshrss
+    restart: unless-stopped
+    
+    volumes:
+      - ~/containers/freshrss/data:/var/www/FreshRSS/data
+      - ~/containers/freshrss/extensions:/var/www/FreshRSS/extensions
+
+    env_file: docker-compose.env
+
+    ports:
+      - 8485:80
+    labels:
+      - traefik.http.routers.freshrss.rule=Host(`freshrss.space.localhost`)
+      - traefik.http.routers.freshrss.service=freshrss
+      - traefik.http.services.freshrss.loadbalancer.server.port=80
+      - flame.type=app
+      - flame.name=FreshRSS
+      - flame.url=http://freshrss.space.localhost
+      - flame.icon=rss
