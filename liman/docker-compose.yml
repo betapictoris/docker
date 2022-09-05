@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  liman:
+    image: salihciftci/liman
+    container_name: liman
+    restart: unless-stopped
+
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    
+    ports:
+      - 8581:8080
+    labels:
+      - traefik.http.routers.liman.rule=Host(`liman.space.localhost`)
+      - traefik.http.routers.liman.service=liman
+      - traefik.http.services.liman.loadbalancer.server.port=8080
+      - flame.type=app
+      - flame.name=Liman
+      - flame.url=http://liman.space.localhost
+      - flame.icon=truck-cargo-container
