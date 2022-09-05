@@ -1,0 +1,59 @@
+version: "3"
+services:
+  db_recipes:
+    image: postgres:11-alpine
+    restart: unless-stopped
+
+    volumes:
+      - ~/containers/tandoor/db:/var/lib/postgresql/data
+    
+    env_file: docker-compose.env
+
+    networks:
+      - default
+
+  web_recipes:
+    image: vabene1111/recipes
+    restart: unless-stopped
+
+    depends_on:
+      - db_recipes
+    
+    volumes:
+      - ~/containers/tandoor/static:/opt/recipes/staticfiles
+      - ~/containers/tandoor/nginx:/opt/recipes/nginx/conf.d
+      - ~/containers/tandoor/media:/opt/recipes/mediafiles
+    
+    env_file: docker-compose.env
+
+    networks:
+      - default
+
+  nginx_recipes:
+    image: nginx:mainline-alpine
+    restart: always
+
+    depends_on:
+      - web_recipes
+
+    volumes:
+      - ~/containers/tandoor/nginx:/etc/nginx/conf.d:ro
+      - ~/containers/tandoor/static:/static:ro
+      - ~/containers/tandoor/media:/media:ro
+
+    env_file:
+      - ./.env
+
+    networks:
+      - default
+      - traefik
+    labels:
+      - traefik.http.routers.tandoor.rule=Host(`tandoor.space.localhost`)
+      - traefik.http.routers.tandoor.service=tandoor
+      - flame.type=app
+      - flame.name=Tandoor
+      - flame.url=http://tandoor.space.localhost
+      - flame.icon=chef-hat
+
+networks:
+  default:
