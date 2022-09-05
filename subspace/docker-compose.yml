@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  subspace:
+    image: subspacecloud/subspace
+    container_name: subspace
+    restart: unless-stopped
+
+    cap_add:
+      - NET_ADMIN
+
+    volumes:
+      - /usr/bin/wg:/usr/bin/wg
+      - ~/containers/subspace/data:/data
+    
+    env_file: docker-compose.env
+
+    network_mode: host
+
+    
