@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  ghost:
+    image: ghost:alpine
+    container_name: ghost
+    restart: unless-stopped
+
+    volumes:
+      - ~/containers/ghost/content:/var/lib/ghost/content
+    
+    env_file: docker-compose.env
+
+    ports:
+      - 8388:2368
+    labels:
+      - traefik.http.routers.ghost.rule=Host(`ghost.space.localhost`)
+      - traefik.http.routers.ghost.service=ghost
+      - traefik.http.services.ghost.loadbalancer.server.port=2368
+      - flame.type=app
+      - flame.name=Ghost
+      - flame.url=http://ghost.space.localhost
+      - flame.icon=ghost-outline
