@@ -2,7 +2,7 @@ version: '3'
 
 services:
   pihole:
-    image: pihole/pihole:latest
+    image: pihole/pihole
     container_name: pihole
     restart: unless-stopped
 

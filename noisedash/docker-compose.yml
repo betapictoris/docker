@@ -2,7 +2,7 @@ version: '3'
 
 services:
   noisedash:
-    image: noisedash/noisedash:latest
+    image: noisedash/noisedash
     container_name: noisedash
     restart: unless-stopped
     

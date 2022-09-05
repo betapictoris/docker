@@ -2,7 +2,7 @@ version: '2.1'
 
 services:
   shiori:
-    image: nicholaswilde/shiori:latest
+    image: nicholaswilde/shiori
     container_name: shiori-default
     restart: unless-stopped
 

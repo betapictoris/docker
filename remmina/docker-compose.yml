@@ -2,7 +2,7 @@ version: '3'
 
 services:
   remmina:
-    image: lscr.io/linuxserver/remmina:latest
+    image: lscr.io/linuxserver/remmina
     container_name: remmina
     restart: unless-stopped
     

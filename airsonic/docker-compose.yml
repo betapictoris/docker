@@ -2,7 +2,7 @@ version: "3"
 
 services:
   airsonic-advanced:
-    image: lscr.io/linuxserver/airsonic-advanced:latest
+    image: lscr.io/linuxserver/airsonic-advanced
     container_name: airsonic-advanced
     restart: unless-stopped
 

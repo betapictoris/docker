@@ -2,7 +2,7 @@ version: '3'
 
 services:
   thelounge:
-    image: thelounge/thelounge:latest
+    image: thelounge/thelounge
     container_name: thelounge
     restart: unless-stopped
 

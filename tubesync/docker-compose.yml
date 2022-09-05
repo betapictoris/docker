@@ -2,7 +2,7 @@ version: '3'
 
 services:
   tubesync:
-    image: ghcr.io/meeb/tubesync:latest
+    image: ghcr.io/meeb/tubesync
     container_name: tubesync
     restart: unless-stopped
     

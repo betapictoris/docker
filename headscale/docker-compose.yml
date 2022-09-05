@@ -2,7 +2,7 @@ version: '3.5'
 
 services:
   headscale:
-    image: headscale/headscale:latest-alpine
+    image: headscale/headscale-alpine
     command: headscale serve
     container_name: headscale
     restart: unless-stopped
@@ -15,7 +15,7 @@ services:
       - 27896:8080
   
   headscale-ui:
-    image: ghcr.io/gurucomputing/headscale-ui:latest
+    image: ghcr.io/gurucomputing/headscale-ui
     container_name: headscale-ui
     restart: unless-stopped
 
