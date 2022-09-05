@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  beatbump:
+    image: snuffydev/beatbump:latest
+    container_name: beatbump
+
+    env_file: docker-compose.env
+
+    ports:
+      - 8583:3000
+    labels:
+      - traefik.http.routers.beatbump.rule=Host(`beatbump.space.localhost`)
+      - traefik.http.routers.beatbump.service=beatbump
+      - traefik.http.services.beatbump.loadbalancer.server.port=3000
+      - flame.type=app
+      - flame.name=Beatbump
+      - flame.url=http://beatbump.space.localhost
+      - flame.icon=music-circle
