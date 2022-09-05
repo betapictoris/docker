@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  komga:
+    image: gotson/komga
+    container_name: komga
+    restart: unless-stopped
+    
+    volumes:
+      - ~/containers/komga/config:/config
+      - ~/containers/komga/data:/data
+      - /etc/timezone:/etc/timezone:ro
+    
+    env_file: docker-compose.env
+
+    ports:
+      - 8080:8080
