@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  convos:
+    image: convos/convos:stable
+    container_name: convos
+    restart: unless-stopped
+
+    volumes:
+      - ~/containers/convos/data:/data
+    
+    ports:
+      - 8480:3000
+    labels:
+      - traefik.http.routers.convos.rule=Host(`convos.space.localhost`)
+      - traefik.http.routers.convos.service=convos
+      - traefik.http.services.convos.loadbalancer.server.port=4000
+      - flame.type=app
+      - flame.name=Convos
+      - flame.url=http://convos.space.localhost
+      - flame.icon=forum
