@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  flatnotes:
+    container_name: flatnotes
+    image: dullage/flatnotes:latest
+    restart: unless-stopped
+
+    volumes:
+      - ~/containers/flatnotes/data:/app/data
+
+    ports:
+      - 8481:80
+    labels:
+      - traefik.http.routers.flatnotes.rule=Host(`flatnotes.space.localhost`)
+      - traefik.http.routers.flatnotes.service=flatnotes
+      - traefik.http.services.flatnotes.loadbalancer.server.port=80
+      - flame.type=app
+      - flame.name=Flatnotes
+      - flame.url=http://flatnotes.space.localhost
+      - flame.icon=note-multiple
