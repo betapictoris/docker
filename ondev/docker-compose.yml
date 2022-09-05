@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  onedev:
+    image: 1dev/server
+    container_name: onedev
+    restart: unless-stopped
+
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ~/containers/onedev/data:/opt/onedev
+    
+    ports:
+      - 8483:6610
+      - 8484:6611
+    labels:
+      - traefik.http.routers.onedev.rule=Host(`onedev.space.localhost`)
+      - traefik.http.routers.onedev.service=onedev
+      - traefik.http.services.onedev.loadbalancer.server.port=1432
+      - flame.type=app
+      - flame.name=OneDev
+      - flame.url=http://onedev.space.localhost
+      - flame.icon=git
