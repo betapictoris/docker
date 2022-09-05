@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  n8n:
+    image: n8nio/n8n
+    container_name: n8n
+
+    volumes:
+      - ~/container_name/n8n:/home/node/.n8n
+    
+    ports:
+      - 8582:5678
+    labels:
+      - traefik.http.routers.n8n.rule=Host(`n8n.space.localhost`)
+      - traefik.http.routers.n8n.service=n8n
+      - traefik.http.services.n8n.loadbalancer.server.port=5678
+      - flame.type=app
+      - flame.name=n8n
+      - flame.url=http://n8n.space.localhost
+      - flame.icon=auto-fix
