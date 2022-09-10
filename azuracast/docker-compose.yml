@@ -1,0 +1,32 @@
+
+services:
+  web:
+    image: "ghcr.io/azuracast/azuracast:${AZURACAST_VERSION:-latest}"
+    container_name: azuracast
+    restart: unless-stopped
+
+    volumes:
+      - ~/contaienrs/azuracast/uploads:/var/azuracast/uploads
+      - ~/containers/azuracast/stations:/var/azuracast/stations
+      - ~/containers/azuracast/shoutcast:/var/azuracast/servers/shoutcast2
+      - ~/containers/azuracast/stereotool:/var/azuracast/servers/stereo_tool
+      - ~/containers/azuracast/geolite:/var/azuracast/geoip
+      - ~/containers/azuracast/sftpgo:/var/azuracast/sftpgo/persist
+      - ~/containers/azuracast/backups:/var/azuracast/backups
+      - ~/containers/azuracast/acme:/var/azuracast/acme
+      - ~/containers/azuracast/db:/var/lib/mysql
+
+    env_file: azuracast.env
+    
+    ports:
+      - '8584:80'
+      - '8585:443'
+      - '4022:2022'
+    labels:
+      - traefik.http.routers.azuracast.rule=Host(`azuracast.space.localhost`)
+      - traefik.http.routers.azuracast.service=azuracast
+      - traefik.http.services.azuracast.loadbalancer.server.port=80
+      - flame.type=app
+      - flame.name=AzuraCast
+      - flame.url=http://azuracast.space.localhost
+      - flame.icon=book-music
