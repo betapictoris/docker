@@ -1,0 +1,12 @@
+version: "3.7"
+
+services:
+  adguard_exporter:
+    image: ebrianne/adguard-exporter:latest
+    container_name: adguard-exporter
+    restart: unless-stopped
+    
+    env_file: docker-compose.env
+    
+    ports:
+      - "9101:9617"
