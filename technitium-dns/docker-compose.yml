@@ -1,0 +1,36 @@
+version: "3"
+services:
+  technitiumdns:
+    image: technitium/dns-server:latest
+    container_name: technitiumdns
+    restart: unless-stopped
+
+    sysctls:
+      - net.ipv4.ip_local_port_range=1024 65000
+ 
+    volumes:
+      - technitiumdns:/etc/dns/config    
+    
+    # Use "host" network mode for DHCP deployments
+    # network_mode: "host"
+    ports:
+      - "5380:5380/tcp" #DNS web console
+      - "53:53/udp" #DNS service
+      - "53:53/tcp" #DNS service
+      # - "67:67/udp" #DHCP service
+      # - "853:853/tcp" #DNS-over-TLS service
+      # - "443:443/tcp" #DNS-over-HTTPS service
+      # - "80:80/tcp" #DNS-over-HTTPS service certbot certificate renewal
+      # - "8053:8053/tcp" #DNS-over-HTTPS using reverse proxy
+    labels:
+      - traefik.http.routers.technitiumdns.rule=Host(`technitiumdns.space.localhost`)
+      - traefik.http.routers.technitiumdns.service=technitiumdns
+      - traefik.http.services.technitiumdns.loadbalancer.server.port=8080
+      - flame.type=app
+      - flame.name=Technitium DNS
+      - flame.url=http://technitiumdns.space.localhost
+      - flame.icon=dns-outline
+
+
+volumes:
+    technitiumdns:
