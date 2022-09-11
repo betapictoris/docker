@@ -9,7 +9,7 @@ services:
       HOME: /config
  
     volumes:
-      - ~/containers/flood/config:/config
+      - flood:/config
       - ~/backup/Downloads:/data
 
     ports:
@@ -33,7 +33,7 @@ services:
       HOME: /config
     
     volumes:
-      - ~/containers/rtorrent/config:/config
+      - rtorrent:/config
       - ~/backup/Downloads:/data
     
     ports:
@@ -46,3 +46,7 @@ services:
       - flame.name=rTorrent Flood
       - flame.url=http://rtorrentflood.space.localhost
       - flame.icon=download-circle-outline
+
+volumes:
+  flood: {}
+  rtorrent: {}

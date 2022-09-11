@@ -8,7 +8,7 @@ services:
 
     volumes:
      - ~/backup/Media/Music:/downloads
-     - ~/containers/deemix/config:/config
+     - deemix:/config
 
     env_file: docker-compose.env
 
@@ -22,3 +22,6 @@ services:
       - flame.name=Deemix
       - flame.url=http://deemix.space.localhost
       - flame.icon=file-music
+
+volumes:
+  deemix: {}

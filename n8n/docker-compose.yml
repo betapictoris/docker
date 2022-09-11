@@ -6,7 +6,7 @@ services:
     container_name: n8n
 
     volumes:
-      - ~/container_name/n8n:/home/node/.n8n
+      - n8n:/home/node/.n8n
     
     ports:
       - 8582:5678
@@ -18,3 +18,6 @@ services:
       - flame.name=n8n
       - flame.url=http://n8n.space.localhost
       - flame.icon=auto-fix
+
+volumes:
+  n8n: {}

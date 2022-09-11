@@ -10,9 +10,9 @@ services:
       - SYS_PTRACE
 
     volumes:
-      - ~/containers/netdata/config:/etc/netdata
-      - ~/containers/netdata/lib:/var/lib/netdata
-      - ~/containers/netdata/cache:/var/cache/netdata
+      - netdata:/etc/netdata
+      - netdataLib:/var/lib/netdata
+      - netdataCache:/var/cache/netdata
       - /etc/passwd:/host/etc/passwd:ro
       - /etc/group:/host/etc/group:ro
       - /proc:/host/proc:ro
@@ -29,3 +29,8 @@ services:
       - flame.name=Netdata
       - flame.url=http://netdata.space.localhost
       - flame.icon=chart-donut
+
+volumes:
+  netdata: {}
+  netdataCache: {}
+  netdataLib: {}

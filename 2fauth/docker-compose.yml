@@ -7,7 +7,7 @@ services:
     restart: unless-stopped
     
     volumes:
-      - ~/conatiners/2fauth/:/2fauth
+      - 2fauth:/2fauth
     
     ports:
       - 8283:8000/tcp
@@ -19,3 +19,6 @@ services:
       - flame.name=2fauth
       - flame.url=http://2fauth.space.localhost
       - flame.icon=form-textbox-password
+
+volumes:
+  2fauth: {}

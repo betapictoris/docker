@@ -7,7 +7,7 @@ services:
     restart: unless-stopped
 
     volumes:
-      - ~/containers/blocky/config.yml:/app/config.yml
+      - blocky:/app/config.yml
 
     ports:
       - 53:53/tcp
@@ -21,3 +21,6 @@ services:
       - flame.name=Blocky
       - flame.url=http://blocky.space.localhost
       - flame.icon=dns-outline
+
+volumes:
+  blocky: {}

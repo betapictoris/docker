@@ -8,7 +8,7 @@ services:
 
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ~/containers/onedev/data:/opt/onedev
+      - onedev:/opt/onedev
     
     ports:
       - 8483:6610
@@ -21,3 +21,6 @@ services:
       - flame.name=OneDev
       - flame.url=http://onedev.space.localhost
       - flame.icon=git
+
+volumes:
+  onedev: {}

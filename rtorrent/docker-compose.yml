@@ -11,7 +11,7 @@ services:
       HOME: /config
     
     volumes:
-      - ~/containers/rtorrent/config:/config
+      - rtorrent:/config
       - ~/backup/Downloads:/data
     
     ports:
@@ -24,3 +24,6 @@ services:
       - flame.name=rTorrent
       - flame.url=http://rtorrent.space.localhost
       - flame.icon=download-circle
+
+volumes:
+  rtorrent: {}

@@ -9,8 +9,8 @@ services:
     volumes:
       - ~/backup/Media/Audiobooks:/audiobooks
       - ~/backup/Media/Podcasts:/podcasts
-      - ~/containers/audiobookshelf/config:/config
-      - ~/containers/audiobookshelf/metadata:/metadata
+      - audiobookshelf:/config
+      - audiobookshelfMetadata:/metadata
     
     env_file: docker-compose.env
 
@@ -24,3 +24,7 @@ services:
       - flame.name=audiobookshelf
       - flame.url=http://audiobookshelf.space.localhost
       - flame.icon=book-music
+
+volumes:
+  audiobookshelf: {}
+  audiobookshelfMetadata: {}

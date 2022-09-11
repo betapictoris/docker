@@ -6,8 +6,8 @@ services:
     restart: unless-stopped
 
     volumes:
-      - ~/containers/gonic/data:/data
-      - ~/containers/gonic/cache:/cache
+      - gonic:/data
+      - gonicCache:/cache
       - ~/backup/Media/Music:/music:ro
       - ~/backup/Media/Podcasts:/podcasts
 
@@ -23,3 +23,7 @@ services:
       - flame.name=Gonic
       - flame.url=http://gonic.space.localhost
       - flame.icon=book-music
+
+volumes:
+  gonic: {}
+  gonicCache: {}

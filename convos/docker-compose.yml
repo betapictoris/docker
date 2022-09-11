@@ -7,7 +7,7 @@ services:
     restart: unless-stopped
 
     volumes:
-      - ~/containers/convos/data:/data
+      - convos:/data
     
     ports:
       - 8480:3000
@@ -19,3 +19,6 @@ services:
       - flame.name=Convos
       - flame.url=http://convos.space.localhost
       - flame.icon=forum
+
+volumes:
+  convos: {}

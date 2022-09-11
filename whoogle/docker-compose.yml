@@ -7,7 +7,7 @@ services:
     restart: unless-stopped
 
     volumes:
-      - ~/containers/whoogle/config/:/config/
+      - whoogle:/config/
 
     env_file: docker-compose.env
 
@@ -21,3 +21,6 @@ services:
       - flame.name=Whoogle
       - flame.url=http://whoogle.space.localhost
       - flame.icon=alert-circle
+
+volumes:
+  whoogle: {}

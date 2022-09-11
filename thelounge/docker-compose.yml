@@ -7,7 +7,7 @@ services:
     restart: unless-stopped
 
     volumes:
-      - ~/containers/thelounge/config:/var/opt/thelounge
+      - thelounge:/var/opt/thelounge
 
     ports:
       - 8185:9000
@@ -19,3 +19,6 @@ services:
       - flame.name=The Lounge
       - flame.url=http://thelounge.space.localhost
       - flame.icon=alert-circle
+
+volumes:
+  thelounge: {}

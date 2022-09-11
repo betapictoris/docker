@@ -7,7 +7,7 @@ services:
     restart: unless-stopped
 
     volumes:
-      - ~/containers/statping/app:/app
+      - statping:/app
     
     env_file: docker-compose.env
 
@@ -21,3 +21,6 @@ services:
       - flame.name=Statping
       - flame.url=http://statping.space.localhost
       - flame.icon=train-car-container
+
+volumes:
+  statping: {}

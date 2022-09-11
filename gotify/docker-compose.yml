@@ -5,7 +5,7 @@ services:
     restart: unless-stopped
 
     volumes:
-      - ~/containers/gotify/data:/app/data
+      - gotify:/app/data
     
     ports:
       - 8389:80
@@ -17,3 +17,6 @@ services:
       - flame.name=Gotify
       - flame.url=http://gotify.space.localhost
       - flame.icon=message-badge-outline
+
+volumes:
+  gotify: {}

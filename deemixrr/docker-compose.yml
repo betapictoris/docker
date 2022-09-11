@@ -7,7 +7,7 @@ services:
     restart: unless-stopped
 
     volumes:
-     - ~/containers/deemixrr/config:/config/.config/deemix
+     - deemixrr:/config/.config/deemix
      - ~/backup/Media/Music:/mnt/unionfs
     
     env_file: docker-compose.env
@@ -22,3 +22,6 @@ services:
       - flame.name=Deemixrr
       - flame.url=http://deemixrr.space.localhost
       - flame.icon=archive-music
+
+volumes:
+  deemixrr: {}

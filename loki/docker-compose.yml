@@ -8,7 +8,7 @@ services:
     restart: unless-stopped
 
     volumes:
-      - ~/containers/loki/loki:/etc/loki
+      - loki:/etc/loki
     
     ports:
       - 9109:3100
@@ -23,7 +23,7 @@ services:
 
     volumes:
       - /var/log:/var/log
-      - ~/containers/loki/promtail:/etc/promtail
+      - promtail:/etc/promtail
 
     networks:
       - loki
@@ -32,6 +32,9 @@ services:
     image: grafana/grafana-oss
     container_name: grafana
     restart: unless-stopped
+
+    volumes:
+      - grafana:/var/lib/grafana
 
     ports:
       - 6080:3000
@@ -49,3 +52,8 @@ services:
 
 networks:
   loki:
+
+volumes:
+  loki: {}
+  promtail: {}
+  grafana: {}

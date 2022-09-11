@@ -11,8 +11,8 @@ services:
 
     volumes:
       - /run/udev:/run/udev:ro
-      - ~/containers/scrutiny/config:/opt/scrutiny/config
-      - ~/containers/scrutiny/db:/opt/scrutiny/influxdb
+      - scrutiny:/opt/scrutiny/config
+      - scrutinyDB:/opt/scrutiny/influxdb
     devices:
       - "/dev/sda"
       - "/dev/sdb"
@@ -28,3 +28,7 @@ services:
       - flame.name=scrutiny
       - flame.url=http://scrutiny.space.localhost
       - flame.icon=harddisk
+
+volumes:
+  scrutiny: {}
+  scrutinyDB: {}

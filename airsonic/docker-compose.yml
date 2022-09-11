@@ -7,7 +7,7 @@ services:
     restart: unless-stopped
 
     volumes:
-      - ~/containers/airsonic-advanced/config:/config
+      - airsonic-advanced:/config
       - ~/backup/Media/Music:/music
       - ~/backup/Media/Playlists:/playlists
       - ~/backup/Media/Podcasts:/podcasts
@@ -24,3 +24,6 @@ services:
       - flame.name=Airsonic
       - flame.url=http://airsonic.space.localhost
       - flame.icon=music-box-outline
+
+volumes:
+  airsonic-advanced: {}

@@ -7,8 +7,8 @@ services:
     restart: unless-stopped
 
     volumes:
-      - ~/containers/vaultwarden/data:/data
-      - ~/containers/vaultwarden/ssl:/ssl
+      - vaultwarden:/data
+      - vaultwardenSSL:/ssl
     
     env_file: docker-compose.env
 
@@ -22,3 +22,7 @@ services:
       - flame.name=Vaultwarden
       - flame.url=http://vaultwarden.space.localhost
       - flame.icon=lock
+
+volumes:
+  vaultwarden: {}
+  vaultwardenSSL: {}

@@ -6,8 +6,8 @@ services:
     restart: unless-stopped
 
     volumes:
-      - ~/containers/podgrab/config:/config
-      - ~/containers/podgrab/data:/assets
+      - podgrab:/config
+      - podgrabData:/assets
     
     env_file: docker-compose.env
 
@@ -21,3 +21,7 @@ services:
       - flame.name=Podgrab
       - flame.url=http://podgrab.space.localhost
       - flame.icon=folder
+
+volumes:
+  podgrab: {}
+  podgrabData: {}

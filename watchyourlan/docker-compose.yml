@@ -6,7 +6,7 @@ services:
     restart: unless-stopped
 
     volumes:
-      - ~/containers/wyl/data:/data
+      - watchyourlan:/data
 
     env_file: docker-compose.env
     
@@ -19,3 +19,6 @@ services:
       - flame.name=WatchYourLAN
       - flame.url=http://watchyourlan.space.localhost
       - flame.icon=lan
+
+volumes:
+  watchyourlan: {}

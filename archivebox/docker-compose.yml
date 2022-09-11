@@ -8,8 +8,7 @@ services:
     restart: unless-stopped
 
     volumes:
-        - ~/containers/archivebox/data:/data
-        - ~/containers/archivebox/app:/app/archivebox
+        - archivebox:/data
 
     env_file: docker-compose.env
 
@@ -23,3 +22,6 @@ services:
       - flame.name=archivebox
       - flame.url=http://archivebox.space.localhost
       - flame.icon=archive
+
+volumes:
+  archivebox: {}

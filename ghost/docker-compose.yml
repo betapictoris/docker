@@ -7,7 +7,7 @@ services:
     restart: unless-stopped
 
     volumes:
-      - ~/containers/ghost/content:/var/lib/ghost/content
+      - ghost:/var/lib/ghost/content
     
     env_file: docker-compose.env
 
@@ -21,3 +21,6 @@ services:
       - flame.name=Ghost
       - flame.url=http://ghost.space.localhost
       - flame.icon=ghost-outline
+
+volumes:
+  ghost: {}

@@ -7,7 +7,7 @@ services:
     restart: unless-stopped
 
     volumes:
-      - ~/containers/shiori/data:/data
+      - shiori:/data
     
     env_file: docker-compose.env
 
@@ -21,3 +21,6 @@ services:
       - flame.name=Shiori
       - flame.url=http://shiori.space.localhost
       - flame.icon=book-open
+
+volumes:
+  shiori: {}

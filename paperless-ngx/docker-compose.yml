@@ -14,10 +14,10 @@ services:
     restart: unless-stopped
     
     volumes:
-      - ~/containers/paperless-ngx/data:/usr/src/paperless/data
-      - ~/containers/paperless-ngx/media:/usr/src/paperless/media
-      - ~/containers/paperless-ngx/export:/usr/src/paperless/export
-      - ~/containers/paperless-ngx/consume:/usr/src/paperless/consume
+      - paperlessngx:/usr/src/paperless/data
+      - paperlessngxMedia:/usr/src/paperless/media
+      - paperlessngxExport:/usr/src/paperless/export
+      - paperlessngxConsume:/usr/src/paperless/consume
 
     environment:
       PAPERLESS_REDIS: redis://broker:6379
@@ -43,4 +43,8 @@ services:
       - flame.icon=file
 
 volumes:
-  redisdata:
+  redisdata: {}
+  paperlessngx: {}
+  paperlessngxMedia: {} 
+  paperlessngxExport: {}
+  paperlessngxConsume: {}

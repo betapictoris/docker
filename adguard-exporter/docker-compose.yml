@@ -9,4 +9,4 @@ services:
     env_file: docker-compose.env
     
     ports:
-      - "9101:9617"
+      - 9101:9617

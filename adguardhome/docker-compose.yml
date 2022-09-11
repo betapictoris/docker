@@ -7,8 +7,7 @@ services:
     restart: unless-stopped
 
     volumes:
-      - ~/containers/adguardhome/work:/opt/adguardhome/work
-      - ~/containers/adguardhome/config:/opt/adguardhome/conf
+      - adguardhome:/opt/adguardhome/conf
 
     ports:
       - 53:53/tcp     #  DNS
@@ -23,3 +22,6 @@ services:
       - flame.name=AdGuard Home
       - flame.url=http://adguardhome.space.localhost
       - flame.icon=dns
+
+volumes:
+  adguardhome: {}

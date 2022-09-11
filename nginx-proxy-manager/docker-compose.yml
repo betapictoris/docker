@@ -7,8 +7,8 @@ services:
     restart: unless-stopped
     
     volumes:
-      - ~/containers/nginx-proxy-manager/data
-      - ~/containers/nginx-proxy-manager/letsencrypt:/etc/letsencrypt
+      - nginxPM:/data
+      - nginxPMle:/etc/letsencrypt
 
     #network_mode: host
     ports:
@@ -23,3 +23,7 @@ services:
       - flame.name="Nginx Proxy Manager"
       - flame.url=http://npm.space.localhost
       - flame.icon=arrow-decision-outline
+
+volumes:
+  nginxPM: {}
+  nginxPMle: {}

@@ -7,7 +7,7 @@ services:
     restart: unless-stopped
     
     volumes:
-      - /path/to/config:/config
+      - remmina:/config
     
     ports:
       - 8287:3000
@@ -19,3 +19,6 @@ services:
       - flame.name=Remmina
       - flame.url=http://remmina.space.localhost
       - flame.icon=dns
+
+volumes:
+  remmina: {}

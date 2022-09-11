@@ -7,8 +7,8 @@ services:
     restart: unless-stopped
     
     volumes:
-      - ~/containers/tubesync/config:/config
-      - ~/backup/media/youtube:/downloads
+      - tubesync:/config
+      - ~/backup/Media/youtube:/downloads
     
     ports:
       - 8182:4848
@@ -20,4 +20,6 @@ services:
       - flame.name=TubeSync
       - flame.url=http://tubesync.space.localhost
       - flame.icon=youtube
-    
+
+volumes:
+  tubesync: {}

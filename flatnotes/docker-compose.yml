@@ -7,7 +7,7 @@ services:
     restart: unless-stopped
 
     volumes:
-      - ~/containers/flatnotes/data:/app/data
+      - flatnotes:/app/data
 
     ports:
       - 8481:80
@@ -19,3 +19,6 @@ services:
       - flame.name=Flatnotes
       - flame.url=http://flatnotes.space.localhost
       - flame.icon=note-multiple
+
+volumes:
+  flatnotes: {}
