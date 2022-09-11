@@ -1,0 +1,21 @@
+
+version: '3'
+
+services:
+  epicgames-freegames:
+    image: charlocharlie/epicgames-freegames
+    container_name: epicgames-freegames
+    restart: unless-stopped
+
+    env_file: docker-compose.env
+
+    ports:
+      - 8586:3000
+    labels:
+      - traefik.http.routers.epicgames-freegames.rule=Host(`epicgames-freegames.space.localhost`)
+      - traefik.http.routers.epicgames-freegames.service=epicgames-freegames
+      - traefik.http.services.epicgames-freegames.loadbalancer.server.port=3000
+      - flame.type=app
+      - flame.name=Epic Games Store Free Games
+      - flame.url=http://epicgames-freegames.space.localhost
+      - flame.icon=controller
