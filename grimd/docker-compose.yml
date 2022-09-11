@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  grimd:
+    image: ghcr.io/looterz/grimd:latest
+    container_name: grimd
+    restart: unless-stopped
+    
+    ports:
+      - 53:53/udp
+      - 53:53/tcp
+      - 8586:8080
+    labels:
+      - traefik.http.routers.grimd.rule=Host(`grimd.space.localhost`)
+      - traefik.http.routers.grimd.service=grimd
+      - traefik.http.services.grimd.loadbalancer.server.port=8080
+      - flame.type=app
+      - flame.name=grimd
+      - flame.url=http://grimd.space.localhost
+      - flame.icon=dns
