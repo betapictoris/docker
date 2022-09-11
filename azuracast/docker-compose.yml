@@ -1,12 +1,13 @@
+version: '3'
 
 services:
   web:
-    image: "ghcr.io/azuracast/azuracast:${AZURACAST_VERSION:-latest}"
+    image: ghcr.io/azuracast/azuracast
     container_name: azuracast
     restart: unless-stopped
 
     volumes:
-      - ~/contaienrs/azuracast/uploads:/var/azuracast/uploads
+      - ~/containers/azuracast/uploads:/var/azuracast/uploads
       - ~/containers/azuracast/stations:/var/azuracast/stations
       - ~/containers/azuracast/shoutcast:/var/azuracast/servers/shoutcast2
       - ~/containers/azuracast/stereotool:/var/azuracast/servers/stereo_tool
@@ -19,9 +20,9 @@ services:
     env_file: azuracast.env
     
     ports:
-      - '8584:80'
-      - '8585:443'
-      - '4022:2022'
+      - 8584:80
+      - 8585:443
+      - 4022:20221
     labels:
       - traefik.http.routers.azuracast.rule=Host(`azuracast.space.localhost`)
       - traefik.http.routers.azuracast.service=azuracast
