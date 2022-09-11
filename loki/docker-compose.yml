@@ -8,7 +8,7 @@ services:
     restart: unless-stopped
 
     volumes:
-      - ~/contaienrs/loki/loki:/etc/loki
+      - ~/containers/loki/loki:/etc/loki
     
     ports:
       - 9109:3100
@@ -23,7 +23,7 @@ services:
 
     volumes:
       - /var/log:/var/log
-      - ~/contaienrs/loki/promtail:/etc/promtail
+      - ~/containers/loki/promtail:/etc/promtail
 
     networks:
       - loki
