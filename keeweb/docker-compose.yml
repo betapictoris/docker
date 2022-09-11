@@ -1,5 +1,3 @@
-# docker run --name keeweb -d -p 443:443 -p 80:80 -v $EXT_DIR:/etc/nginx/external/ antelle/keeweb
-
 version: '3'
 
 services:

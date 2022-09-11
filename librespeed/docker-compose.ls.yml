@@ -1,5 +1,3 @@
-# LibreSpeed: LinuxServer.io version
-
 version: '3'
 
 services:
