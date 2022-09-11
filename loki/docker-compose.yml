@@ -1,0 +1,51 @@
+version: '3'
+
+services:
+  loki:
+    image: grafana/loki:2.6.0
+    command: -config.file=/etc/loki/local-config.yaml
+    container_name: loki
+    restart: unless-stopped
+
+    volumes:
+      - ~/contaienrs/loki/loki:/etc/loki
+    
+    ports:
+      - 9109:3100
+    networks:
+      - loki
+
+  promtail:
+    image: grafana/promtail:2.6.0
+    command: -config.file=/etc/promtail/config.yml
+    container_name: promtail
+    restart: unless-stopped
+
+    volumes:
+      - /var/log:/var/log
+      - ~/contaienrs/loki/promtail:/etc/promtail
+
+    networks:
+      - loki
+    
+  grafana:
+    image: grafana/grafana-oss
+    container_name: grafana
+    restart: unless-stopped
+
+    ports:
+      - 6080:3000
+    networks:
+      - loki
+    labels:
+      - traefik.http.routers.grafana.rule=Host(`grafana.space.localhost`)
+      - traefik.http.routers.grafana.service=grafana
+      - traefik.http.services.grafana.loadbalancer.server.port=3000
+      - flame.type=app
+      - flame.name=Grafana
+      - flame.url=http://grafana.space.localhost
+      - flame.icon=chart-bell-curve-cumulative
+
+
+networks:
+  loki:
