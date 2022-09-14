@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  mitmproxy:
+    image: mitmproxy/mitmproxy
+    container_name: mitmproxy
+    restart: unless-stopped
+
+    volumes:
+      - mitmproxy:/home/mitmproxy/.mitmproxy
+    
+    ports:
+      - 8080:8080
+      - 8587:8081
+    labels:
+      - traefik.http.routers.mitmproxy.rule=Host(`mitmproxy.space.localhost`)
+      - traefik.http.routers.mitmproxy.service=mitmproxy
+      - traefik.http.services.mitmproxy.loadbalancer.server.port=3000
+      - flame.type=app
+      - flame.name=mitmproxy
+      - flame.url=http://mitmproxy.space.localhost
+      - flame.icon=arrow-decision
