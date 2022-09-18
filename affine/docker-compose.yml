@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  affine:
+    image: ghcr.io/toeverything/affine:nightly-latest
+    container_name: affine
+    restart: unless-stopped
+    
+    ports:
+      - 8683:3000
+    labels:
+      - traefik.http.routers.affine.rule=Host(`affine.space.localhost`)
+      - traefik.http.routers.affine.service=affine
+      - traefik.http.services.affine.loadbalancer.server.port=3000
+      - flame.type=app
+      - flame.name=AFFiNE
+      - flame.url=http://affine.space.localhost
+      - flame.icon=notebook
