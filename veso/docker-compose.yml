@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  vesotv:
+    image: vesotv/veso
+    container_name: vesotv
+    restart: unless-stopped
+    
+    volumes:
+      - vesotv:/config
+      - vesotvCache:/cache
+      #- ~/backup/Media:/media
+    
+    ports:
+      – 8096:8096
+      – 8920:8920
+    labels:
+      - traefik.http.routers.vesotv.rule=Host(`vesotv.space.localhost`)
+      - traefik.http.routers.vesotv.service=vesotv
+      - traefik.http.services.vesotv.loadbalancer.server.port=8096
+      - flame.type=app
+      - flame.name=Veso
+      - flame.url=http://vesotv.space.localhost
+      - flame.icon=multimedia
+
+volumes:
+  vesotv: {}
+  vesotvCache: {}
