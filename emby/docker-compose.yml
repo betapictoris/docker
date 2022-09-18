@@ -11,14 +11,18 @@ services:
       - embyCache:/cache
       #- ~/backup/Media:/media
     
-    network_mode: host # Enable DLNA and Wake-on-Lan
+    #network_mode: host # Enable DLNA and Wake-on-Lan
     ports:
       - 8681:8096 # HTTP port
       - 8682:8920 # HTTPS port
-    devices:
-      - /dev/dri:/dev/dri # VAAPI/NVDEC/NVENC render nodes
-      - /dev/vchiq:/dev/vchiq # MMAL/OMX on Raspberry Pi
-    restart: unless-stopped
+    labels:
+      - traefik.http.routers.emby.rule=Host(`emby.space.localhost`)
+      - traefik.http.routers.emby.service=emby
+      - traefik.http.services.emby.loadbalancer.server.port=8096
+      - flame.type=app
+      - flame.name=Emby
+      - flame.url=http://emby.space.localhost
+      - flame.icon=multimedia
 
 volumes:
   emby: {}
