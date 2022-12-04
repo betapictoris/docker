@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  mediawiki:
+    image: mediawiki
+    container_name: mediawiki
+    restart: unless-stopped
+    
+    volumes:
+      - image:/var/www/html/images
+    
+    ports:
+      - 8481:80
+    labels:
+      - traefik.http.routers.ghost.rule=Host(`mediawiki.space.localhost`)
+      - traefik.http.routers.ghost.service=mediawiki
+      - traefik.http.services.ghost.loadbalancer.server.port=80
+      - flame.type=app
+      - flame.name=Mediawiki
+      - flame.url=http://mediawiki.space.localhost
+      - flame.icon=wikipedia
