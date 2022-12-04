@@ -7,7 +7,7 @@ services:
     restart: unless-stopped
     
     volumes:
-      - image:/var/www/html/images
+      - images:/var/www/html/images
     
     ports:
       - 8481:80
@@ -19,3 +19,6 @@ services:
       - flame.name=Mediawiki
       - flame.url=http://mediawiki.space.localhost
       - flame.icon=wikipedia
+
+volumes:
+  images: {}
