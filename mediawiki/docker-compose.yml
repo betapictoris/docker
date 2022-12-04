@@ -8,6 +8,7 @@ services:
     
     volumes:
       - images:/var/www/html/images
+      #- data:/var/www/data
     
     ports:
       - 8481:80
@@ -22,3 +23,4 @@ services:
 
 volumes:
   images: {}
+  # data: {} # If you are using SQLite you can map this volume to "/var/www/data"
