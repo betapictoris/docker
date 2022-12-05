@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  rclone:
+    image: rclone/rclone 
+    command: --rc-user beta --rc-pass CHANGE_ME --rc-addr 0.0.0.0:80 --rc-serve
+    container_name: rclone
+    restart: unless-stopped
+    
+    volumes:
+      - config:/config/rclone
+      - ~/backup:/data:shared
+     
+    ports:
+      - 8848:8000/tcp
+    labels:
+      - traefik.http.routers.rclone.rule=Host(`rclone.space.localhost`)
+      - traefik.http.routers.rclone.service=rclone
+      - traefik.http.services.rclone.loadbalancer.server.port=80
+      - flame.type=app
+      - flame.name=Rclone
+      - flame.url=http://rclone.space.localhost
+      - flame.icon=harddisk
+
+volumes:
+  config: {}
