@@ -7,7 +7,7 @@ services:
     restart: unless-stopped
     
     volumes:
-      - remmina:/config
+      - config:/config
     
     ports:
       - 8287:3000
@@ -21,4 +21,4 @@ services:
       - flame.icon=dns
 
 volumes:
-  remmina: {}
+  config: {}

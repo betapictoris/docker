@@ -7,7 +7,7 @@ services:
     restart: unless-stopped
 
     volumes:
-      - navidrome:/data
+      - data:/data
       - ~/backup/Media/Music:/music:ro
     
     env_file: docker-compose.env
@@ -24,4 +24,4 @@ services:
       - flame.icon=music
 
 volumes:
-  navidrome: {}
+  data: {}

@@ -7,7 +7,7 @@ services:
     restart: unless-stopped
     
     volumes:
-      - ~/containers/keeweb/app:/etc/nginx/external/
+      - app:/etc/nginx/external/
     
     ports:
       - 8286:80
@@ -20,3 +20,6 @@ services:
       - flame.name=KeeWeb
       - flame.url=http://keeweb.space.localhost
       - flame.icon=lock-outline
+
+volumes:
+  app: {}

@@ -6,8 +6,8 @@ services:
     restart: unless-stopped
 
     volumes:
-      - podgrab:/config
-      - podgrabData:/assets
+      - config:/config
+      - data:/assets
     
     env_file: docker-compose.env
 
@@ -23,5 +23,5 @@ services:
       - flame.icon=folder
 
 volumes:
-  podgrab: {}
-  podgrabData: {}
+  config: {}
+  data: {}

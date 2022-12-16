@@ -7,7 +7,7 @@ services:
     restart: unless-stopped
 
     volumes:
-      - gotify:/app/data
+      - data:/app/data
     
     ports:
       - 8389:80
@@ -21,4 +21,4 @@ services:
       - flame.icon=message-badge-outline
 
 volumes:
-  gotify: {}
+  data: {}

@@ -7,9 +7,9 @@ services:
     restart: unless-stopped
     
     volumes:
-      - ~/containers/jellyfin/config:/config
-      - ~/containers/jellyfin/cache:/cache
-      #- ~/backup/Media:/media
+      - config:/config
+      - cache:/cache
+      - ~/backup/Media:/media
     
     env_file: docker-compose.env
 
@@ -24,3 +24,7 @@ services:
       - flame.name=Jellyfin
       - flame.url=http://jellyfin.space.localhost
       - flame.icon=jellyfish-outline
+
+volumes:
+  config: {}
+  cache: {}

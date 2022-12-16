@@ -5,7 +5,7 @@ services:
     restart: unless-stopped
 
     volumes:
-      - tandoorDB:/var/lib/postgresql/data
+      - db:/var/lib/postgresql/data
     
     env_file: docker-compose.env
 
@@ -20,9 +20,9 @@ services:
       - db_recipes
     
     volumes:
-      - tandoorNginx:/opt/recipes/nginx/conf.d
-      - tandoorStatic:/opt/recipes/staticfiles
-      - tandoorMedia:/opt/recipes/mediafiles
+      - www:/opt/recipes/nginx/conf.d
+      - static:/opt/recipes/staticfiles
+      - media:/opt/recipes/mediafiles
     
     env_file: docker-compose.env
 
@@ -37,9 +37,9 @@ services:
       - web_recipes
 
     volumes:
-      - tandoorNginx:/etc/nginx/conf.d:ro
-      - tandoorStatic:/static:ro
-      - tandoorMedia:/media:ro
+      - www:/etc/nginx/conf.d:ro
+      - static:/static:ro
+      - media:/media:ro
 
     env_file: docker-compose.env
 
@@ -58,7 +58,7 @@ networks:
   default:
 
 volumes:
-  tandoorDB: {}
-  tandoorNginx: {}
-  tandoorStatic: {}
-  tandoorMedia: {}
+  db: {}
+  www: {}
+  static: {}
+  media: {}

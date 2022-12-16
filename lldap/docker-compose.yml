@@ -7,7 +7,7 @@ services:
     restart: unless-stopped
 
     volumes:
-      - ~/containers/lldap/data:/data
+      - data:/data
     
     ports:
       - 3890:3890  # LDAP Port
@@ -20,3 +20,6 @@ services:
       - flame.name=LLDAP
       - flame.url=http://lldap.space.localhost
       - flame.icon=account-cog
+
+volumes:
+  data: {}

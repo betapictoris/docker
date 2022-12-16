@@ -7,7 +7,7 @@ services:
     restart: unless-stopped
     
     volumes:
-      - ~/containers/librespeed/config:/config
+      - config:/config
     
     ports:
       - 8090:80
@@ -19,3 +19,6 @@ services:
       - flame.name=LibreSpeed
       - flame.url=http://librespeed.space.localhost
       - flame.icon=speedometer
+
+volumes:
+  config: {}

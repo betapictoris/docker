@@ -8,7 +8,7 @@ services:
 
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - yacht:/config
+      - config:/config
     
     ports:
       - 9092:8000  # Web UI port
@@ -22,4 +22,4 @@ services:
       - flame.icon=ferry
 
 volumes:
-  yacht: {}
+  config: {}

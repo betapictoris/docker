@@ -7,7 +7,7 @@ services:
     restart: unless-stopped
 
     volumes:
-      - shiori:/data
+      - data:/data
     
     env_file: docker-compose.env
 
@@ -23,4 +23,4 @@ services:
       - flame.icon=book-open
 
 volumes:
-  shiori: {}
+  data: {}

@@ -7,7 +7,7 @@ services:
     restart: unless-stopped
 
     volumes:
-      - adguardhome:/opt/adguardhome/conf
+      - config:/opt/adguardhome/conf
 
     ports:
       - 53:53/tcp     #  DNS
@@ -24,4 +24,4 @@ services:
       - flame.icon=dns
 
 volumes:
-  adguardhome: {}
+  config: {}

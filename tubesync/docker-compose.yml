@@ -7,7 +7,7 @@ services:
     restart: unless-stopped
     
     volumes:
-      - tubesync:/config
+      - config:/config
       - ~/backup/Media/youtube:/downloads
     
     ports:
@@ -22,4 +22,4 @@ services:
       - flame.icon=youtube
 
 volumes:
-  tubesync: {}
+  config: {}

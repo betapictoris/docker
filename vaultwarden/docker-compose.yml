@@ -7,8 +7,8 @@ services:
     restart: unless-stopped
 
     volumes:
-      - vaultwarden:/data
-      - vaultwardenSSL:/ssl
+      - data:/data
+      - ssl:/ssl
     
     env_file: docker-compose.env
 
@@ -24,5 +24,5 @@ services:
       - flame.icon=lock
 
 volumes:
-  vaultwarden: {}
-  vaultwardenSSL: {}
+  data: {}
+  ssl: {}

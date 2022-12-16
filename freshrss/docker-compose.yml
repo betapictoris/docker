@@ -7,7 +7,7 @@ services:
     restart: unless-stopped
     
     volumes:
-      - freshrss:/var/www/FreshRSS/data
+      - data:/var/www/FreshRSS/data
 
     env_file: docker-compose.env
 
@@ -23,4 +23,4 @@ services:
       - flame.icon=rss
 
 volumes:
-  freshrss: {}
+  data: {}

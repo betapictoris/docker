@@ -7,7 +7,7 @@ services:
     restart: unless-stopped
 
     volumes:
-      - ~/containers/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ~/containers/prometheus/config.yml:/etc/prometheus/prometheus.yml
 
     ports:
       - 6081:9090

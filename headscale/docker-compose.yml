@@ -8,8 +8,8 @@ services:
     restart: unless-stopped
     
     volumes:
-      - ~/containers/headscale/config:/etc/headscale
-      - ~/containers/headscale/data:/var/lib/headscale
+      - config:/etc/headscale
+      - data:/var/lib/headscale
     
     ports:
       - 27896:8080
@@ -29,3 +29,7 @@ services:
       - flame.name=Headscale
       - flame.url=http://headscale.space.localhost
       - flame.icon=vpn
+
+volumes:
+  config: {}
+  data: {}

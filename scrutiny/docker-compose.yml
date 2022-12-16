@@ -11,8 +11,8 @@ services:
 
     volumes:
       - /run/udev:/run/udev:ro
-      - scrutiny:/opt/scrutiny/config
-      - scrutinyDB:/opt/scrutiny/influxdb
+      - config:/opt/scrutiny/config
+      - db:/opt/scrutiny/influxdb
     devices:
       - "/dev/sda"
       - "/dev/sdb"
@@ -30,5 +30,5 @@ services:
       - flame.icon=harddisk
 
 volumes:
-  scrutiny: {}
-  scrutinyDB: {}
+  config: {}
+  db: {}

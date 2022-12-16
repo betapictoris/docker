@@ -9,7 +9,7 @@ services:
       - net.ipv4.ip_local_port_range=1024 65000
  
     volumes:
-      - technitiumdns:/etc/dns/config    
+      - config:/etc/dns/config    
     
     # Use "host" network mode for DHCP deployments
     # network_mode: "host"
@@ -33,4 +33,4 @@ services:
 
 
 volumes:
-    technitiumdns:
+  config: {}

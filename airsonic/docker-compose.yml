@@ -7,7 +7,7 @@ services:
     restart: unless-stopped
 
     volumes:
-      - airsonic-advanced:/config
+      - config:/config
       - ~/backup/Media/Music:/music
       - ~/backup/Media/Playlists:/playlists
       - ~/backup/Media/Podcasts:/podcasts
@@ -26,4 +26,4 @@ services:
       - flame.icon=music-box-outline
 
 volumes:
-  airsonic-advanced: {}
+  config: {}

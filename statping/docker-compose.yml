@@ -7,7 +7,7 @@ services:
     restart: unless-stopped
 
     volumes:
-      - statping:/app
+      - app:/app
     
     env_file: docker-compose.env
 
@@ -23,4 +23,4 @@ services:
       - flame.icon=train-car-container
 
 volumes:
-  statping: {}
+  app: {}

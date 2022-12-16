@@ -7,7 +7,7 @@ services:
     restart: unless-stopped
 
     volumes:
-      - whoogle:/config/
+      - config:/config
 
     env_file: docker-compose.env
 
@@ -23,4 +23,4 @@ services:
       - flame.icon=alert-circle
 
 volumes:
-  whoogle: {}
+  config: {}

@@ -10,9 +10,9 @@ services:
       - SYS_PTRACE
 
     volumes:
-      - netdata:/etc/netdata
-      - netdataLib:/var/lib/netdata
-      - netdataCache:/var/cache/netdata
+      - data:/etc/netdata
+      - library:/var/lib/netdata
+      - cache:/var/cache/netdata
       - /etc/passwd:/host/etc/passwd:ro
       - /etc/group:/host/etc/group:ro
       - /proc:/host/proc:ro
@@ -31,6 +31,6 @@ services:
       - flame.icon=chart-donut
 
 volumes:
-  netdata: {}
-  netdataCache: {}
-  netdataLib: {}
+  data: {}
+  library: {}
+  cache: {}

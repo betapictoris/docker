@@ -6,7 +6,7 @@ services:
     restart: unless-stopped
 
     volumes:
-      - watchyourlan:/data
+      - data:/data
 
     env_file: docker-compose.env
     
@@ -21,4 +21,4 @@ services:
       - flame.icon=lan
 
 volumes:
-  watchyourlan: {}
+  data: {}

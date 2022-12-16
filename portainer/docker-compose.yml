@@ -8,7 +8,7 @@ services:
 
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - portainer:/data
+      - data:/data
     
     ports:
       - 8000:8000
@@ -24,4 +24,4 @@ services:
       - flame.icon=train-car-container
 
 volumes:
-  portainer: {}
+  data: {}

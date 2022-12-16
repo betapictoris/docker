@@ -7,7 +7,7 @@ services:
     restart: unless-stopped
 
     volumes:
-      - flatnotes:/app/data
+      - data:/app/data
 
     ports:
       - 8481:80
@@ -21,4 +21,4 @@ services:
       - flame.icon=note-multiple
 
 volumes:
-  flatnotes: {}
+  data: {}

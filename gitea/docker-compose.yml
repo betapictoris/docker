@@ -7,8 +7,8 @@ services:
     restart: unless-stopped
     
     volumes:
-      - gitea:/var/lib/gitea
-      - giteaConfig:/etc/gitea
+      - app:/var/lib/gitea
+      - config:/etc/gitea
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     
@@ -25,5 +25,5 @@ services:
       - flame.icon=git
 
 volumes:
-  gitea: {}
-  giteaConfig: {}
+  app: {}
+  config: {}

@@ -11,7 +11,7 @@ services:
       HOME: /config
     
     volumes:
-      - rtorrent:/config
+      - config:/config
       - ~/backup/Downloads:/data
     
     ports:
@@ -26,4 +26,4 @@ services:
       - flame.icon=download-circle
 
 volumes:
-  rtorrent: {}
+  config: {}

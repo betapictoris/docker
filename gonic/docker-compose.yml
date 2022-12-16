@@ -6,8 +6,8 @@ services:
     restart: unless-stopped
 
     volumes:
-      - gonic:/data
-      - gonicCache:/cache
+      - data:/data
+      - cache:/cache
       - ~/backup/Media/Music:/music:ro
       - ~/backup/Media/Podcasts:/podcasts
 
@@ -25,5 +25,5 @@ services:
       - flame.icon=book-music
 
 volumes:
-  gonic: {}
-  gonicCache: {}
+  data: {}
+  cache: {}

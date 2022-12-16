@@ -7,7 +7,7 @@ services:
     restart: unless-stopped
 
     volumes:
-      - ~/containers/guacamole/config:/config
+      - config:/config
 
     ports:
       - 8187:8080
@@ -19,3 +19,6 @@ services:
       - flame.name=Guacamole
       - flame.url=http://guacamole.space.localhost
       - flame.icon=remote-desktop
+
+volumes:
+  config: {}

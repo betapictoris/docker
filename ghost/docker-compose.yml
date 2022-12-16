@@ -7,7 +7,7 @@ services:
     restart: unless-stopped
 
     volumes:
-      - ghost:/var/lib/ghost/content
+      - data:/var/lib/ghost/content
     
     env_file: docker-compose.env
 
@@ -23,4 +23,4 @@ services:
       - flame.icon=ghost-outline
 
 volumes:
-  ghost: {}
+  data: {}

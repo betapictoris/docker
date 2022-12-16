@@ -7,8 +7,8 @@ services:
     restart: unless-stopped
     
     volumes:
-      - emby:/config
-      - embyCache:/cache
+      - config:/config
+      - cache:/cache
       #- ~/backup/Media:/media
     
     #network_mode: host # Enable DLNA and Wake-on-Lan
@@ -25,5 +25,5 @@ services:
       - flame.icon=multimedia
 
 volumes:
-  emby: {}
-  embyCache: {}
+  config: {}
+  cache: {}

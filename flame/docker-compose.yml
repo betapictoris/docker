@@ -7,7 +7,7 @@ services:
     restart: unless-stopped
 
     volumes:
-      - flame:/app/data
+      - data:/app/data
       - /var/run/docker.sock:/var/run/docker.sock
     
     env_file: docker-compose.env
@@ -20,4 +20,4 @@ services:
       - traefik.http.services.flame.loadbalancer.server.port=5005
 
 volumes:
-  flame: {}
+  data: {}

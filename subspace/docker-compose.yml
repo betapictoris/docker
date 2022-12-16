@@ -11,11 +11,11 @@ services:
 
     volumes:
       - /usr/bin/wg:/usr/bin/wg
-      - subspace:/data
+      - data:/data
     
     env_file: docker-compose.env
 
     network_mode: host
 
 volumes:
-  subspace: {}
+  data: {}

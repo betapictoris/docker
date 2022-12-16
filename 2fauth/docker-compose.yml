@@ -7,7 +7,7 @@ services:
     restart: unless-stopped
     
     volumes:
-      - 2fauth:/2fauth
+      - app:/2fauth
     
     ports:
       - 8283:8000/tcp
@@ -21,4 +21,4 @@ services:
       - flame.icon=form-textbox-password
 
 volumes:
-  2fauth: {}
+  app: {}

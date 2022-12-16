@@ -7,7 +7,7 @@ services:
     restart: unless-stopped
 
     volumes:
-      - convos:/data
+      - data:/data
     
     ports:
       - 8480:3000
@@ -21,4 +21,4 @@ services:
       - flame.icon=forum
 
 volumes:
-  convos: {}
+  data: {}

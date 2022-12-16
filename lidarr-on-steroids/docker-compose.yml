@@ -7,9 +7,9 @@ services:
     restart: unless-stopped
 
     volumes:
-      - ~/containers/lidarr-os/config:/config
-      - ~/containers/lidarr-os/deemix/config:/config_deemix
-      - ~/containers/lidarr-os/downloads:/downloads
+      - config:/config
+      - deemix_config:/config_deemix
+      - downloads:/downloads
       - ~/backup/Music:/music
     
     ports:
@@ -23,3 +23,8 @@ services:
       - flame.name=Lidarr
       - flame.url=http://lidarr.space.localhost
       - flame.icon=file-music
+
+volumes:
+  config: {}
+  deemix_config: {}
+  downloads: {}

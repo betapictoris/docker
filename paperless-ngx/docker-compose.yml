@@ -6,7 +6,7 @@ services:
     restart: unless-stopped
 
     volumes:
-      - redisdata:/data
+      - redis_data:/data
 
   webserver:
     image: ghcr.io/paperless-ngx/paperless-ngx
@@ -14,10 +14,10 @@ services:
     restart: unless-stopped
     
     volumes:
-      - paperlessngx:/usr/src/paperless/data
-      - paperlessngxMedia:/usr/src/paperless/media
-      - paperlessngxExport:/usr/src/paperless/export
-      - paperlessngxConsume:/usr/src/paperless/consume
+      - data:/usr/src/paperless/data
+      - media:/usr/src/paperless/media
+      - export:/usr/src/paperless/export
+      - consume:/usr/src/paperless/consume
 
     environment:
       PAPERLESS_REDIS: redis://broker:6379
@@ -43,8 +43,8 @@ services:
       - flame.icon=file
 
 volumes:
-  redisdata: {}
-  paperlessngx: {}
-  paperlessngxMedia: {} 
-  paperlessngxExport: {}
-  paperlessngxConsume: {}
+  redis_data: {}
+  data: {}
+  media: {} 
+  export: {}
+  consume: {}

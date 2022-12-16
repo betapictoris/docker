@@ -7,10 +7,10 @@ services:
     restart: unless-stopped
 
     volumes:
-      - azuracastUploads:/var/azuracast/uploads
-      - azuracastStations:/var/azuracast/stations
-      - azuracastBackup:/var/azuracast/backups
-      - azuracastDB:/var/lib/mysql
+      - uploads:/var/azuracast/uploads
+      - stations:/var/azuracast/stations
+      - backups:/var/azuracast/backups
+      - db:/var/lib/mysql
 
     env_file: azuracast.env
     
@@ -28,7 +28,7 @@ services:
       - flame.icon=book-music
 
 volumes:
-  azuracastUploads: {}
-  azuracastStations: {}
-  azuracastBackup: {}
-  azuracastDB: {}
+  uploads: {}
+  stations: {}
+  backups: {}
+  db: {}

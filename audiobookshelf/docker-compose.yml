@@ -9,8 +9,8 @@ services:
     volumes:
       - ~/backup/Media/Audiobooks:/audiobooks
       - ~/backup/Media/Podcasts:/podcasts
-      - audiobookshelf:/config
-      - audiobookshelfMetadata:/metadata
+      - config:/config
+      - metadata:/metadata
     
     env_file: docker-compose.env
 
@@ -26,5 +26,5 @@ services:
       - flame.icon=book-music
 
 volumes:
-  audiobookshelf: {}
-  audiobookshelfMetadata: {}
+  config: {}
+  metadata: {}

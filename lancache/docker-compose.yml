@@ -16,11 +16,15 @@ services:
     restart: unless-stopped
     
     volumes:
-      - ~/containers/lancache/cache:/data/cache
-      - ~/containers/lancache/logs:/data/logs
+      - cache:/data/cache
+      - logs:/data/logs
 
     env_file: .env
 
     ports:
       - 80:80/tcp
       - 443:443/tcp
+
+volumes:
+  cache: {}
+  logs: {}
