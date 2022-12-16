@@ -11,16 +11,25 @@ def makeTemplate(container: str):
   composeFile: dict = {}
   envFile: dict = []
 
+  try:
+    with open(f'{container}/about.yml') as f:
+      details = yaml.safe_load(f)
+    with open(f'{container}/docker-compose.yml') as f:
+      composeFile = yaml.safe_load(f)
+    if 'docker-compose.env' in os.listdir(f'./{container}'):
+      with open(f'{container}/docker-compose.env') as f:
+        for l in f.readlines():
+          if l.startswith("#"):
+            pass
+          
+          try:
+            values = l.replace('\n', '').split('=')
+            envFile.append({"name": values[0], "label": values[0], "default": values[1]})
+          except IndexError:
+            pass
 
-  with open(f'{container}/about.yml') as f:
-    details = yaml.safe_load(f)
-  with open(f'{container}/docker-compose.yml') as f:
-    composeFile = yaml.safe_load(f)
-  if 'docker-compose.env' in os.listdir(f'./{container}'):
-    with open(f'{container}/docker-compose.env') as f:
-      for l in f.readlines():
-        values = l.replace('\n', '').split('=')
-        envFile.append({"name": values[0], "label": values[0], "default": values[1]})
+  except FileNotFoundError:
+    return None
 
   serviceCompose: dict = composeFile['services'][list(composeFile['services'])[0]]
   
@@ -28,8 +37,14 @@ def makeTemplate(container: str):
 
   if serviceCompose.get('volumes'):
     for v in serviceCompose['volumes']:
-      container = v.split(":")
-      volumes.append({'container': container[1], 'bind': container[0]})
+      if v.startswith("#"):
+        pass
+      else:
+        try:
+          container = v.split(":")
+          volumes.append({'container': container[1], 'bind': container[0]})
+        except IndexError:
+          pass
 
   return {
     'type': 1,
@@ -54,7 +69,11 @@ templates: list = []
 
 for c in composeFiles:
   print(f'Converting {c}...')
-  templates.append(makeTemplate(c))
+  tData = makeTemplate(c)
+  if tData is None:
+    pass
+  else:
+    templates.append(tData)
 
 tempalteData = json.dumps(templates, indent=4)
  
