@@ -1,6 +1,7 @@
 # Creates template (JSON) files for Yacht and Portainer
 
 import os
+import json
 import yaml
 
 composeFiles = [x for x in os.listdir(".") if not x.startswith(".")]
@@ -49,3 +50,17 @@ def makeTemplate(container: str):
   }
 
 
+templates: list = []
+
+for c in composeFiles:
+  print(f'Converting {c}...')
+  templates.append(makeTemplate(c))
+
+tempalteData = json.dumps(templates, indent=4)
+ 
+# Writing to sample.json
+with open("templates.json", "w") as outfile:
+  print(f'Dumping template...')
+  outfile.write(tempalteData)
+
+print('Done!')
