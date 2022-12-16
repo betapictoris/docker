@@ -1,0 +1,338 @@
+[
+    {
+        "type": 1,
+        "title": "AdGuard Home",
+        "name": "adguardhome",
+        "description": "AdGuard Home is a network-wide software for blocking ads & tracking. After you set it up, it\u2019ll cover ALL your home devices.",
+        "logo": "https://cdn.adtidy.org/website/adguard.com/favicons/favicon.svg",
+        "image": "adguard/adguardhome",
+        "categories": [
+            "Networking",
+            "DNS",
+            "Tools"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [
+            "53:53/tcp",
+            "53:53/udp",
+            "3095:3000/tcp",
+            "9095:80/tcp"
+        ],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/opt/adguardhome/conf",
+                "bind": "config"
+            }
+        ],
+        "env": []
+    },
+    {
+        "type": 1,
+        "title": "2FAuth",
+        "name": "2fauth",
+        "description": "2FAuth is a web based self-hosted alternative to One Time Passcode (OTP) generators like Google Authenticator, designed for both mobile and desktop.",
+        "logo": "https://docs.2fauth.app/static/2fauth_light.png",
+        "image": "2fauth/2fauth",
+        "categories": [
+            "Authentication",
+            "Tools"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [
+            "8283:8000/tcp"
+        ],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/2fauth",
+                "bind": "app"
+            }
+        ],
+        "env": [
+            {
+                "name": "APP_NAME",
+                "label": "APP_NAME",
+                "default": "2FAuth"
+            },
+            {
+                "name": "APP_ENV",
+                "label": "APP_ENV",
+                "default": "local"
+            },
+            {
+                "name": "APP_DEBUG",
+                "label": "APP_DEBUG",
+                "default": "false"
+            },
+            {
+                "name": "SITE_OWNER",
+                "label": "SITE_OWNER",
+                "default": "mail@example.com"
+            },
+            {
+                "name": "APP_KEY",
+                "label": "APP_KEY",
+                "default": "SomeRandomStringOf32CharsExactly"
+            },
+            {
+                "name": "APP_URL",
+                "label": "APP_URL",
+                "default": "http://localhost"
+            },
+            {
+                "name": "IS_DEMO_APP",
+                "label": "IS_DEMO_APP",
+                "default": "false"
+            },
+            {
+                "name": "LOG_CHANNEL",
+                "label": "LOG_CHANNEL",
+                "default": "daily"
+            },
+            {
+                "name": "LOG_LEVEL",
+                "label": "LOG_LEVEL",
+                "default": "notice"
+            },
+            {
+                "name": "DB_DATABASE",
+                "label": "DB_DATABASE",
+                "default": "\"/srv/database/database.sqlite\""
+            },
+            {
+                "name": "CACHE_DRIVER",
+                "label": "CACHE_DRIVER",
+                "default": "file"
+            },
+            {
+                "name": "SESSION_DRIVER",
+                "label": "SESSION_DRIVER",
+                "default": "file"
+            },
+            {
+                "name": "MAIL_DRIVER",
+                "label": "MAIL_DRIVER",
+                "default": "log"
+            },
+            {
+                "name": "MAIL_HOST",
+                "label": "MAIL_HOST",
+                "default": "smtp.mailtrap.io"
+            },
+            {
+                "name": "MAIL_PORT",
+                "label": "MAIL_PORT",
+                "default": "2525"
+            },
+            {
+                "name": "MAIL_FROM",
+                "label": "MAIL_FROM",
+                "default": "changeme@example.com"
+            },
+            {
+                "name": "MAIL_USERNAME",
+                "label": "MAIL_USERNAME",
+                "default": "null"
+            },
+            {
+                "name": "MAIL_PASSWORD",
+                "label": "MAIL_PASSWORD",
+                "default": "null"
+            },
+            {
+                "name": "MAIL_ENCRYPTION",
+                "label": "MAIL_ENCRYPTION",
+                "default": "null"
+            },
+            {
+                "name": "MAIL_FROM_NAME",
+                "label": "MAIL_FROM_NAME",
+                "default": "null"
+            },
+            {
+                "name": "MAIL_FROM_ADDRESS",
+                "label": "MAIL_FROM_ADDRESS",
+                "default": "null"
+            },
+            {
+                "name": "AUTHENTICATION_GUARD",
+                "label": "AUTHENTICATION_GUARD",
+                "default": "web-guard"
+            },
+            {
+                "name": "AUTH_PROXY_HEADER_FOR_USER",
+                "label": "AUTH_PROXY_HEADER_FOR_USER",
+                "default": "null"
+            },
+            {
+                "name": "AUTH_PROXY_HEADER_FOR_EMAIL",
+                "label": "AUTH_PROXY_HEADER_FOR_EMAIL",
+                "default": "null"
+            },
+            {
+                "name": "PROXY_LOGOUT_URL",
+                "label": "PROXY_LOGOUT_URL",
+                "default": "null"
+            },
+            {
+                "name": "WEBAUTHN_NAME",
+                "label": "WEBAUTHN_NAME",
+                "default": "2FAuth"
+            },
+            {
+                "name": "WEBAUTHN_ID",
+                "label": "WEBAUTHN_ID",
+                "default": "null"
+            },
+            {
+                "name": "WEBAUTHN_ICON",
+                "label": "WEBAUTHN_ICON",
+                "default": "null"
+            },
+            {
+                "name": "WEBAUTHN_USER_VERIFICATION",
+                "label": "WEBAUTHN_USER_VERIFICATION",
+                "default": "preferred"
+            },
+            {
+                "name": "TRUSTED_PROXIES",
+                "label": "TRUSTED_PROXIES",
+                "default": "null"
+            },
+            {
+                "name": "BROADCAST_DRIVER",
+                "label": "BROADCAST_DRIVER",
+                "default": "log"
+            },
+            {
+                "name": "QUEUE_DRIVER",
+                "label": "QUEUE_DRIVER",
+                "default": "sync"
+            },
+            {
+                "name": "SESSION_LIFETIME",
+                "label": "SESSION_LIFETIME",
+                "default": "120"
+            },
+            {
+                "name": "REDIS_HOST",
+                "label": "REDIS_HOST",
+                "default": "127.0.0.1"
+            },
+            {
+                "name": "REDIS_PASSWORD",
+                "label": "REDIS_PASSWORD",
+                "default": "null"
+            },
+            {
+                "name": "REDIS_PORT",
+                "label": "REDIS_PORT",
+                "default": "6379"
+            },
+            {
+                "name": "PUSHER_APP_ID",
+                "label": "PUSHER_APP_ID",
+                "default": ""
+            },
+            {
+                "name": "PUSHER_APP_KEY",
+                "label": "PUSHER_APP_KEY",
+                "default": ""
+            },
+            {
+                "name": "PUSHER_APP_SECRET",
+                "label": "PUSHER_APP_SECRET",
+                "default": ""
+            },
+            {
+                "name": "PUSHER_APP_CLUSTER",
+                "label": "PUSHER_APP_CLUSTER",
+                "default": "mt1"
+            },
+            {
+                "name": "MIX_PUSHER_APP_KEY",
+                "label": "MIX_PUSHER_APP_KEY",
+                "default": "\"${PUSHER_APP_KEY}\""
+            },
+            {
+                "name": "MIX_PUSHER_APP_CLUSTER",
+                "label": "MIX_PUSHER_APP_CLUSTER",
+                "default": "\"${PUSHER_APP_CLUSTER}\""
+            },
+            {
+                "name": "MIX_ENV",
+                "label": "MIX_ENV",
+                "default": "local"
+            }
+        ]
+    },
+    {
+        "type": 1,
+        "title": "AdguardHome Prometheus Exporter",
+        "name": "adguard-exporter",
+        "description": "This is a Prometheus exporter for AdguardHome's Raspberry PI ad blocker.",
+        "logo": "//",
+        "image": "ebrianne/adguard-exporter:latest",
+        "categories": [
+            "Networking",
+            "DNS"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [
+            "9101:9617"
+        ],
+        "network_mode": "bridge",
+        "volumes": [],
+        "env": [
+            {
+                "name": "adguard_protocol",
+                "label": "adguard_protocol",
+                "default": "http"
+            },
+            {
+                "name": "adguard_hostname",
+                "label": "adguard_hostname",
+                "default": "adg.space.localhost"
+            },
+            {
+                "name": "adguard_username",
+                "label": "adguard_username",
+                "default": "USERNAME"
+            },
+            {
+                "name": "adguard_password",
+                "label": "adguard_password",
+                "default": "PASSWD"
+            },
+            {
+                "name": "#adguard_port",
+                "label": "#adguard_port",
+                "default": " optional"
+            },
+            {
+                "name": "server_port",
+                "label": "server_port",
+                "default": "9617"
+            },
+            {
+                "name": "interval",
+                "label": "interval",
+                "default": "10s"
+            },
+            {
+                "name": "log_limit",
+                "label": "log_limit",
+                "default": "10000"
+            },
+            {
+                "name": "password_from_file",
+                "label": "password_from_file",
+                "default": "false"
+            }
+        ]
+    }
+]
