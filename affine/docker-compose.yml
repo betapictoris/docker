@@ -2,7 +2,7 @@ version: '3'
 
 services:
   affine:
-    image: ghcr.io/toeverything/affine:nightly-latest
+    image: ghcr.io/toeverything/affine-self-hosted:latest
     container_name: affine
     restart: unless-stopped
     
