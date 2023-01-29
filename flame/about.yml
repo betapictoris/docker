@@ -1,0 +1,6 @@
+title: Flame
+description: Flame is self-hosted startpage for your server. Easily manage your apps and bookmarks with built-in editors.
+logo: https://raw.githubusercontent.com/pawelmalak/flame/master/client/public/icons/apple-touch-icon-180x180.png
+categories:
+  - Dashboard
+  - Start page
