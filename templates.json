@@ -399,5 +399,32 @@
             }
         ],
         "env": []
+    },
+    {
+        "type": 1,
+        "title": "Portainer",
+        "name": "portainer",
+        "description": "Portainer Community Edition is a lightweight service delivery platform for containerized applications that can be used to manage Docker, Swarm, Kubernetes and ACI environments.",
+        "logo": "https://raw.githubusercontent.com/BetaPictoris/docker/dev/.icons/png/Portainer.png",
+        "image": "portainer/portainer-ce",
+        "categories": [
+            "Docker management",
+            "Kubernetes management"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/var/run/docker.sock",
+                "bind": "/var/run/docker.sock"
+            },
+            {
+                "container": "/data",
+                "bind": "data"
+            }
+        ],
+        "env": []
     }
 ]
