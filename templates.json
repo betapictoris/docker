@@ -1,35 +1,6 @@
 [
     {
         "type": 1,
-        "title": "AdGuard Home",
-        "name": "adguardhome",
-        "description": "AdGuard Home is a network-wide software for blocking ads & tracking. After you set it up, it\u2019ll cover ALL your home devices.",
-        "logo": "https://cdn.adtidy.org/website/adguard.com/favicons/favicon.svg",
-        "image": "adguard/adguardhome",
-        "categories": [
-            "Networking",
-            "DNS",
-            "Tools"
-        ],
-        "platform": "linux",
-        "restart_policy": "unless-stopped",
-        "ports": [
-            "53:53/tcp",
-            "53:53/udp",
-            "3095:3000/tcp",
-            "9095:80/tcp"
-        ],
-        "network_mode": "bridge",
-        "volumes": [
-            {
-                "container": "/opt/adguardhome/conf",
-                "bind": "config"
-            }
-        ],
-        "env": []
-    },
-    {
-        "type": 1,
         "title": "2FAuth",
         "name": "2fauth",
         "description": "2FAuth is a web based self-hosted alternative to One Time Passcode (OTP) generators like Google Authenticator, designed for both mobile and desktop.",
@@ -41,9 +12,7 @@
         ],
         "platform": "linux",
         "restart_policy": "unless-stopped",
-        "ports": [
-            "8283:8000/tcp"
-        ],
+        "ports": [],
         "network_mode": "bridge",
         "volumes": [
             {
@@ -282,9 +251,7 @@
         ],
         "platform": "linux",
         "restart_policy": "unless-stopped",
-        "ports": [
-            "9101:9617"
-        ],
+        "ports": [],
         "network_mode": "bridge",
         "volumes": [],
         "env": [
@@ -334,5 +301,52 @@
                 "default": "false"
             }
         ]
+    },
+    {
+        "type": 1,
+        "title": "AdGuard Home",
+        "name": "adguardhome",
+        "description": "AdGuard Home is a network-wide software for blocking ads & tracking. After you set it up, it\u00e2\u20ac\u2122ll cover ALL your home devices.",
+        "logo": "https://cdn.adtidy.org/website/adguard.com/favicons/favicon.svg",
+        "image": "adguard/adguardhome",
+        "categories": [
+            "Networking",
+            "DNS",
+            "Tools"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/opt/adguardhome/conf",
+                "bind": "config"
+            }
+        ],
+        "env": []
+    },
+    {
+        "type": 1,
+        "title": "Home Assistant",
+        "name": "homeassistant",
+        "description": "Home Assistant is a self-hosted home automation software, similar to HomeKit or Google Home.",
+        "logo": "view-source:https://www.home-assistant.io/images/favicon-192x192.png",
+        "image": "ghcr.io/home-assistant/home-assistant:stable",
+        "categories": [
+            "Home automation",
+            "Smart home"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "host",
+        "volumes": [
+            {
+                "container": "/config",
+                "bind": "config"
+            }
+        ],
+        "env": []
     }
 ]
