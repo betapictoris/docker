@@ -492,6 +492,192 @@
     },
     {
         "type": 1,
+        "title": "AzuraCast",
+        "name": "azuracast",
+        "description": "AzuraCast is a free and open-source, self-hosted web radio station in a box.",
+        "logo": "https://www.azuracast.com/img/logo.png",
+        "image": "ghcr.io/azuracast/azuracast",
+        "categories": [
+            "Media streaming",
+            "Internet radio"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/var/azuracast/uploads",
+                "bind": "uploads"
+            },
+            {
+                "container": "/var/azuracast/stations",
+                "bind": "stations"
+            },
+            {
+                "container": "/var/azuracast/backups",
+                "bind": "backups"
+            },
+            {
+                "container": "/var/lib/mysql",
+                "bind": "db"
+            }
+        ],
+        "env": [
+            {
+                "name": "APPLICATION_ENV",
+                "label": "APPLICATION_ENV",
+                "default": "production"
+            },
+            {
+                "name": "# LOG_LEVEL",
+                "label": "# LOG_LEVEL",
+                "default": "notice"
+            },
+            {
+                "name": "COMPOSER_PLUGIN_MODE",
+                "label": "COMPOSER_PLUGIN_MODE",
+                "default": "false"
+            },
+            {
+                "name": "AUTO_ASSIGN_PORT_MIN",
+                "label": "AUTO_ASSIGN_PORT_MIN",
+                "default": "8000"
+            },
+            {
+                "name": "AUTO_ASSIGN_PORT_MAX",
+                "label": "AUTO_ASSIGN_PORT_MAX",
+                "default": "8499"
+            },
+            {
+                "name": "SHOW_DETAILED_ERRORS",
+                "label": "SHOW_DETAILED_ERRORS",
+                "default": "false "
+            },
+            {
+                "name": "# MYSQL_HOST",
+                "label": "# MYSQL_HOST",
+                "default": "localhost"
+            },
+            {
+                "name": "# MYSQL_PORT",
+                "label": "# MYSQL_PORT",
+                "default": "3306"
+            },
+            {
+                "name": "# MYSQL_USER",
+                "label": "# MYSQL_USER",
+                "default": "azuracast"
+            },
+            {
+                "name": "MYSQL_PASSWORD",
+                "label": "MYSQL_PASSWORD",
+                "default": "azur4c457"
+            },
+            {
+                "name": "# MYSQL_DATABASE",
+                "label": "# MYSQL_DATABASE",
+                "default": "azuracast"
+            },
+            {
+                "name": "MYSQL_RANDOM_ROOT_PASSWORD",
+                "label": "MYSQL_RANDOM_ROOT_PASSWORD",
+                "default": "yes"
+            },
+            {
+                "name": "# MYSQL_SLOW_QUERY_LOG",
+                "label": "# MYSQL_SLOW_QUERY_LOG",
+                "default": "0"
+            },
+            {
+                "name": "# MYSQL_MAX_CONNECTIONS",
+                "label": "# MYSQL_MAX_CONNECTIONS",
+                "default": "100"
+            },
+            {
+                "name": "# ENABLE_REDIS",
+                "label": "# ENABLE_REDIS",
+                "default": "true"
+            },
+            {
+                "name": "# REDIS_HOST",
+                "label": "# REDIS_HOST",
+                "default": "localhost"
+            },
+            {
+                "name": "# REDIS_PORT",
+                "label": "# REDIS_PORT",
+                "default": "6379"
+            },
+            {
+                "name": "# REDIS_DB",
+                "label": "# REDIS_DB",
+                "default": "1"
+            },
+            {
+                "name": "# PHP_MAX_FILE_SIZE",
+                "label": "# PHP_MAX_FILE_SIZE",
+                "default": "25M"
+            },
+            {
+                "name": "# PHP_MEMORY_LIMIT",
+                "label": "# PHP_MEMORY_LIMIT",
+                "default": "128M"
+            },
+            {
+                "name": "# PHP_MAX_EXECUTION_TIME",
+                "label": "# PHP_MAX_EXECUTION_TIME",
+                "default": "30"
+            },
+            {
+                "name": "# SYNC_SHORT_EXECUTION_TIME",
+                "label": "# SYNC_SHORT_EXECUTION_TIME",
+                "default": "600"
+            },
+            {
+                "name": "# SYNC_LONG_EXECUTION_TIME",
+                "label": "# SYNC_LONG_EXECUTION_TIME",
+                "default": "1800"
+            },
+            {
+                "name": "# PHP_FPM_MAX_CHILDREN",
+                "label": "# PHP_FPM_MAX_CHILDREN",
+                "default": "5"
+            },
+            {
+                "name": "# The profiling dashboard can be accessed by visting https://yourdomain.com/?SPX_KEY",
+                "label": "# The profiling dashboard can be accessed by visting https://yourdomain.com/?SPX_KEY",
+                "default": "dev&SPX_UI_URI"
+            },
+            {
+                "name": "# Profiling data can be viewed by visiting http://your-azuracast-site/?SPX_KEY",
+                "label": "# Profiling data can be viewed by visiting http://your-azuracast-site/?SPX_KEY",
+                "default": "dev&SPX_UI_URI"
+            },
+            {
+                "name": "# PROFILING_EXTENSION_ENABLED",
+                "label": "# PROFILING_EXTENSION_ENABLED",
+                "default": "0"
+            },
+            {
+                "name": "# PROFILING_EXTENSION_ALWAYS_ON",
+                "label": "# PROFILING_EXTENSION_ALWAYS_ON",
+                "default": "0"
+            },
+            {
+                "name": "# PROFILING_EXTENSION_HTTP_KEY",
+                "label": "# PROFILING_EXTENSION_HTTP_KEY",
+                "default": "dev"
+            },
+            {
+                "name": "# PROFILING_EXTENSION_HTTP_IP_WHITELIST",
+                "label": "# PROFILING_EXTENSION_HTTP_IP_WHITELIST",
+                "default": "*"
+            }
+        ]
+    },
+    {
+        "type": 1,
         "title": "Flame",
         "name": "flame",
         "description": "Flame is self-hosted startpage for your server. Easily manage your apps and bookmarks with built-in editors.",
