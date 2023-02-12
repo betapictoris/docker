@@ -397,6 +397,54 @@
     },
     {
         "type": 1,
+        "title": "ArchiveBox",
+        "name": "archivebox",
+        "description": "ArchiveBox is a powerful, self-hosted internet archiving solution to collect, save, and view sites you want to preserve offline.",
+        "logo": "https://i.imgur.com/asPNk8n.png",
+        "image": "archivebox/archivebox",
+        "categories": [
+            "Archival"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/data",
+                "bind": "data"
+            }
+        ],
+        "env": [
+            {
+                "name": "ALLOWED_HOSTS",
+                "label": "ALLOWED_HOSTS",
+                "default": "*                   # add any config options you want as env vars"
+            },
+            {
+                "name": "MEDIA_MAX_SIZE",
+                "label": "MEDIA_MAX_SIZE",
+                "default": "750m"
+            },
+            {
+                "name": "#SEARCH_BACKEND_ENGINE",
+                "label": "#SEARCH_BACKEND_ENGINE",
+                "default": "sonic      # uncomment these if you enable sonic below"
+            },
+            {
+                "name": "#SEARCH_BACKEND_HOST_NAME",
+                "label": "#SEARCH_BACKEND_HOST_NAME",
+                "default": "sonic"
+            },
+            {
+                "name": "#SEARCH_BACKEND_PASSWORD",
+                "label": "#SEARCH_BACKEND_PASSWORD",
+                "default": "SecretPassword"
+            }
+        ]
+    },
+    {
+        "type": 1,
         "title": "Flame",
         "name": "flame",
         "description": "Flame is self-hosted startpage for your server. Easily manage your apps and bookmarks with built-in editors.",
