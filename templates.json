@@ -722,6 +722,36 @@
     },
     {
         "type": 1,
+        "title": "Blocky",
+        "name": "blocky",
+        "description": "Blocky is a DNS proxy and ad-blocker for the local network written in Go.",
+        "logo": "https://raw.githubusercontent.com/0xERR0R/blocky/master/docs/blocky.svg",
+        "image": "spx01/blocky",
+        "categories": [
+            "Networking",
+            "DNS",
+            "Tools"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/app/config.yml",
+                "bind": "~/containers/blocky/config.yml"
+            }
+        ],
+        "env": [
+            {
+                "name": "#TZ",
+                "label": "#TZ",
+                "default": "Europe/Berlin # Optional to synchronize the log timestamp with host"
+            }
+        ]
+    },
+    {
+        "type": 1,
         "title": "Flame",
         "name": "flame",
         "description": "Flame is self-hosted startpage for your server. Easily manage your apps and bookmarks with built-in editors.",

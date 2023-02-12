@@ -1,0 +1,7 @@
+title: Blocky
+description: Blocky is a DNS proxy and ad-blocker for the local network written in Go.
+logo: https://raw.githubusercontent.com/0xERR0R/blocky/master/docs/blocky.svg
+categories:
+  - Networking
+  - DNS
+  - Tools
