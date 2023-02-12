@@ -1,5 +1,6 @@
 title: AdguardHome Prometheus Exporter
-description: This is a Prometheus exporter for AdguardHome's Raspberry PI ad blocker.
+description: AdguardHome Prometheus Exporter is a Prometheus exporter for Adguard's DNS ad blocker.
 categories:
- - Networking
- - DNS
+  - Networking
+  - DNS
+  - Prometheus exporter
