@@ -242,12 +242,13 @@
         "type": 1,
         "title": "AdguardHome Prometheus Exporter",
         "name": "adguard-exporter",
-        "description": "This is a Prometheus exporter for AdguardHome's Raspberry PI ad blocker.",
+        "description": "AdguardHome Prometheus Exporter is a Prometheus exporter for Adguard's DNS ad blocker.",
         "logo": "//",
         "image": "ebrianne/adguard-exporter:latest",
         "categories": [
             "Networking",
-            "DNS"
+            "DNS",
+            "Prometheus exporter"
         ],
         "platform": "linux",
         "restart_policy": "unless-stopped",
@@ -330,7 +331,7 @@
         "type": 1,
         "title": "AFFiNE",
         "name": "affine",
-        "description": "There can be more than Notion and Miro. AFFiNE is a next-gen knowledge base that brings planning, sorting and creating all together. Privacy first, open-source, customizable and ready to use.",
+        "description": "AFFiNE is a next-gen knowledge base that brings planning, sorting and creating all together. Privacy first, open-source, customizable and ready to use.",
         "logo": "https://affine.pro/_next/static/media/affine-text-logo.c853d422.png",
         "image": "ghcr.io/toeverything/affine-self-hosted:latest",
         "categories": [
@@ -343,6 +344,56 @@
         "network_mode": "bridge",
         "volumes": [],
         "env": []
+    },
+    {
+        "type": 1,
+        "title": "Airsonic",
+        "name": "airsonic-advanced",
+        "description": "Airsonic is a free, web-based media streamer, providing ubiquitous access to your music.",
+        "logo": "https://airsonic.github.io/favicon.ico",
+        "image": "lscr.io/linuxserver/airsonic-advanced",
+        "categories": [
+            "Media streaming"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/config",
+                "bind": "config"
+            },
+            {
+                "container": "/music",
+                "bind": "~/backup/Media/Music"
+            },
+            {
+                "container": "/playlists",
+                "bind": "~/backup/Media/Playlists"
+            },
+            {
+                "container": "/podcasts",
+                "bind": "~/backup/Media/Podcasts"
+            }
+        ],
+        "env": [
+            {
+                "name": "TZ",
+                "label": "TZ",
+                "default": "Europe/London"
+            },
+            {
+                "name": "#CONTEXT_PATH",
+                "label": "#CONTEXT_PATH",
+                "default": "<URL_BASE> "
+            },
+            {
+                "name": "#JAVA_OPTS",
+                "label": "#JAVA_OPTS",
+                "default": "<options>"
+            }
+        ]
     },
     {
         "type": 1,
