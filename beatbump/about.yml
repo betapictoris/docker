@@ -1,0 +1,6 @@
+title: Beatbump
+description: Beatbump is an alternative YouTube Music frontend built with Svelte/SvelteKit
+logo: https://raw.githubusercontent.com/snuffyDev/Beatbump/master/.repo/images/logo-header.png
+categories:
+  - Alternative frontend
+  - Music

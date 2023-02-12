@@ -678,6 +678,50 @@
     },
     {
         "type": 1,
+        "title": "Beatbump",
+        "name": "beatbump",
+        "description": "Beatbump is an alternative YouTube Music frontend built with Svelte/SvelteKit",
+        "logo": "https://raw.githubusercontent.com/snuffyDev/Beatbump/master/.repo/images/logo-header.png",
+        "image": "snuffydev/beatbump:latest",
+        "categories": [
+            "Alternative frontend",
+            "Music"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [],
+        "env": [
+            {
+                "name": "PORT",
+                "label": "PORT",
+                "default": "3000"
+            },
+            {
+                "name": "VITE_DOMAIN",
+                "label": "VITE_DOMAIN",
+                "default": "\"beatbump.space.localhost\""
+            },
+            {
+                "name": "VITE_SITE_URL",
+                "label": "VITE_SITE_URL",
+                "default": "\"https://beatbump.space.localhost\""
+            },
+            {
+                "name": "#VITE_DONATION_URL",
+                "label": "#VITE_DONATION_URL",
+                "default": "\"https://www.paypal.com/donate/?hosted_button_id"
+            },
+            {
+                "name": "#DOMAIN",
+                "label": "#DOMAIN",
+                "default": "\"${VITE_DOMAIN}\""
+            }
+        ]
+    },
+    {
+        "type": 1,
         "title": "Flame",
         "name": "flame",
         "description": "Flame is self-hosted startpage for your server. Easily manage your apps and bookmarks with built-in editors.",
