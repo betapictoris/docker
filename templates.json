@@ -445,6 +445,53 @@
     },
     {
         "type": 1,
+        "title": "audiobookshelf",
+        "name": "audiobookshelf",
+        "description": "Audiobookshelf is a self-hosted audiobook and podcast server.",
+        "logo": "https://www.audiobookshelf.org/Logo.png",
+        "image": "ghcr.io/advplyr/audiobookshelf:latest",
+        "categories": [
+            "Media streaming",
+            "Podcasts",
+            "Audiobooks"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/audiobooks",
+                "bind": "~/backup/Media/Audiobooks"
+            },
+            {
+                "container": "/podcasts",
+                "bind": "~/backup/Media/Podcasts"
+            },
+            {
+                "container": "/config",
+                "bind": "config"
+            },
+            {
+                "container": "/metadata",
+                "bind": "metadata"
+            }
+        ],
+        "env": [
+            {
+                "name": "#AUDIOBOOKSHELF_UID",
+                "label": "#AUDIOBOOKSHELF_UID",
+                "default": "99"
+            },
+            {
+                "name": "#AUDIOBOOKSHELF_GID",
+                "label": "#AUDIOBOOKSHELF_GID",
+                "default": "100"
+            }
+        ]
+    },
+    {
+        "type": 1,
         "title": "Flame",
         "name": "flame",
         "description": "Flame is self-hosted startpage for your server. Easily manage your apps and bookmarks with built-in editors.",
