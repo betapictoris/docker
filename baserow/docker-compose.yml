@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  baserow:
+    image: baserow/baserow:1.15.1
+    container_name: baserow
+    restart: unless-stopped
+
+    volumes:
+      - data:/baserow/data
+    
+    env_file: docker-compose.env
+
+    ports:
+      - 8870:80
+      - 4470:443
+    labels:
+      - traefik.http.routers.baserow.rule=Host(`audiobookshelf.space.localhost`)
+      - traefik.http.routers.baserow.service=baserow
+      - traefik.http.services.baserow.loadbalancer.server.port=80
+      - flame.type=app
+      - flame.name=Baserow
+      - flame.url=http://baserow.space.localhost
+      - flame.icon=table
+
+volumes:
+  data: {}
