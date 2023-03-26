@@ -4,6 +4,7 @@ import os
 import json
 import yaml
 
+converted = []
 composeFiles = [x for x in os.listdir(".") if not x.startswith(".")]
 composeFiles = [x for x in composeFiles if not x.endswith(".json")]
 
@@ -78,6 +79,7 @@ for c in composeFiles:
         pass
     else:
         templates.append(tData)
+        converted.append(tData['title'])
 
 tempalteData = json.dumps(templates, indent=4)
 
@@ -86,4 +88,4 @@ with open("templates.json", "w") as outfile:
     print(f'Dumping template...')
     outfile.write(tempalteData)
 
-print('Done!')
+print(f'Converted {len(converted)}/{len(composeFiles)} or ~{(len(converted)//len(composeFiles)) * 100}% .')
