@@ -4,8 +4,8 @@ import os
 import json
 import yaml
 
-composeFiles = [x for x in os.listdir(".") if not x.startswith(".") or not x.endswith(".json")]
-
+composeFiles = [x for x in os.listdir(".") if not x.startswith(".")]
+composeFiles = [x for x in composeFiles if not x.endswith(".json")]
 
 def makeTemplate(container: str):
     details: dict = {}
