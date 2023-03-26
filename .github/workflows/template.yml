@@ -5,6 +5,7 @@ on:
     branches: [dev]
     paths:
       - "**.yml"
+      - ".makeTemplates.py"
 
 jobs:
   update:
@@ -17,14 +18,14 @@ jobs:
         uses: actions/setup-python@v4.5.0
         with:
           cache: pip
-  #       cache-dependency-path: ./.requirements.txt
+  #       cache-dependency-path: .requirements.txt
   
       - name: Update templates
-        run: python3 ./.makeTemplates.py
+        run: python3 .makeTemplates.py
   
       - uses: EndBug/add-and-commit@v9 # You can change this to use a specific version.
         with:
-          add: './.makeTemplates.py'
+          add: 'templates.json'
           default_author: github_actions
 
           # The message for the commit.
