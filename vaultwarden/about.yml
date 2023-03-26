@@ -1,0 +1,7 @@
+title: Vaultwarden
+description: Unofficial Bitwarden compatible server written in Rust, formerly known as bitwarden_rs.
+logo: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/vaultwarden.png
+categories:
+ - Authentication
+  - Passwords
+  - Tools
