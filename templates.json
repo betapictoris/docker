@@ -1,6 +1,43 @@
 [
     {
         "type": 1,
+        "title": "Vaultwarden",
+        "name": "vaultwarden",
+        "description": "Unofficial Bitwarden compatible server written in Rust, formerly known as bitwarden_rs.",
+        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/vaultwarden.png",
+        "image": "vaultwarden/server:alpine",
+        "categories": [
+            "Authentication - Passwords - Tools"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/data",
+                "bind": "data"
+            },
+            {
+                "container": "/ssl",
+                "bind": "ssl"
+            }
+        ],
+        "env": [
+            {
+                "name": "#ADMIN_TOKEN",
+                "label": "#ADMIN_TOKEN",
+                "default": "\"YOUR_ADMIN_TOKEN\"                         # Token/login for admin panel (auto generate this with openssl command)"
+            },
+            {
+                "name": "#ROCKET_TLS",
+                "label": "#ROCKET_TLS",
+                "default": "'{certs"
+            }
+        ]
+    },
+    {
+        "type": 1,
         "title": "AzuraCast",
         "name": "azuracast",
         "description": "AzuraCast is a free and open-source, self-hosted web radio station in a box.",
