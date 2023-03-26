@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  answer:
+    image: answerdev/answer
+    container_name: answer
+    restart: unless-stopped
+    
+    volumes:
+      - data:/data
+    
+    ports:
+      - 8289:80/tcp
+    labels:
+      - traefik.http.routers.answer.rule=Host(`answer.space.localhost`)
+      - traefik.http.routers.answer.service=answer
+      - traefik.http.services.answer.loadbalancer.server.port=80
+      - flame.type=app
+      - flame.name=Answer
+      - flame.url=http://answer.space.localhost
+      - flame.icon=dns
+
+
+volumes:
+  data: {}
