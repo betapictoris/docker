@@ -4,7 +4,7 @@
         "title": "AzuraCast",
         "name": "azuracast",
         "description": "AzuraCast is a free and open-source, self-hosted web radio station in a box.",
-        "logo": "https://www.azuracast.com/img/logo.png",
+        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/azuracast.png",
         "image": "ghcr.io/azuracast/azuracast",
         "categories": [
             "Media streaming",
