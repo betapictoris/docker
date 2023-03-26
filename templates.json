@@ -271,7 +271,7 @@
         "title": "Airsonic",
         "name": "airsonic-advanced",
         "description": "Airsonic is a free, web-based media streamer, providing ubiquitous access to your music.",
-        "logo": "https://airsonic.github.io/favicon.ico",
+        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/airsonic.png",
         "image": "lscr.io/linuxserver/airsonic-advanced",
         "categories": [
             "Media streaming"
