@@ -8,6 +8,7 @@ converted = []
 composeFiles = [x for x in os.listdir(".") if not x.startswith(".")]
 composeFiles = [x for x in composeFiles if not x.endswith(".json")]
 
+
 def makeTemplate(container: str):
     details: dict = {}
     composeFile: dict = {}
@@ -88,4 +89,4 @@ with open("templates.json", "w") as outfile:
     print(f'Dumping template...')
     outfile.write(tempalteData)
 
-print(f'Converted {len(converted)}/{len(composeFiles)} or ~{(len(converted)/len(composeFiles)) * 100}% .')
+print(f'Converted {len(converted)}/{len(composeFiles)} or ~{int((len(converted)/len(composeFiles)) * 100)}% .')

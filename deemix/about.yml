@@ -1,0 +1,6 @@
+title: deemix
+description: deemix (lowercase) is a barebone deezer downloader library built from the ashes of Deezloader Remix.
+logo: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/deemix.png
+categories:
+  - Music
+  - Media downloader

@@ -1,0 +1,7 @@
+title: Dozzle
+description: Dozzle is a lightweight, web-based Docker log viewer that provides real-time monitoring and easy troubleshooting.
+logo: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/dozzle.png
+categories:
+  - Docker
+  - Containers
+  - Logs
