@@ -88,4 +88,4 @@ with open("templates.json", "w") as outfile:
     print(f'Dumping template...')
     outfile.write(tempalteData)
 
-print(f'Converted {len(converted)}/{len(composeFiles)} or ~{(len(converted)//len(composeFiles)) * 100}% .')
+print(f'Converted {len(converted)}/{len(composeFiles)} or ~{(len(converted)/len(composeFiles)) * 100}% .')
