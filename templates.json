@@ -1,6 +1,519 @@
 [
     {
         "type": 1,
+        "title": "AzuraCast",
+        "name": "azuracast",
+        "description": "AzuraCast is a free and open-source, self-hosted web radio station in a box.",
+        "logo": "https://www.azuracast.com/img/logo.png",
+        "image": "ghcr.io/azuracast/azuracast",
+        "categories": [
+            "Media streaming",
+            "Internet radio"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/var/azuracast/uploads",
+                "bind": "uploads"
+            },
+            {
+                "container": "/var/azuracast/stations",
+                "bind": "stations"
+            },
+            {
+                "container": "/var/azuracast/backups",
+                "bind": "backups"
+            },
+            {
+                "container": "/var/lib/mysql",
+                "bind": "db"
+            }
+        ],
+        "env": [
+            {
+                "name": "APPLICATION_ENV",
+                "label": "APPLICATION_ENV",
+                "default": "production"
+            },
+            {
+                "name": "# LOG_LEVEL",
+                "label": "# LOG_LEVEL",
+                "default": "notice"
+            },
+            {
+                "name": "COMPOSER_PLUGIN_MODE",
+                "label": "COMPOSER_PLUGIN_MODE",
+                "default": "false"
+            },
+            {
+                "name": "AUTO_ASSIGN_PORT_MIN",
+                "label": "AUTO_ASSIGN_PORT_MIN",
+                "default": "8000"
+            },
+            {
+                "name": "AUTO_ASSIGN_PORT_MAX",
+                "label": "AUTO_ASSIGN_PORT_MAX",
+                "default": "8499"
+            },
+            {
+                "name": "SHOW_DETAILED_ERRORS",
+                "label": "SHOW_DETAILED_ERRORS",
+                "default": "false "
+            },
+            {
+                "name": "# MYSQL_HOST",
+                "label": "# MYSQL_HOST",
+                "default": "localhost"
+            },
+            {
+                "name": "# MYSQL_PORT",
+                "label": "# MYSQL_PORT",
+                "default": "3306"
+            },
+            {
+                "name": "# MYSQL_USER",
+                "label": "# MYSQL_USER",
+                "default": "azuracast"
+            },
+            {
+                "name": "MYSQL_PASSWORD",
+                "label": "MYSQL_PASSWORD",
+                "default": "azur4c457"
+            },
+            {
+                "name": "# MYSQL_DATABASE",
+                "label": "# MYSQL_DATABASE",
+                "default": "azuracast"
+            },
+            {
+                "name": "MYSQL_RANDOM_ROOT_PASSWORD",
+                "label": "MYSQL_RANDOM_ROOT_PASSWORD",
+                "default": "yes"
+            },
+            {
+                "name": "# MYSQL_SLOW_QUERY_LOG",
+                "label": "# MYSQL_SLOW_QUERY_LOG",
+                "default": "0"
+            },
+            {
+                "name": "# MYSQL_MAX_CONNECTIONS",
+                "label": "# MYSQL_MAX_CONNECTIONS",
+                "default": "100"
+            },
+            {
+                "name": "# ENABLE_REDIS",
+                "label": "# ENABLE_REDIS",
+                "default": "true"
+            },
+            {
+                "name": "# REDIS_HOST",
+                "label": "# REDIS_HOST",
+                "default": "localhost"
+            },
+            {
+                "name": "# REDIS_PORT",
+                "label": "# REDIS_PORT",
+                "default": "6379"
+            },
+            {
+                "name": "# REDIS_DB",
+                "label": "# REDIS_DB",
+                "default": "1"
+            },
+            {
+                "name": "# PHP_MAX_FILE_SIZE",
+                "label": "# PHP_MAX_FILE_SIZE",
+                "default": "25M"
+            },
+            {
+                "name": "# PHP_MEMORY_LIMIT",
+                "label": "# PHP_MEMORY_LIMIT",
+                "default": "128M"
+            },
+            {
+                "name": "# PHP_MAX_EXECUTION_TIME",
+                "label": "# PHP_MAX_EXECUTION_TIME",
+                "default": "30"
+            },
+            {
+                "name": "# SYNC_SHORT_EXECUTION_TIME",
+                "label": "# SYNC_SHORT_EXECUTION_TIME",
+                "default": "600"
+            },
+            {
+                "name": "# SYNC_LONG_EXECUTION_TIME",
+                "label": "# SYNC_LONG_EXECUTION_TIME",
+                "default": "1800"
+            },
+            {
+                "name": "# PHP_FPM_MAX_CHILDREN",
+                "label": "# PHP_FPM_MAX_CHILDREN",
+                "default": "5"
+            },
+            {
+                "name": "# The profiling dashboard can be accessed by visting https://yourdomain.com/?SPX_KEY",
+                "label": "# The profiling dashboard can be accessed by visting https://yourdomain.com/?SPX_KEY",
+                "default": "dev&SPX_UI_URI"
+            },
+            {
+                "name": "# Profiling data can be viewed by visiting http://your-azuracast-site/?SPX_KEY",
+                "label": "# Profiling data can be viewed by visiting http://your-azuracast-site/?SPX_KEY",
+                "default": "dev&SPX_UI_URI"
+            },
+            {
+                "name": "# PROFILING_EXTENSION_ENABLED",
+                "label": "# PROFILING_EXTENSION_ENABLED",
+                "default": "0"
+            },
+            {
+                "name": "# PROFILING_EXTENSION_ALWAYS_ON",
+                "label": "# PROFILING_EXTENSION_ALWAYS_ON",
+                "default": "0"
+            },
+            {
+                "name": "# PROFILING_EXTENSION_HTTP_KEY",
+                "label": "# PROFILING_EXTENSION_HTTP_KEY",
+                "default": "dev"
+            },
+            {
+                "name": "# PROFILING_EXTENSION_HTTP_IP_WHITELIST",
+                "label": "# PROFILING_EXTENSION_HTTP_IP_WHITELIST",
+                "default": "*"
+            }
+        ]
+    },
+    {
+        "type": 1,
+        "title": "FreshRSS",
+        "name": "freshrss",
+        "description": "FreshRSS is a self-hosted RSS and Atom feed aggregator. It is lightweight, easy to work with, powerful, and customizable.",
+        "logo": "https://freshrss.org/images/icon.svg",
+        "image": "freshrss/freshrss",
+        "categories": [
+            "Feed aggregator"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/var/www/FreshRSS/data",
+                "bind": "data"
+            }
+        ],
+        "env": [
+            {
+                "name": "TZ",
+                "label": "TZ",
+                "default": "UTC # ie. America/Los_Angeles"
+            },
+            {
+                "name": "CRON_MIN",
+                "label": "CRON_MIN",
+                "default": "'3,33'"
+            }
+        ]
+    },
+    {
+        "type": 1,
+        "title": "ArchiveBox",
+        "name": "archivebox",
+        "description": "ArchiveBox is a powerful, self-hosted internet archiving solution to collect, save, and view sites you want to preserve offline.",
+        "logo": "https://i.imgur.com/asPNk8n.png",
+        "image": "archivebox/archivebox",
+        "categories": [
+            "Archival"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/data",
+                "bind": "data"
+            }
+        ],
+        "env": [
+            {
+                "name": "ALLOWED_HOSTS",
+                "label": "ALLOWED_HOSTS",
+                "default": "*                   # add any config options you want as env vars"
+            },
+            {
+                "name": "MEDIA_MAX_SIZE",
+                "label": "MEDIA_MAX_SIZE",
+                "default": "750m"
+            },
+            {
+                "name": "#SEARCH_BACKEND_ENGINE",
+                "label": "#SEARCH_BACKEND_ENGINE",
+                "default": "sonic      # uncomment these if you enable sonic below"
+            },
+            {
+                "name": "#SEARCH_BACKEND_HOST_NAME",
+                "label": "#SEARCH_BACKEND_HOST_NAME",
+                "default": "sonic"
+            },
+            {
+                "name": "#SEARCH_BACKEND_PASSWORD",
+                "label": "#SEARCH_BACKEND_PASSWORD",
+                "default": "SecretPassword"
+            }
+        ]
+    },
+    {
+        "type": 1,
+        "title": "Airsonic",
+        "name": "airsonic-advanced",
+        "description": "Airsonic is a free, web-based media streamer, providing ubiquitous access to your music.",
+        "logo": "https://airsonic.github.io/favicon.ico",
+        "image": "lscr.io/linuxserver/airsonic-advanced",
+        "categories": [
+            "Media streaming"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/config",
+                "bind": "config"
+            },
+            {
+                "container": "/music",
+                "bind": "~/backup/Media/Music"
+            },
+            {
+                "container": "/playlists",
+                "bind": "~/backup/Media/Playlists"
+            },
+            {
+                "container": "/podcasts",
+                "bind": "~/backup/Media/Podcasts"
+            }
+        ],
+        "env": [
+            {
+                "name": "TZ",
+                "label": "TZ",
+                "default": "Europe/London"
+            },
+            {
+                "name": "#CONTEXT_PATH",
+                "label": "#CONTEXT_PATH",
+                "default": "<URL_BASE> "
+            },
+            {
+                "name": "#JAVA_OPTS",
+                "label": "#JAVA_OPTS",
+                "default": "<options>"
+            }
+        ]
+    },
+    {
+        "type": 1,
+        "title": "AdGuard Home",
+        "name": "adguardhome",
+        "description": "AdGuard Home is a network-wide software for blocking ads & tracking. After you set it up, it\u2019ll cover ALL your home devices.",
+        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/adguard-home.png",
+        "image": "adguard/adguardhome",
+        "categories": [
+            "Networking",
+            "DNS",
+            "Tools"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/opt/adguardhome/conf",
+                "bind": "config"
+            }
+        ],
+        "env": []
+    },
+    {
+        "type": 1,
+        "title": "audiobookshelf",
+        "name": "audiobookshelf",
+        "description": "Audiobookshelf is a self-hosted audiobook and podcast server.",
+        "logo": "https://www.audiobookshelf.org/Logo.png",
+        "image": "ghcr.io/advplyr/audiobookshelf:latest",
+        "categories": [
+            "Media streaming",
+            "Podcasts",
+            "Audiobooks"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/audiobooks",
+                "bind": "~/backup/Media/Audiobooks"
+            },
+            {
+                "container": "/podcasts",
+                "bind": "~/backup/Media/Podcasts"
+            },
+            {
+                "container": "/config",
+                "bind": "config"
+            },
+            {
+                "container": "/metadata",
+                "bind": "metadata"
+            }
+        ],
+        "env": [
+            {
+                "name": "#AUDIOBOOKSHELF_UID",
+                "label": "#AUDIOBOOKSHELF_UID",
+                "default": "99"
+            },
+            {
+                "name": "#AUDIOBOOKSHELF_GID",
+                "label": "#AUDIOBOOKSHELF_GID",
+                "default": "100"
+            }
+        ]
+    },
+    {
+        "type": 1,
+        "title": "Noisedash",
+        "name": "noisedash",
+        "description": "Noisedash is a self-hostable web tool for generating ambient noises",
+        "logo": "https://raw.githubusercontent.com/kaythomas0/noisedash/dev/.github/noisedash-screenshot-1.jpg",
+        "image": "noisedash/noisedash",
+        "categories": [
+            "Ambient noise"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/var/noisedash/db",
+                "bind": "db"
+            },
+            {
+                "container": "/var/noisedash/samples",
+                "bind": "samples"
+            },
+            {
+                "container": "/var/noisedash/config/default.json",
+                "bind": "~/containers/noisedash/config.json"
+            }
+        ],
+        "env": []
+    },
+    {
+        "type": 1,
+        "title": "AFFiNE",
+        "name": "affine",
+        "description": "AFFiNE is a next-gen knowledge base that brings planning, sorting and creating all together. Privacy first, open-source, customizable and ready to use.",
+        "logo": "https://affine.pro/_next/static/media/affine-text-logo.c853d422.png",
+        "image": "ghcr.io/toeverything/affine-self-hosted:latest",
+        "categories": [
+            "Knowledge base",
+            "Note taking"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [],
+        "env": []
+    },
+    {
+        "type": 1,
+        "title": "Flame",
+        "name": "flame",
+        "description": "Flame is self-hosted startpage for your server. Easily manage your apps and bookmarks with built-in editors.",
+        "logo": "https://raw.githubusercontent.com/pawelmalak/flame/master/client/public/icons/apple-touch-icon-180x180.png",
+        "image": "pawelmalak/flame:multiarch",
+        "categories": [
+            "Dashboard",
+            "Start page"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/app/data",
+                "bind": "data"
+            },
+            {
+                "container": "/var/run/docker.sock",
+                "bind": "/var/run/docker.sock"
+            }
+        ],
+        "env": [
+            {
+                "name": "#PASSWORD",
+                "label": "#PASSWORD",
+                "default": "flame_password"
+            }
+        ]
+    },
+    {
+        "type": 1,
+        "title": "Beatbump",
+        "name": "beatbump",
+        "description": "Beatbump is an alternative YouTube Music frontend built with Svelte/SvelteKit",
+        "logo": "https://raw.githubusercontent.com/snuffyDev/Beatbump/master/.repo/images/logo-header.png",
+        "image": "snuffydev/beatbump:latest",
+        "categories": [
+            "Alternative frontend",
+            "Music"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [],
+        "env": [
+            {
+                "name": "PORT",
+                "label": "PORT",
+                "default": "3000"
+            },
+            {
+                "name": "VITE_DOMAIN",
+                "label": "VITE_DOMAIN",
+                "default": "\"beatbump.space.localhost\""
+            },
+            {
+                "name": "VITE_SITE_URL",
+                "label": "VITE_SITE_URL",
+                "default": "\"https://beatbump.space.localhost\""
+            },
+            {
+                "name": "#VITE_DONATION_URL",
+                "label": "#VITE_DONATION_URL",
+                "default": "\"https://www.paypal.com/donate/?hosted_button_id"
+            },
+            {
+                "name": "#DOMAIN",
+                "label": "#DOMAIN",
+                "default": "\"${VITE_DOMAIN}\""
+            }
+        ]
+    },
+    {
+        "type": 1,
         "title": "2FAuth",
         "name": "2fauth",
         "description": "2FAuth is a web based self-hosted alternative to One Time Passcode (OTP) generators like Google Authenticator, designed for both mobile and desktop.",
@@ -305,519 +818,6 @@
     },
     {
         "type": 1,
-        "title": "AdGuard Home",
-        "name": "adguardhome",
-        "description": "AdGuard Home is a network-wide software for blocking ads & tracking. After you set it up, it\u00e2\u20ac\u2122ll cover ALL your home devices.",
-        "logo": "https://cdn.adtidy.org/website/adguard.com/favicons/favicon.svg",
-        "image": "adguard/adguardhome",
-        "categories": [
-            "Networking",
-            "DNS",
-            "Tools"
-        ],
-        "platform": "linux",
-        "restart_policy": "unless-stopped",
-        "ports": [],
-        "network_mode": "bridge",
-        "volumes": [
-            {
-                "container": "/opt/adguardhome/conf",
-                "bind": "config"
-            }
-        ],
-        "env": []
-    },
-    {
-        "type": 1,
-        "title": "AFFiNE",
-        "name": "affine",
-        "description": "AFFiNE is a next-gen knowledge base that brings planning, sorting and creating all together. Privacy first, open-source, customizable and ready to use.",
-        "logo": "https://affine.pro/_next/static/media/affine-text-logo.c853d422.png",
-        "image": "ghcr.io/toeverything/affine-self-hosted:latest",
-        "categories": [
-            "Knowledge base",
-            "Note taking"
-        ],
-        "platform": "linux",
-        "restart_policy": "unless-stopped",
-        "ports": [],
-        "network_mode": "bridge",
-        "volumes": [],
-        "env": []
-    },
-    {
-        "type": 1,
-        "title": "Airsonic",
-        "name": "airsonic-advanced",
-        "description": "Airsonic is a free, web-based media streamer, providing ubiquitous access to your music.",
-        "logo": "https://airsonic.github.io/favicon.ico",
-        "image": "lscr.io/linuxserver/airsonic-advanced",
-        "categories": [
-            "Media streaming"
-        ],
-        "platform": "linux",
-        "restart_policy": "unless-stopped",
-        "ports": [],
-        "network_mode": "bridge",
-        "volumes": [
-            {
-                "container": "/config",
-                "bind": "config"
-            },
-            {
-                "container": "/music",
-                "bind": "~/backup/Media/Music"
-            },
-            {
-                "container": "/playlists",
-                "bind": "~/backup/Media/Playlists"
-            },
-            {
-                "container": "/podcasts",
-                "bind": "~/backup/Media/Podcasts"
-            }
-        ],
-        "env": [
-            {
-                "name": "TZ",
-                "label": "TZ",
-                "default": "Europe/London"
-            },
-            {
-                "name": "#CONTEXT_PATH",
-                "label": "#CONTEXT_PATH",
-                "default": "<URL_BASE> "
-            },
-            {
-                "name": "#JAVA_OPTS",
-                "label": "#JAVA_OPTS",
-                "default": "<options>"
-            }
-        ]
-    },
-    {
-        "type": 1,
-        "title": "ArchiveBox",
-        "name": "archivebox",
-        "description": "ArchiveBox is a powerful, self-hosted internet archiving solution to collect, save, and view sites you want to preserve offline.",
-        "logo": "https://i.imgur.com/asPNk8n.png",
-        "image": "archivebox/archivebox",
-        "categories": [
-            "Archival"
-        ],
-        "platform": "linux",
-        "restart_policy": "unless-stopped",
-        "ports": [],
-        "network_mode": "bridge",
-        "volumes": [
-            {
-                "container": "/data",
-                "bind": "data"
-            }
-        ],
-        "env": [
-            {
-                "name": "ALLOWED_HOSTS",
-                "label": "ALLOWED_HOSTS",
-                "default": "*                   # add any config options you want as env vars"
-            },
-            {
-                "name": "MEDIA_MAX_SIZE",
-                "label": "MEDIA_MAX_SIZE",
-                "default": "750m"
-            },
-            {
-                "name": "#SEARCH_BACKEND_ENGINE",
-                "label": "#SEARCH_BACKEND_ENGINE",
-                "default": "sonic      # uncomment these if you enable sonic below"
-            },
-            {
-                "name": "#SEARCH_BACKEND_HOST_NAME",
-                "label": "#SEARCH_BACKEND_HOST_NAME",
-                "default": "sonic"
-            },
-            {
-                "name": "#SEARCH_BACKEND_PASSWORD",
-                "label": "#SEARCH_BACKEND_PASSWORD",
-                "default": "SecretPassword"
-            }
-        ]
-    },
-    {
-        "type": 1,
-        "title": "audiobookshelf",
-        "name": "audiobookshelf",
-        "description": "Audiobookshelf is a self-hosted audiobook and podcast server.",
-        "logo": "https://www.audiobookshelf.org/Logo.png",
-        "image": "ghcr.io/advplyr/audiobookshelf:latest",
-        "categories": [
-            "Media streaming",
-            "Podcasts",
-            "Audiobooks"
-        ],
-        "platform": "linux",
-        "restart_policy": "unless-stopped",
-        "ports": [],
-        "network_mode": "bridge",
-        "volumes": [
-            {
-                "container": "/audiobooks",
-                "bind": "~/backup/Media/Audiobooks"
-            },
-            {
-                "container": "/podcasts",
-                "bind": "~/backup/Media/Podcasts"
-            },
-            {
-                "container": "/config",
-                "bind": "config"
-            },
-            {
-                "container": "/metadata",
-                "bind": "metadata"
-            }
-        ],
-        "env": [
-            {
-                "name": "#AUDIOBOOKSHELF_UID",
-                "label": "#AUDIOBOOKSHELF_UID",
-                "default": "99"
-            },
-            {
-                "name": "#AUDIOBOOKSHELF_GID",
-                "label": "#AUDIOBOOKSHELF_GID",
-                "default": "100"
-            }
-        ]
-    },
-    {
-        "type": 1,
-        "title": "AzuraCast",
-        "name": "azuracast",
-        "description": "AzuraCast is a free and open-source, self-hosted web radio station in a box.",
-        "logo": "https://www.azuracast.com/img/logo.png",
-        "image": "ghcr.io/azuracast/azuracast",
-        "categories": [
-            "Media streaming",
-            "Internet radio"
-        ],
-        "platform": "linux",
-        "restart_policy": "unless-stopped",
-        "ports": [],
-        "network_mode": "bridge",
-        "volumes": [
-            {
-                "container": "/var/azuracast/uploads",
-                "bind": "uploads"
-            },
-            {
-                "container": "/var/azuracast/stations",
-                "bind": "stations"
-            },
-            {
-                "container": "/var/azuracast/backups",
-                "bind": "backups"
-            },
-            {
-                "container": "/var/lib/mysql",
-                "bind": "db"
-            }
-        ],
-        "env": [
-            {
-                "name": "APPLICATION_ENV",
-                "label": "APPLICATION_ENV",
-                "default": "production"
-            },
-            {
-                "name": "# LOG_LEVEL",
-                "label": "# LOG_LEVEL",
-                "default": "notice"
-            },
-            {
-                "name": "COMPOSER_PLUGIN_MODE",
-                "label": "COMPOSER_PLUGIN_MODE",
-                "default": "false"
-            },
-            {
-                "name": "AUTO_ASSIGN_PORT_MIN",
-                "label": "AUTO_ASSIGN_PORT_MIN",
-                "default": "8000"
-            },
-            {
-                "name": "AUTO_ASSIGN_PORT_MAX",
-                "label": "AUTO_ASSIGN_PORT_MAX",
-                "default": "8499"
-            },
-            {
-                "name": "SHOW_DETAILED_ERRORS",
-                "label": "SHOW_DETAILED_ERRORS",
-                "default": "false "
-            },
-            {
-                "name": "# MYSQL_HOST",
-                "label": "# MYSQL_HOST",
-                "default": "localhost"
-            },
-            {
-                "name": "# MYSQL_PORT",
-                "label": "# MYSQL_PORT",
-                "default": "3306"
-            },
-            {
-                "name": "# MYSQL_USER",
-                "label": "# MYSQL_USER",
-                "default": "azuracast"
-            },
-            {
-                "name": "MYSQL_PASSWORD",
-                "label": "MYSQL_PASSWORD",
-                "default": "azur4c457"
-            },
-            {
-                "name": "# MYSQL_DATABASE",
-                "label": "# MYSQL_DATABASE",
-                "default": "azuracast"
-            },
-            {
-                "name": "MYSQL_RANDOM_ROOT_PASSWORD",
-                "label": "MYSQL_RANDOM_ROOT_PASSWORD",
-                "default": "yes"
-            },
-            {
-                "name": "# MYSQL_SLOW_QUERY_LOG",
-                "label": "# MYSQL_SLOW_QUERY_LOG",
-                "default": "0"
-            },
-            {
-                "name": "# MYSQL_MAX_CONNECTIONS",
-                "label": "# MYSQL_MAX_CONNECTIONS",
-                "default": "100"
-            },
-            {
-                "name": "# ENABLE_REDIS",
-                "label": "# ENABLE_REDIS",
-                "default": "true"
-            },
-            {
-                "name": "# REDIS_HOST",
-                "label": "# REDIS_HOST",
-                "default": "localhost"
-            },
-            {
-                "name": "# REDIS_PORT",
-                "label": "# REDIS_PORT",
-                "default": "6379"
-            },
-            {
-                "name": "# REDIS_DB",
-                "label": "# REDIS_DB",
-                "default": "1"
-            },
-            {
-                "name": "# PHP_MAX_FILE_SIZE",
-                "label": "# PHP_MAX_FILE_SIZE",
-                "default": "25M"
-            },
-            {
-                "name": "# PHP_MEMORY_LIMIT",
-                "label": "# PHP_MEMORY_LIMIT",
-                "default": "128M"
-            },
-            {
-                "name": "# PHP_MAX_EXECUTION_TIME",
-                "label": "# PHP_MAX_EXECUTION_TIME",
-                "default": "30"
-            },
-            {
-                "name": "# SYNC_SHORT_EXECUTION_TIME",
-                "label": "# SYNC_SHORT_EXECUTION_TIME",
-                "default": "600"
-            },
-            {
-                "name": "# SYNC_LONG_EXECUTION_TIME",
-                "label": "# SYNC_LONG_EXECUTION_TIME",
-                "default": "1800"
-            },
-            {
-                "name": "# PHP_FPM_MAX_CHILDREN",
-                "label": "# PHP_FPM_MAX_CHILDREN",
-                "default": "5"
-            },
-            {
-                "name": "# The profiling dashboard can be accessed by visting https://yourdomain.com/?SPX_KEY",
-                "label": "# The profiling dashboard can be accessed by visting https://yourdomain.com/?SPX_KEY",
-                "default": "dev&SPX_UI_URI"
-            },
-            {
-                "name": "# Profiling data can be viewed by visiting http://your-azuracast-site/?SPX_KEY",
-                "label": "# Profiling data can be viewed by visiting http://your-azuracast-site/?SPX_KEY",
-                "default": "dev&SPX_UI_URI"
-            },
-            {
-                "name": "# PROFILING_EXTENSION_ENABLED",
-                "label": "# PROFILING_EXTENSION_ENABLED",
-                "default": "0"
-            },
-            {
-                "name": "# PROFILING_EXTENSION_ALWAYS_ON",
-                "label": "# PROFILING_EXTENSION_ALWAYS_ON",
-                "default": "0"
-            },
-            {
-                "name": "# PROFILING_EXTENSION_HTTP_KEY",
-                "label": "# PROFILING_EXTENSION_HTTP_KEY",
-                "default": "dev"
-            },
-            {
-                "name": "# PROFILING_EXTENSION_HTTP_IP_WHITELIST",
-                "label": "# PROFILING_EXTENSION_HTTP_IP_WHITELIST",
-                "default": "*"
-            }
-        ]
-    },
-    {
-        "type": 1,
-        "title": "Beatbump",
-        "name": "beatbump",
-        "description": "Beatbump is an alternative YouTube Music frontend built with Svelte/SvelteKit",
-        "logo": "https://raw.githubusercontent.com/snuffyDev/Beatbump/master/.repo/images/logo-header.png",
-        "image": "snuffydev/beatbump:latest",
-        "categories": [
-            "Alternative frontend",
-            "Music"
-        ],
-        "platform": "linux",
-        "restart_policy": "unless-stopped",
-        "ports": [],
-        "network_mode": "bridge",
-        "volumes": [],
-        "env": [
-            {
-                "name": "PORT",
-                "label": "PORT",
-                "default": "3000"
-            },
-            {
-                "name": "VITE_DOMAIN",
-                "label": "VITE_DOMAIN",
-                "default": "\"beatbump.space.localhost\""
-            },
-            {
-                "name": "VITE_SITE_URL",
-                "label": "VITE_SITE_URL",
-                "default": "\"https://beatbump.space.localhost\""
-            },
-            {
-                "name": "#VITE_DONATION_URL",
-                "label": "#VITE_DONATION_URL",
-                "default": "\"https://www.paypal.com/donate/?hosted_button_id"
-            },
-            {
-                "name": "#DOMAIN",
-                "label": "#DOMAIN",
-                "default": "\"${VITE_DOMAIN}\""
-            }
-        ]
-    },
-    {
-        "type": 1,
-        "title": "Blocky",
-        "name": "blocky",
-        "description": "Blocky is a DNS proxy and ad-blocker for the local network written in Go.",
-        "logo": "https://raw.githubusercontent.com/0xERR0R/blocky/master/docs/blocky.svg",
-        "image": "spx01/blocky",
-        "categories": [
-            "Networking",
-            "DNS",
-            "Tools"
-        ],
-        "platform": "linux",
-        "restart_policy": "unless-stopped",
-        "ports": [],
-        "network_mode": "bridge",
-        "volumes": [
-            {
-                "container": "/app/config.yml",
-                "bind": "~/containers/blocky/config.yml"
-            }
-        ],
-        "env": [
-            {
-                "name": "#TZ",
-                "label": "#TZ",
-                "default": "Europe/Berlin # Optional to synchronize the log timestamp with host"
-            }
-        ]
-    },
-    {
-        "type": 1,
-        "title": "Flame",
-        "name": "flame",
-        "description": "Flame is self-hosted startpage for your server. Easily manage your apps and bookmarks with built-in editors.",
-        "logo": "https://raw.githubusercontent.com/pawelmalak/flame/master/client/public/icons/apple-touch-icon-180x180.png",
-        "image": "pawelmalak/flame:multiarch",
-        "categories": [
-            "Dashboard",
-            "Start page"
-        ],
-        "platform": "linux",
-        "restart_policy": "unless-stopped",
-        "ports": [],
-        "network_mode": "bridge",
-        "volumes": [
-            {
-                "container": "/app/data",
-                "bind": "data"
-            },
-            {
-                "container": "/var/run/docker.sock",
-                "bind": "/var/run/docker.sock"
-            }
-        ],
-        "env": [
-            {
-                "name": "#PASSWORD",
-                "label": "#PASSWORD",
-                "default": "flame_password"
-            }
-        ]
-    },
-    {
-        "type": 1,
-        "title": "FreshRSS",
-        "name": "freshrss",
-        "description": "FreshRSS is a self-hosted RSS and Atom feed aggregator. It is lightweight, easy to work with, powerful, and customizable.",
-        "logo": "https://freshrss.org/images/icon.svg",
-        "image": "freshrss/freshrss",
-        "categories": [
-            "Feed aggregator"
-        ],
-        "platform": "linux",
-        "restart_policy": "unless-stopped",
-        "ports": [],
-        "network_mode": "bridge",
-        "volumes": [
-            {
-                "container": "/var/www/FreshRSS/data",
-                "bind": "data"
-            }
-        ],
-        "env": [
-            {
-                "name": "TZ",
-                "label": "TZ",
-                "default": "UTC # ie. America/Los_Angeles"
-            },
-            {
-                "name": "CRON_MIN",
-                "label": "CRON_MIN",
-                "default": "'3,33'"
-            }
-        ]
-    },
-    {
-        "type": 1,
         "title": "Home Assistant",
         "name": "homeassistant",
         "description": "Home Assistant is a self-hosted home automation software, similar to HomeKit or Google Home.",
@@ -835,36 +835,6 @@
             {
                 "container": "/config",
                 "bind": "config"
-            }
-        ],
-        "env": []
-    },
-    {
-        "type": 1,
-        "title": "Noisedash",
-        "name": "noisedash",
-        "description": "Noisedash is a self-hostable web tool for generating ambient noises",
-        "logo": "https://raw.githubusercontent.com/kaythomas0/noisedash/dev/.github/noisedash-screenshot-1.jpg",
-        "image": "noisedash/noisedash",
-        "categories": [
-            "Ambient noise"
-        ],
-        "platform": "linux",
-        "restart_policy": "unless-stopped",
-        "ports": [],
-        "network_mode": "bridge",
-        "volumes": [
-            {
-                "container": "/var/noisedash/db",
-                "bind": "db"
-            },
-            {
-                "container": "/var/noisedash/samples",
-                "bind": "samples"
-            },
-            {
-                "container": "/var/noisedash/config/default.json",
-                "bind": "~/containers/noisedash/config.json"
             }
         ],
         "env": []
@@ -895,5 +865,35 @@
             }
         ],
         "env": []
+    },
+    {
+        "type": 1,
+        "title": "Blocky",
+        "name": "blocky",
+        "description": "Blocky is a DNS proxy and ad-blocker for the local network written in Go.",
+        "logo": "https://raw.githubusercontent.com/0xERR0R/blocky/master/docs/blocky.svg",
+        "image": "spx01/blocky",
+        "categories": [
+            "Networking",
+            "DNS",
+            "Tools"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/app/config.yml",
+                "bind": "~/containers/blocky/config.yml"
+            }
+        ],
+        "env": [
+            {
+                "name": "#TZ",
+                "label": "#TZ",
+                "default": "Europe/Berlin # Optional to synchronize the log timestamp with host"
+            }
+        ]
     }
 ]
