@@ -1,6 +1,6 @@
 title: AdGuard Home
 description: AdGuard Home is a network-wide software for blocking ads & tracking. After you set it up, it’ll cover ALL your home devices.
-logo: https://cdn.adtidy.org/website/adguard.com/favicons/favicon.svg
+logo: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/adguard-home.png
 categories:
  - Networking
  - DNS
