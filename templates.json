@@ -345,7 +345,7 @@
         "title": "audiobookshelf",
         "name": "audiobookshelf",
         "description": "Audiobookshelf is a self-hosted audiobook and podcast server.",
-        "logo": "https://www.audiobookshelf.org/Logo.png",
+        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/audiobookshelf.png",
         "image": "ghcr.io/advplyr/audiobookshelf:latest",
         "categories": [
             "Media streaming",
