@@ -1,6 +1,119 @@
 [
     {
         "type": 1,
+        "title": "deemixrr",
+        "name": "Deemixrr",
+        "description": "deemixrr is a tool to automatically keep your artists and playlists up to date",
+        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/deemix.png",
+        "image": "theultimatecoder/deemixrr:nightly",
+        "categories": [
+            "Music",
+            "Media downloader"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/config/.config/deemix",
+                "bind": "config"
+            },
+            {
+                "container": "/mnt/unionfs",
+                "bind": "~/backup/Media/Music"
+            }
+        ],
+        "env": [
+            {
+                "name": "Kestrel__EndPoints__Http__Url",
+                "label": "Kestrel__EndPoints__Http__Url",
+                "default": "http://0.0.0.0:5555"
+            },
+            {
+                "name": "Hangfire__DashboardPath",
+                "label": "Hangfire__DashboardPath",
+                "default": "/autoloaderjobs"
+            },
+            {
+                "name": "Hangfire__Password",
+                "label": "Hangfire__Password",
+                "default": "THIS-IS-A-NOT-SECURE-PASSWORD-HANGFIRE"
+            },
+            {
+                "name": "Hangfire__Username",
+                "label": "Hangfire__Username",
+                "default": "Deemixrr"
+            },
+            {
+                "name": "Hangfire__Workers",
+                "label": "Hangfire__Workers",
+                "default": "2"
+            },
+            {
+                "name": "JobConfiguration__GetUpdatesRecurringJob",
+                "label": "JobConfiguration__GetUpdatesRecurringJob",
+                "default": "0 2 * * *"
+            },
+            {
+                "name": "JobConfiguration__SizeCalculatorRecurringJob",
+                "label": "JobConfiguration__SizeCalculatorRecurringJob",
+                "default": "0 12 * * *"
+            },
+            {
+                "name": "DelayConfiguration__ImportArtistsBackgroundJob_ExecuteDelay",
+                "label": "DelayConfiguration__ImportArtistsBackgroundJob_ExecuteDelay",
+                "default": "1000"
+            },
+            {
+                "name": "DelayConfiguration__CheckArtistForUpdatesBackgroundJob_GetTrackCountDelay",
+                "label": "DelayConfiguration__CheckArtistForUpdatesBackgroundJob_GetTrackCountDelay",
+                "default": "1000"
+            },
+            {
+                "name": "DelayConfiguration__CheckArtistForUpdatesBackgroundJob_ExecuteDelay",
+                "label": "DelayConfiguration__CheckArtistForUpdatesBackgroundJob_ExecuteDelay",
+                "default": "1000"
+            },
+            {
+                "name": "DelayConfiguration__CheckPlaylistForUpdatesBackgroundJob_ExecuteDelay",
+                "label": "DelayConfiguration__CheckPlaylistForUpdatesBackgroundJob_ExecuteDelay",
+                "default": "1000"
+            },
+            {
+                "name": "DelayConfiguration__CreateArtistBackgroundJob_FromPlaylistDelay",
+                "label": "DelayConfiguration__CreateArtistBackgroundJob_FromPlaylistDelay",
+                "default": "1000"
+            },
+            {
+                "name": "DelayConfiguration__CreateArtistBackgroundJob_FromUserDelay",
+                "label": "DelayConfiguration__CreateArtistBackgroundJob_FromUserDelay",
+                "default": "1000"
+            },
+            {
+                "name": "DelayConfiguration__CreateArtistBackgroundJob_FromCsvDelay",
+                "label": "DelayConfiguration__CreateArtistBackgroundJob_FromCsvDelay",
+                "default": "1000"
+            },
+            {
+                "name": "DelayConfiguration__CreatePlaylistBackgroundJob_FromCsvDelay",
+                "label": "DelayConfiguration__CreatePlaylistBackgroundJob_FromCsvDelay",
+                "default": "1000"
+            },
+            {
+                "name": "PGID",
+                "label": "PGID",
+                "default": "1234"
+            },
+            {
+                "name": "PUID",
+                "label": "PUID",
+                "default": "1234"
+            }
+        ]
+    },
+    {
+        "type": 1,
         "title": "Vaultwarden",
         "name": "vaultwarden",
         "description": "Unofficial Bitwarden compatible server written in Rust, formerly known as bitwarden_rs.",
@@ -35,6 +148,29 @@
                 "default": "'{certs"
             }
         ]
+    },
+    {
+        "type": 1,
+        "title": "Convos",
+        "name": "convos",
+        "description": "Convos is an IRC client that runs in your browser and brings the IRC experience into the 21st century. It features a persistent bouncer on the server side that will keep you online even after you close your browser window.",
+        "logo": "https://convos.chat/images/convos-icon-light.png",
+        "image": "convos/convos:stable",
+        "categories": [
+            "Communication",
+            "IRC"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/data",
+                "bind": "data"
+            }
+        ],
+        "env": []
     },
     {
         "type": 1,
@@ -355,6 +491,30 @@
     },
     {
         "type": 1,
+        "title": "Dozzle",
+        "name": "dozzle",
+        "description": "Dozzle is a lightweight, web-based Docker log viewer that provides real-time monitoring and easy troubleshooting.",
+        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/dozzle.png",
+        "image": "amir20/dozzle",
+        "categories": [
+            "Docker",
+            "Containers",
+            "Logs"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/var/run/docker.sock",
+                "bind": "/var/run/docker.sock"
+            }
+        ],
+        "env": []
+    },
+    {
+        "type": 1,
         "title": "AdGuard Home",
         "name": "adguardhome",
         "description": "AdGuard Home is a network-wide software for blocking ads & tracking. After you set it up, it\u2019ll cover ALL your home devices.",
@@ -453,6 +613,39 @@
             }
         ],
         "env": []
+    },
+    {
+        "type": 1,
+        "title": "deemix",
+        "name": "Deemix",
+        "description": "deemix (lowercase) is a barebone deezer downloader library built from the ashes of Deezloader Remix.",
+        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/deemix.png",
+        "image": "registry.gitlab.com/bockiii/deemix-docker",
+        "categories": [
+            "Music",
+            "Media downloader"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/downloads",
+                "bind": "~/backup/Media/Music"
+            },
+            {
+                "container": "/config",
+                "bind": "config"
+            }
+        ],
+        "env": [
+            {
+                "name": "DEEMIX_SINGLE_USER",
+                "label": "DEEMIX_SINGLE_USER",
+                "default": "true"
+            }
+        ]
     },
     {
         "type": 1,
@@ -901,6 +1094,69 @@
                 "bind": "data"
             }
         ],
+        "env": []
+    },
+    {
+        "type": 1,
+        "title": "Dashy",
+        "name": "dashy",
+        "description": "Dashy is a self-hostable personal dashboard built for you. Includes status-checking, widgets, themes, icon packs, a UI editor and tons more!",
+        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/dashy.png",
+        "image": "lissy93/dashy:latest",
+        "categories": [
+            "Dashboard"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/app/public/conf.yml",
+                "bind": "~/containers/dashy/config.yml"
+            }
+        ],
+        "env": []
+    },
+    {
+        "type": 1,
+        "title": "Doku",
+        "name": "doku",
+        "description": "Doku is a Docker disk usage dashboard",
+        "logo": "//",
+        "image": "amerkurev/doku",
+        "categories": [
+            "Docker",
+            "Containers",
+            "Disk usage"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/hostroot",
+                "bind": "~/backup"
+            }
+        ],
+        "env": []
+    },
+    {
+        "type": 1,
+        "title": "draw.io",
+        "name": "drawio",
+        "description": "draw.io is a JavaScript, client-side editor for general diagramming and whiteboarding",
+        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/draw.png",
+        "image": "jgraph/drawio",
+        "categories": [
+            "Diagrams"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [],
         "env": []
     },
     {
