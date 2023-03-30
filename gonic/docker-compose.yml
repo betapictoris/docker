@@ -3,6 +3,7 @@ version: '3'
 services:
   gonic:
     image: sentriz/gonic
+    container_name: gonic
     restart: unless-stopped
 
     volumes:
