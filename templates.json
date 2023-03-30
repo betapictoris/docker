@@ -1,6 +1,104 @@
 [
     {
         "type": 1,
+        "title": "Gitea",
+        "name": "gitea",
+        "description": "Gitea is a community managed lightweight code hosting solution written in Go.",
+        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/gitea.png",
+        "image": "gitea/gitea:1.17.1-rootless",
+        "categories": [
+            "Development"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/var/lib/gitea",
+                "bind": "app"
+            },
+            {
+                "container": "/etc/gitea",
+                "bind": "config"
+            },
+            {
+                "container": "/etc/timezone",
+                "bind": "/etc/timezone"
+            },
+            {
+                "container": "/etc/localtime",
+                "bind": "/etc/localtime"
+            }
+        ],
+        "env": []
+    },
+    {
+        "type": 1,
+        "title": "Gonic",
+        "name": "gonic",
+        "description": "Gonic is a music streaming server / subsonic server API implementation.",
+        "logo": "https://raw.githubusercontent.com/sentriz/gonic/master/.github/logo.png",
+        "image": "sentriz/gonic",
+        "categories": [
+            "Media",
+            "Music"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/data",
+                "bind": "data"
+            },
+            {
+                "container": "/cache",
+                "bind": "cache"
+            },
+            {
+                "container": "/music",
+                "bind": "~/backup/Media/Music"
+            },
+            {
+                "container": "/podcasts",
+                "bind": "~/backup/Media/Podcasts"
+            }
+        ],
+        "env": [
+            {
+                "name": "TZ",
+                "label": "TZ",
+                "default": "UTC # Set this to your timezone"
+            }
+        ]
+    },
+    {
+        "type": 1,
+        "title": "Gotify",
+        "name": "gotify",
+        "description": "Gotify is a simple server for sending and receiving messages.",
+        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/gotify.png",
+        "image": "gotify/server",
+        "categories": [
+            "Development",
+            "Notifications"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/app/data",
+                "bind": "data"
+            }
+        ],
+        "env": []
+    },
+    {
+        "type": 1,
         "title": "deemixrr",
         "name": "Deemixrr",
         "description": "deemixrr is a tool to automatically keep your artists and playlists up to date",
@@ -170,6 +268,25 @@
                 "bind": "data"
             }
         ],
+        "env": []
+    },
+    {
+        "type": 1,
+        "title": "Grafana",
+        "name": "grafana",
+        "description": "Grafana is the open source analytics & monitoring solution for every database.",
+        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/grafana.png",
+        "image": "grafana/grafana-oss",
+        "categories": [
+            "Development",
+            "Data",
+            "Monitoring"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [],
         "env": []
     },
     {
@@ -515,6 +632,168 @@
     },
     {
         "type": 1,
+        "title": "LanCache.NET",
+        "name": "lancache-dns",
+        "description": "LanCache.NET is a caching server for gaming.",
+        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/komga.png",
+        "image": "lancachenet/lancache-dns",
+        "categories": [
+            "DNS",
+            "Networking",
+            "Gaming"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [],
+        "env": []
+    },
+    {
+        "type": 1,
+        "title": "Apache Guacamole",
+        "name": "guacamole",
+        "description": "Apache Guacamole is a clientless remote desktop gateway. It supports standard protocols like VNC, RDP, and SSH.",
+        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/guacamole.png",
+        "image": "oznu/guacamole",
+        "categories": [
+            "Remote Desktop"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/config",
+                "bind": "config"
+            }
+        ],
+        "env": []
+    },
+    {
+        "type": 1,
+        "title": "Jellyfin",
+        "name": "jellyfin",
+        "description": "Jellyfin is a Free Software Media System that puts you in control of managing and streaming your media.",
+        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/jellyfin.png",
+        "image": "jellyfin/jellyfin",
+        "categories": [
+            "Media Server"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/config",
+                "bind": "config"
+            },
+            {
+                "container": "/cache",
+                "bind": "cache"
+            },
+            {
+                "container": "/media",
+                "bind": "~/backup/Media"
+            }
+        ],
+        "env": [
+            {
+                "name": "#JELLYFIN_PublishedServerUrl",
+                "label": "#JELLYFIN_PublishedServerUrl",
+                "default": "http://example.com # Alternative address used for autodiscovery"
+            }
+        ]
+    },
+    {
+        "type": 1,
+        "title": "Heimdall",
+        "name": "heimdall",
+        "description": "Heimdall is an application dashboard and launcher",
+        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/heimdall.png",
+        "image": "lscr.io/linuxserver/heimdall",
+        "categories": [
+            "Dashboard"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/config",
+                "bind": "config"
+            }
+        ],
+        "env": [
+            {
+                "name": "#PUID",
+                "label": "#PUID",
+                "default": "1000"
+            },
+            {
+                "name": "#PGID",
+                "label": "#PGID",
+                "default": "1000"
+            },
+            {
+                "name": "#TZ",
+                "label": "#TZ",
+                "default": "Europe/London"
+            }
+        ]
+    },
+    {
+        "type": 1,
+        "title": "Ghost",
+        "name": "ghost",
+        "description": "Ghost is a free and open source blogging platform written in JavaScript.",
+        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/ghost.png",
+        "image": "ghost:alpine",
+        "categories": [
+            "CMS",
+            "Blogging"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/var/lib/ghost/content",
+                "bind": "data"
+            }
+        ],
+        "env": [
+            {
+                "name": "url",
+                "label": "url",
+                "default": "http://ghost.space.localhost"
+            }
+        ]
+    },
+    {
+        "type": 1,
+        "title": "Grafana",
+        "name": "grimd",
+        "description": "Grimd is a fast dns proxy that can run anywhere, built to black-hole internet advertisements and malware servers",
+        "logo": "https://raw.githubusercontent.com/looterz/reaper/master/images/favicon.png",
+        "image": "ghcr.io/looterz/grimd:latest",
+        "categories": [
+            "DNS",
+            "Networking"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [],
+        "env": []
+    },
+    {
+        "type": 1,
         "title": "AdGuard Home",
         "name": "adguardhome",
         "description": "AdGuard Home is a network-wide software for blocking ads & tracking. After you set it up, it\u2019ll cover ALL your home devices.",
@@ -533,6 +812,29 @@
             {
                 "container": "/opt/adguardhome/conf",
                 "bind": "config"
+            }
+        ],
+        "env": []
+    },
+    {
+        "type": 1,
+        "title": "KeeWeb",
+        "name": "keeweb",
+        "description": "KeeWeb is a free cross-platform password manager compatible with KeePass",
+        "logo": "https://keeweb.info/img/logo.png",
+        "image": "antelle/keeweb",
+        "categories": [
+            "Authentication",
+            "Tools"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/etc/nginx/external/",
+                "bind": "app"
             }
         ],
         "env": []
@@ -1129,7 +1431,7 @@
         "title": "Home Assistant",
         "name": "homeassistant",
         "description": "Home Assistant is a self-hosted home automation software, similar to HomeKit or Google Home.",
-        "logo": "view-source:https://www.home-assistant.io/images/favicon-192x192.png",
+        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/home-assistant.png",
         "image": "ghcr.io/home-assistant/home-assistant:stable",
         "categories": [
             "Home automation",
@@ -1238,6 +1540,65 @@
                 "default": "\"7\""
             }
         ]
+    },
+    {
+        "type": 1,
+        "title": "Jellyfin",
+        "name": "komga",
+        "description": "Komga is a media server for comics/mangas/BDs with API and OPDS support",
+        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/komga.png",
+        "image": "gotson/komga",
+        "categories": [
+            "Media Server",
+            "Manga",
+            "Comics"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/config",
+                "bind": "config"
+            },
+            {
+                "container": "/data",
+                "bind": "data"
+            },
+            {
+                "container": "/etc/timezone",
+                "bind": "/etc/timezone"
+            }
+        ],
+        "env": []
+    },
+    {
+        "type": 1,
+        "title": "Headscale",
+        "name": "headscale",
+        "description": "Headscale is an open source, self-hosted implementation of the Tailscale control server",
+        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/tailscale.png",
+        "image": "headscale/headscale-alpine",
+        "categories": [
+            "VPN",
+            "Networking"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/etc/headscale",
+                "bind": "config"
+            },
+            {
+                "container": "/var/lib/headscale",
+                "bind": "data"
+            }
+        ],
+        "env": []
     },
     {
         "type": 1,
