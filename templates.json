@@ -776,7 +776,7 @@
     },
     {
         "type": 1,
-        "title": "Grafana",
+        "title": "Grimd",
         "name": "grimd",
         "description": "Grimd is a fast dns proxy that can run anywhere, built to black-hole internet advertisements and malware servers",
         "logo": "https://raw.githubusercontent.com/looterz/reaper/master/images/favicon.png",
@@ -1543,7 +1543,7 @@
     },
     {
         "type": 1,
-        "title": "Jellyfin",
+        "title": "Komga",
         "name": "komga",
         "description": "Komga is a media server for comics/mangas/BDs with API and OPDS support",
         "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/komga.png",
