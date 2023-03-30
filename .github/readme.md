@@ -23,7 +23,7 @@
 Add the template file with this URL:
 
 ```
-https://github.com/BetaPictoris/docker/raw/dev/templates.json
+https://raw.githubusercontent.com/BetaPictoris/docker/dev/templates.json
 ```
 
 ## Docker Compose structure
