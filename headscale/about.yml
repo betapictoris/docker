@@ -1,0 +1,6 @@
+title: Headscale
+description: Headscale is an open source, self-hosted implementation of the Tailscale control server
+logo: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/tailscale.png
+categories:
+  - VPN
+  - Networking

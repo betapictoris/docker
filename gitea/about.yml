@@ -1,0 +1,5 @@
+title: Gitea
+description: Gitea is a community managed lightweight code hosting solution written in Go.
+logo: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/gitea.png
+categories:
+  - Development

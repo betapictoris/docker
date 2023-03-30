@@ -1,0 +1,5 @@
+title: Jellyfin
+description: Jellyfin is a Free Software Media System that puts you in control of managing and streaming your media.
+logo: https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/jellyfin.png
+categories:
+  - Media Server
