@@ -3,6 +3,7 @@ version: '3'
 services:
   dns:
     image: lancachenet/lancache-dns
+    container_name: lancache-dns
     restart: unless-stopped
 
     env_file: .env
@@ -13,6 +14,7 @@ services:
 
   monolithic:
     image: lancachenet/monolithic
+    container_name: lancache-monolithic
     restart: unless-stopped
     
     volumes:
