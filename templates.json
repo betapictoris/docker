@@ -363,7 +363,7 @@
         "title": "FreshRSS",
         "name": "freshrss",
         "description": "FreshRSS is a self-hosted RSS and Atom feed aggregator. It is lightweight, easy to work with, powerful, and customizable.",
-        "logo": "https://freshrss.org/images/icon.svg",
+        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/freshrss.png",
         "image": "freshrss/freshrss",
         "categories": [
             "Feed aggregator"
@@ -616,6 +616,36 @@
     },
     {
         "type": 1,
+        "title": "Filebrowser",
+        "name": "filebrowser",
+        "description": "Filebrowser provides a file managing interface within a specified directory and it can be used to upload, delete, preview, rename and edit your files. It allows the creation of multiple users and each user can have its own directory. It can be used as a standalone app.",
+        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/filebrowser.png",
+        "image": "filebrowser/filebrowser",
+        "categories": [
+            "Files"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/srv",
+                "bind": "~/backup"
+            },
+            {
+                "container": "/database.db",
+                "bind": "~/containers/filebrowser/db"
+            },
+            {
+                "container": "/.filebrowser.json",
+                "bind": "~/containers/filebrowser/filebrowser.json"
+            }
+        ],
+        "env": []
+    },
+    {
+        "type": 1,
         "title": "deemix",
         "name": "Deemix",
         "description": "deemix (lowercase) is a barebone deezer downloader library built from the ashes of Deezloader Remix.",
@@ -663,6 +693,28 @@
         "ports": [],
         "network_mode": "bridge",
         "volumes": [],
+        "env": []
+    },
+    {
+        "type": 1,
+        "title": "Dufs",
+        "name": "dufs",
+        "description": "Dufs is a file server that supports static serving, uploading, searching, accessing control, webdav...",
+        "logo": "https://user-images.githubusercontent.com/4012553/220513063-ff0f186b-ac54-4682-9af4-47a9781dee0d.png",
+        "image": "sigoden/dufs",
+        "categories": [
+            "Files"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/data",
+                "bind": "~/backup"
+            }
+        ],
         "env": []
     },
     {
@@ -741,6 +793,32 @@
                 "default": "\"${VITE_DOMAIN}\""
             }
         ]
+    },
+    {
+        "type": 1,
+        "title": "Flood",
+        "name": "flood",
+        "description": "Flood is a monitoring service for various torrent clients. It's a Node.js service that communicates with your favorite torrent client and serves a decent web UI for administration.",
+        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/flood.png",
+        "image": "jesec/flood",
+        "categories": [
+            "Torrent"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/config",
+                "bind": "flood"
+            },
+            {
+                "container": "/data",
+                "bind": "~/backup/Downloads"
+            }
+        ],
+        "env": []
     },
     {
         "type": 1,
@@ -1120,6 +1198,49 @@
     },
     {
         "type": 1,
+        "title": "flatnotes",
+        "name": "flatnotes",
+        "description": "flatnotes is a self-hosted, database-less note taking web app that utilises a flat folder of markdown files for storage.",
+        "logo": "https://raw.githubusercontent.com/Dullage/flatnotes/master/docs/logo.svg",
+        "image": "dullage/flatnotes:latest",
+        "categories": [
+            "Productivity"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/app/data",
+                "bind": "data"
+            }
+        ],
+        "env": [
+            {
+                "name": "FLATNOTES_USERNAME",
+                "label": "FLATNOTES_USERNAME",
+                "default": "\"user\""
+            },
+            {
+                "name": "FLATNOTES_PASSWORD",
+                "label": "FLATNOTES_PASSWORD",
+                "default": "\"changeMe!\""
+            },
+            {
+                "name": "FLATNOTES_SECRET_KEY",
+                "label": "FLATNOTES_SECRET_KEY",
+                "default": "\"aLongRandomSeriesOfCharacters\""
+            },
+            {
+                "name": "# FLATNOTES_SESSION_EXPIRY_DAYS",
+                "label": "# FLATNOTES_SESSION_EXPIRY_DAYS",
+                "default": "\"7\""
+            }
+        ]
+    },
+    {
+        "type": 1,
         "title": "Doku",
         "name": "doku",
         "description": "Doku is a Docker disk usage dashboard",
@@ -1186,6 +1307,120 @@
                 "name": "#TZ",
                 "label": "#TZ",
                 "default": "Europe/Berlin # Optional to synchronize the log timestamp with host"
+            }
+        ]
+    },
+    {
+        "type": 1,
+        "title": "Emby",
+        "name": "emby",
+        "description": "Emby is a media server designed to organize, play, and stream audio and video to a variety of devices.",
+        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/emby.png",
+        "image": "emby/embyserver",
+        "categories": [
+            "Media"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/config",
+                "bind": "config"
+            },
+            {
+                "container": "/cache",
+                "bind": "cache"
+            }
+        ],
+        "env": []
+    },
+    {
+        "type": 1,
+        "title": "Epic Games Store Weekly Free Games",
+        "name": "epicgames-freegames",
+        "description": "Epic Games Store Weekly Free Games lets you automatically login and redeem promotional free games from the Epic Games Store. Handles multiple accounts, 2FA, captcha bypass, captcha notifications, and scheduled runs.",
+        "logo": "https://cdn2.unrealengine.com/Unreal+Engine%2Feg-logo-filled-1255x1272-0eb9d144a0f981d1cbaaa1eb957de7a3207b31bb.png",
+        "image": "charlocharlie/epicgames-freegames",
+        "categories": [
+            "Games"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [],
+        "env": [
+            {
+                "name": "EMAIL",
+                "label": "EMAIL",
+                "default": "example@gmail.com"
+            },
+            {
+                "name": "PASSWORD",
+                "label": "PASSWORD",
+                "default": "abc123"
+            },
+            {
+                "name": "TOTP",
+                "label": "TOTP",
+                "default": "ABC123"
+            },
+            {
+                "name": "RUN_ON_STARTUP",
+                "label": "RUN_ON_STARTUP",
+                "default": "true"
+            },
+            {
+                "name": "BASE_URL",
+                "label": "BASE_URL",
+                "default": "https://example.com"
+            },
+            {
+                "name": "SMTP_HOST",
+                "label": "SMTP_HOST",
+                "default": "smtp.gmail.com"
+            },
+            {
+                "name": "SMTP_PORT",
+                "label": "SMTP_PORT",
+                "default": "587"
+            },
+            {
+                "name": "SMTP_HOST",
+                "label": "SMTP_HOST",
+                "default": "smtp.gmail.com"
+            },
+            {
+                "name": "EMAIL_SENDER_ADDRESS",
+                "label": "EMAIL_SENDER_ADDRESS",
+                "default": "hello@gmail.com "
+            },
+            {
+                "name": "EMAIL_SENDER_NAME",
+                "label": "EMAIL_SENDER_NAME",
+                "default": "\"Epic Games Captchas\""
+            },
+            {
+                "name": "EMAIL_RECIPIENT_ADDRESS",
+                "label": "EMAIL_RECIPIENT_ADDRESS",
+                "default": "hello@gmail.com"
+            },
+            {
+                "name": "SMTP_SECURE",
+                "label": "SMTP_SECURE",
+                "default": "true"
+            },
+            {
+                "name": "SMTP_USERNAME",
+                "label": "SMTP_USERNAME",
+                "default": "hello@gmail.com "
+            },
+            {
+                "name": "SMTP_PASSWORD",
+                "label": "SMTP_PASSWORD",
+                "default": "abc123 "
             }
         ]
     }
