@@ -1,0 +1,5 @@
+title: flatnotes
+description: flatnotes is a self-hosted, database-less note taking web app that utilises a flat folder of markdown files for storage.
+logo: https://raw.githubusercontent.com/Dullage/flatnotes/master/docs/logo.svg
+categories:
+  - Productivity
