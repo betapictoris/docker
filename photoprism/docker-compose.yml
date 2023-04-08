@@ -15,7 +15,7 @@ services:
       # - "~/Import:/photoprism/import"
       - "./storage:/photoprism/storage"
 
-    env_file: docker-compsoe.env
+    env_file: docker-compose.env
     
     depends_on:
       - mariadb
