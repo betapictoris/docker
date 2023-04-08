@@ -2,6 +2,7 @@ version: '3.5'
 
 services:
   photoprism:
+    container_name: photoprism
     image: photoprism/photoprism:arm64
     restart: unless-stopped
     working_dir: "/photoprism"
