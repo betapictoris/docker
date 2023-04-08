@@ -1,4 +1,4 @@
-version: "3.8"
+version: "3"
 
 services:
   immich-server:
@@ -11,7 +11,7 @@ services:
       - ${UPLOAD_LOCATION}:/usr/src/app/upload
 
     env_file:
-      - .env
+      - docker-compose.env
 
     depends_on:
       - redis
@@ -28,7 +28,7 @@ services:
       - ${UPLOAD_LOCATION}:/usr/src/app/upload
 
     env_file:
-      - .env
+      - docker-compose.env
 
     depends_on:
       - redis
@@ -45,7 +45,7 @@ services:
       - model-cache:/cache
 
     env_file:
-      - .env
+      - docker-compose.env
 
   immich-web:
     container_name: immich_web
@@ -54,7 +54,7 @@ services:
     entrypoint: ["/bin/sh", "./entrypoint.sh"]
 
     env_file:
-      - .env
+      - docker-compose.env
 
   typesense:
     container_name: immich_typesense
@@ -85,7 +85,7 @@ services:
       - pgdata:/var/lib/postgresql/data
 
     env_file:
-      - .env
+      - docker-compose.env
     environment:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_USER: ${DB_USERNAME}
