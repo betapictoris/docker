@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  homebox:
+    image: ghcr.io/hay-kot/homebox:latest
+    container_name: homebox
+    restart: unless-stopped
+
+    ports:
+      - 8080:8080
+    labels:
+      - traefik.http.routers.homebox.rule=Host(`homebox.space.localhost`)
+      - traefik.http.routers.homebox.service=homebox
+      - traefik.http.services.homebox.loadbalancer.server.port=80
+      - flame.type=app
+      - flame.name=HomeBox
+      - flame.url=http://homebox.space.localhost
+      - flame.icon=home-analytics
