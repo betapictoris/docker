@@ -1,13 +1,15 @@
 [
     {
         "type": 1,
-        "title": "Gitea",
-        "name": "gitea",
-        "description": "Gitea is a community managed lightweight code hosting solution written in Go.",
-        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/gitea.png",
-        "image": "gitea/gitea:1.17.1-rootless",
+        "title": "Komga",
+        "name": "komga",
+        "description": "Komga is a media server for comics/mangas/BDs with API and OPDS support",
+        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/komga.png",
+        "image": "gotson/komga",
         "categories": [
-            "Development"
+            "Media Server",
+            "Manga",
+            "Comics"
         ],
         "platform": "linux",
         "restart_policy": "unless-stopped",
@@ -15,23 +17,167 @@
         "network_mode": "bridge",
         "volumes": [
             {
-                "container": "/var/lib/gitea",
-                "bind": "app"
+                "container": "/config",
+                "bind": "config"
             },
             {
-                "container": "/etc/gitea",
-                "bind": "config"
+                "container": "/data",
+                "bind": "data"
             },
             {
                 "container": "/etc/timezone",
                 "bind": "/etc/timezone"
-            },
-            {
-                "container": "/etc/localtime",
-                "bind": "/etc/localtime"
             }
         ],
         "env": []
+    },
+    {
+        "type": 1,
+        "title": "Flood",
+        "name": "flood",
+        "description": "Flood is a monitoring service for various torrent clients. It's a Node.js service that communicates with your favorite torrent client and serves a decent web UI for administration.",
+        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/flood.png",
+        "image": "jesec/flood",
+        "categories": [
+            "Torrent"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/config",
+                "bind": "flood"
+            },
+            {
+                "container": "/data",
+                "bind": "~/backup/Downloads"
+            }
+        ],
+        "env": []
+    },
+    {
+        "type": 1,
+        "title": "Doku",
+        "name": "doku",
+        "description": "Doku is a Docker disk usage dashboard",
+        "logo": "//",
+        "image": "amerkurev/doku",
+        "categories": [
+            "Docker",
+            "Containers",
+            "Disk usage"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/hostroot",
+                "bind": "~/backup"
+            }
+        ],
+        "env": []
+    },
+    {
+        "type": 1,
+        "title": "Dozzle",
+        "name": "dozzle",
+        "description": "Dozzle is a lightweight, web-based Docker log viewer that provides real-time monitoring and easy troubleshooting.",
+        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/dozzle.png",
+        "image": "amir20/dozzle",
+        "categories": [
+            "Docker",
+            "Containers",
+            "Logs"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/var/run/docker.sock",
+                "bind": "/var/run/docker.sock"
+            }
+        ],
+        "env": []
+    },
+    {
+        "type": 1,
+        "title": "Blocky",
+        "name": "blocky",
+        "description": "Blocky is a DNS proxy and ad-blocker for the local network written in Go.",
+        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/blocky.png",
+        "image": "spx01/blocky",
+        "categories": [
+            "Networking",
+            "DNS",
+            "Tools"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/app/config.yml",
+                "bind": "~/containers/blocky/config.yml"
+            }
+        ],
+        "env": [
+            {
+                "name": "#TZ",
+                "label": "#TZ",
+                "default": "Europe/Berlin # Optional to synchronize the log timestamp with host"
+            }
+        ]
+    },
+    {
+        "type": 1,
+        "title": "Beatbump",
+        "name": "beatbump",
+        "description": "Beatbump is an alternative YouTube Music frontend built with Svelte/SvelteKit",
+        "logo": "https://raw.githubusercontent.com/snuffyDev/Beatbump/master/.repo/images/logo-header.png",
+        "image": "snuffydev/beatbump:latest",
+        "categories": [
+            "Alternative frontend",
+            "Music"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [],
+        "env": [
+            {
+                "name": "PORT",
+                "label": "PORT",
+                "default": "3000"
+            },
+            {
+                "name": "VITE_DOMAIN",
+                "label": "VITE_DOMAIN",
+                "default": "\"beatbump.space.localhost\""
+            },
+            {
+                "name": "VITE_SITE_URL",
+                "label": "VITE_SITE_URL",
+                "default": "\"https://beatbump.space.localhost\""
+            },
+            {
+                "name": "#VITE_DONATION_URL",
+                "label": "#VITE_DONATION_URL",
+                "default": "\"https://www.paypal.com/donate/?hosted_button_id"
+            },
+            {
+                "name": "#DOMAIN",
+                "label": "#DOMAIN",
+                "default": "\"${VITE_DOMAIN}\""
+            }
+        ]
     },
     {
         "type": 1,
@@ -76,14 +222,189 @@
     },
     {
         "type": 1,
-        "title": "Gotify",
-        "name": "gotify",
-        "description": "Gotify is a simple server for sending and receiving messages.",
-        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/gotify.png",
-        "image": "gotify/server",
+        "title": "Dashy",
+        "name": "dashy",
+        "description": "Dashy is a self-hostable personal dashboard built for you. Includes status-checking, widgets, themes, icon packs, a UI editor and tons more!",
+        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/dashy.png",
+        "image": "lissy93/dashy:latest",
         "categories": [
-            "Development",
-            "Notifications"
+            "Dashboard"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/app/public/conf.yml",
+                "bind": "~/containers/dashy/config.yml"
+            }
+        ],
+        "env": []
+    },
+    {
+        "type": 1,
+        "title": "draw.io",
+        "name": "drawio",
+        "description": "draw.io is a JavaScript, client-side editor for general diagramming and whiteboarding",
+        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/draw.png",
+        "image": "jgraph/drawio",
+        "categories": [
+            "Diagrams"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [],
+        "env": []
+    },
+    {
+        "type": 1,
+        "title": "Headscale",
+        "name": "headscale",
+        "description": "Headscale is an open source, self-hosted implementation of the Tailscale control server",
+        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/tailscale.png",
+        "image": "headscale/headscale-alpine",
+        "categories": [
+            "VPN",
+            "Networking"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/etc/headscale",
+                "bind": "config"
+            },
+            {
+                "container": "/var/lib/headscale",
+                "bind": "data"
+            }
+        ],
+        "env": []
+    },
+    {
+        "type": 1,
+        "title": "Heimdall",
+        "name": "heimdall",
+        "description": "Heimdall is an application dashboard and launcher",
+        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/heimdall.png",
+        "image": "lscr.io/linuxserver/heimdall",
+        "categories": [
+            "Dashboard"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/config",
+                "bind": "config"
+            }
+        ],
+        "env": [
+            {
+                "name": "#PUID",
+                "label": "#PUID",
+                "default": "1000"
+            },
+            {
+                "name": "#PGID",
+                "label": "#PGID",
+                "default": "1000"
+            },
+            {
+                "name": "#TZ",
+                "label": "#TZ",
+                "default": "Europe/London"
+            }
+        ]
+    },
+    {
+        "type": 1,
+        "title": "Noisedash",
+        "name": "noisedash",
+        "description": "Noisedash is a self-hostable web tool for generating ambient noises",
+        "logo": "https://raw.githubusercontent.com/kaythomas0/noisedash/dev/.github/noisedash-screenshot-1.jpg",
+        "image": "noisedash/noisedash",
+        "categories": [
+            "Ambient noise"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/var/noisedash/db",
+                "bind": "db"
+            },
+            {
+                "container": "/var/noisedash/samples",
+                "bind": "samples"
+            },
+            {
+                "container": "/var/noisedash/config/default.json",
+                "bind": "~/containers/noisedash/config.json"
+            }
+        ],
+        "env": []
+    },
+    {
+        "type": 1,
+        "title": "Home Assistant",
+        "name": "homeassistant",
+        "description": "Home Assistant is a self-hosted home automation software, similar to HomeKit or Google Home.",
+        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/home-assistant.png",
+        "image": "ghcr.io/home-assistant/home-assistant:stable",
+        "categories": [
+            "Home automation",
+            "Smart home"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "host",
+        "volumes": [
+            {
+                "container": "/config",
+                "bind": "config"
+            }
+        ],
+        "env": []
+    },
+    {
+        "type": 1,
+        "title": "Grimd",
+        "name": "grimd",
+        "description": "Grimd is a fast dns proxy that can run anywhere, built to black-hole internet advertisements and malware servers",
+        "logo": "https://raw.githubusercontent.com/looterz/reaper/master/images/favicon.png",
+        "image": "ghcr.io/looterz/grimd:latest",
+        "categories": [
+            "DNS",
+            "Networking"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [],
+        "env": []
+    },
+    {
+        "type": 1,
+        "title": "Flame",
+        "name": "flame",
+        "description": "Flame is self-hosted startpage for your server. Easily manage your apps and bookmarks with built-in editors.",
+        "logo": "https://raw.githubusercontent.com/pawelmalak/flame/master/client/public/icons/apple-touch-icon-180x180.png",
+        "image": "pawelmalak/flame:multiarch",
+        "categories": [
+            "Dashboard",
+            "Start page"
         ],
         "platform": "linux",
         "restart_policy": "unless-stopped",
@@ -93,8 +414,36 @@
             {
                 "container": "/app/data",
                 "bind": "data"
+            },
+            {
+                "container": "/var/run/docker.sock",
+                "bind": "/var/run/docker.sock"
             }
         ],
+        "env": [
+            {
+                "name": "#PASSWORD",
+                "label": "#PASSWORD",
+                "default": "flame_password"
+            }
+        ]
+    },
+    {
+        "type": 1,
+        "title": "AFFiNE",
+        "name": "affine",
+        "description": "AFFiNE is a next-gen knowledge base that brings planning, sorting and creating all together. Privacy first, open-source, customizable and ready to use.",
+        "logo": "https://affine.pro/_next/static/media/affine-text-logo.c853d422.png",
+        "image": "ghcr.io/toeverything/affine-self-hosted:latest",
+        "categories": [
+            "Knowledge base",
+            "Note taking"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [],
         "env": []
     },
     {
@@ -212,13 +561,13 @@
     },
     {
         "type": 1,
-        "title": "Vaultwarden",
-        "name": "vaultwarden",
-        "description": "Unofficial Bitwarden compatible server written in Rust, formerly known as bitwarden_rs.",
-        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/vaultwarden.png",
-        "image": "vaultwarden/server:alpine",
+        "title": "Dufs",
+        "name": "dufs",
+        "description": "Dufs is a file server that supports static serving, uploading, searching, accessing control, webdav...",
+        "logo": "https://user-images.githubusercontent.com/4012553/220513063-ff0f186b-ac54-4682-9af4-47a9781dee0d.png",
+        "image": "sigoden/dufs",
         "categories": [
-            "Authentication - Passwords - Tools"
+            "Files"
         ],
         "platform": "linux",
         "restart_policy": "unless-stopped",
@@ -227,60 +576,21 @@
         "volumes": [
             {
                 "container": "/data",
-                "bind": "data"
-            },
-            {
-                "container": "/ssl",
-                "bind": "ssl"
-            }
-        ],
-        "env": [
-            {
-                "name": "#ADMIN_TOKEN",
-                "label": "#ADMIN_TOKEN",
-                "default": "\"YOUR_ADMIN_TOKEN\"                         # Token/login for admin panel (auto generate this with openssl command)"
-            },
-            {
-                "name": "#ROCKET_TLS",
-                "label": "#ROCKET_TLS",
-                "default": "'{certs"
-            }
-        ]
-    },
-    {
-        "type": 1,
-        "title": "Convos",
-        "name": "convos",
-        "description": "Convos is an IRC client that runs in your browser and brings the IRC experience into the 21st century. It features a persistent bouncer on the server side that will keep you online even after you close your browser window.",
-        "logo": "https://convos.chat/images/convos-icon-light.png",
-        "image": "convos/convos:stable",
-        "categories": [
-            "Communication",
-            "IRC"
-        ],
-        "platform": "linux",
-        "restart_policy": "unless-stopped",
-        "ports": [],
-        "network_mode": "bridge",
-        "volumes": [
-            {
-                "container": "/data",
-                "bind": "data"
+                "bind": "~/backup"
             }
         ],
         "env": []
     },
     {
         "type": 1,
-        "title": "Grafana",
-        "name": "grafana",
-        "description": "Grafana is the open source analytics & monitoring solution for every database.",
-        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/grafana.png",
-        "image": "grafana/grafana-oss",
+        "title": "HomeBox",
+        "name": "homebox",
+        "description": "Homebox is the inventory and organization system built for the Home User.",
+        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/homebox.png",
+        "image": "ghcr.io/hay-kot/homebox:latest",
         "categories": [
-            "Development",
-            "Data",
-            "Monitoring"
+            "Inventory",
+            "Home management"
         ],
         "platform": "linux",
         "restart_policy": "unless-stopped",
@@ -291,553 +601,68 @@
     },
     {
         "type": 1,
-        "title": "AzuraCast",
-        "name": "azuracast",
-        "description": "AzuraCast is a free and open-source, self-hosted web radio station in a box.",
-        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/azuracast.png",
-        "image": "ghcr.io/azuracast/azuracast",
+        "title": "AdguardHome Prometheus Exporter",
+        "name": "adguard-exporter",
+        "description": "AdguardHome Prometheus Exporter is a Prometheus exporter for Adguard's DNS ad blocker.",
+        "logo": "//",
+        "image": "ebrianne/adguard-exporter:latest",
         "categories": [
-            "Media streaming",
-            "Internet radio"
+            "Networking",
+            "DNS",
+            "Prometheus exporter"
         ],
         "platform": "linux",
         "restart_policy": "unless-stopped",
         "ports": [],
         "network_mode": "bridge",
-        "volumes": [
-            {
-                "container": "/var/azuracast/uploads",
-                "bind": "uploads"
-            },
-            {
-                "container": "/var/azuracast/stations",
-                "bind": "stations"
-            },
-            {
-                "container": "/var/azuracast/backups",
-                "bind": "backups"
-            },
-            {
-                "container": "/var/lib/mysql",
-                "bind": "db"
-            }
-        ],
+        "volumes": [],
         "env": [
             {
-                "name": "APPLICATION_ENV",
-                "label": "APPLICATION_ENV",
-                "default": "production"
+                "name": "adguard_protocol",
+                "label": "adguard_protocol",
+                "default": "http"
             },
             {
-                "name": "# LOG_LEVEL",
-                "label": "# LOG_LEVEL",
-                "default": "notice"
+                "name": "adguard_hostname",
+                "label": "adguard_hostname",
+                "default": "adg.space.localhost"
             },
             {
-                "name": "COMPOSER_PLUGIN_MODE",
-                "label": "COMPOSER_PLUGIN_MODE",
+                "name": "adguard_username",
+                "label": "adguard_username",
+                "default": "USERNAME"
+            },
+            {
+                "name": "adguard_password",
+                "label": "adguard_password",
+                "default": "PASSWD"
+            },
+            {
+                "name": "#adguard_port",
+                "label": "#adguard_port",
+                "default": " optional"
+            },
+            {
+                "name": "server_port",
+                "label": "server_port",
+                "default": "9617"
+            },
+            {
+                "name": "interval",
+                "label": "interval",
+                "default": "10s"
+            },
+            {
+                "name": "log_limit",
+                "label": "log_limit",
+                "default": "10000"
+            },
+            {
+                "name": "password_from_file",
+                "label": "password_from_file",
                 "default": "false"
-            },
-            {
-                "name": "AUTO_ASSIGN_PORT_MIN",
-                "label": "AUTO_ASSIGN_PORT_MIN",
-                "default": "8000"
-            },
-            {
-                "name": "AUTO_ASSIGN_PORT_MAX",
-                "label": "AUTO_ASSIGN_PORT_MAX",
-                "default": "8499"
-            },
-            {
-                "name": "SHOW_DETAILED_ERRORS",
-                "label": "SHOW_DETAILED_ERRORS",
-                "default": "false "
-            },
-            {
-                "name": "# MYSQL_HOST",
-                "label": "# MYSQL_HOST",
-                "default": "localhost"
-            },
-            {
-                "name": "# MYSQL_PORT",
-                "label": "# MYSQL_PORT",
-                "default": "3306"
-            },
-            {
-                "name": "# MYSQL_USER",
-                "label": "# MYSQL_USER",
-                "default": "azuracast"
-            },
-            {
-                "name": "MYSQL_PASSWORD",
-                "label": "MYSQL_PASSWORD",
-                "default": "azur4c457"
-            },
-            {
-                "name": "# MYSQL_DATABASE",
-                "label": "# MYSQL_DATABASE",
-                "default": "azuracast"
-            },
-            {
-                "name": "MYSQL_RANDOM_ROOT_PASSWORD",
-                "label": "MYSQL_RANDOM_ROOT_PASSWORD",
-                "default": "yes"
-            },
-            {
-                "name": "# MYSQL_SLOW_QUERY_LOG",
-                "label": "# MYSQL_SLOW_QUERY_LOG",
-                "default": "0"
-            },
-            {
-                "name": "# MYSQL_MAX_CONNECTIONS",
-                "label": "# MYSQL_MAX_CONNECTIONS",
-                "default": "100"
-            },
-            {
-                "name": "# ENABLE_REDIS",
-                "label": "# ENABLE_REDIS",
-                "default": "true"
-            },
-            {
-                "name": "# REDIS_HOST",
-                "label": "# REDIS_HOST",
-                "default": "localhost"
-            },
-            {
-                "name": "# REDIS_PORT",
-                "label": "# REDIS_PORT",
-                "default": "6379"
-            },
-            {
-                "name": "# REDIS_DB",
-                "label": "# REDIS_DB",
-                "default": "1"
-            },
-            {
-                "name": "# PHP_MAX_FILE_SIZE",
-                "label": "# PHP_MAX_FILE_SIZE",
-                "default": "25M"
-            },
-            {
-                "name": "# PHP_MEMORY_LIMIT",
-                "label": "# PHP_MEMORY_LIMIT",
-                "default": "128M"
-            },
-            {
-                "name": "# PHP_MAX_EXECUTION_TIME",
-                "label": "# PHP_MAX_EXECUTION_TIME",
-                "default": "30"
-            },
-            {
-                "name": "# SYNC_SHORT_EXECUTION_TIME",
-                "label": "# SYNC_SHORT_EXECUTION_TIME",
-                "default": "600"
-            },
-            {
-                "name": "# SYNC_LONG_EXECUTION_TIME",
-                "label": "# SYNC_LONG_EXECUTION_TIME",
-                "default": "1800"
-            },
-            {
-                "name": "# PHP_FPM_MAX_CHILDREN",
-                "label": "# PHP_FPM_MAX_CHILDREN",
-                "default": "5"
-            },
-            {
-                "name": "# The profiling dashboard can be accessed by visting https://yourdomain.com/?SPX_KEY",
-                "label": "# The profiling dashboard can be accessed by visting https://yourdomain.com/?SPX_KEY",
-                "default": "dev&SPX_UI_URI"
-            },
-            {
-                "name": "# Profiling data can be viewed by visiting http://your-azuracast-site/?SPX_KEY",
-                "label": "# Profiling data can be viewed by visiting http://your-azuracast-site/?SPX_KEY",
-                "default": "dev&SPX_UI_URI"
-            },
-            {
-                "name": "# PROFILING_EXTENSION_ENABLED",
-                "label": "# PROFILING_EXTENSION_ENABLED",
-                "default": "0"
-            },
-            {
-                "name": "# PROFILING_EXTENSION_ALWAYS_ON",
-                "label": "# PROFILING_EXTENSION_ALWAYS_ON",
-                "default": "0"
-            },
-            {
-                "name": "# PROFILING_EXTENSION_HTTP_KEY",
-                "label": "# PROFILING_EXTENSION_HTTP_KEY",
-                "default": "dev"
-            },
-            {
-                "name": "# PROFILING_EXTENSION_HTTP_IP_WHITELIST",
-                "label": "# PROFILING_EXTENSION_HTTP_IP_WHITELIST",
-                "default": "*"
             }
         ]
-    },
-    {
-        "type": 1,
-        "title": "FreshRSS",
-        "name": "freshrss",
-        "description": "FreshRSS is a self-hosted RSS and Atom feed aggregator. It is lightweight, easy to work with, powerful, and customizable.",
-        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/freshrss.png",
-        "image": "freshrss/freshrss",
-        "categories": [
-            "Feed aggregator"
-        ],
-        "platform": "linux",
-        "restart_policy": "unless-stopped",
-        "ports": [],
-        "network_mode": "bridge",
-        "volumes": [
-            {
-                "container": "/var/www/FreshRSS/data",
-                "bind": "data"
-            }
-        ],
-        "env": [
-            {
-                "name": "TZ",
-                "label": "TZ",
-                "default": "UTC # ie. America/Los_Angeles"
-            },
-            {
-                "name": "CRON_MIN",
-                "label": "CRON_MIN",
-                "default": "'3,33'"
-            }
-        ]
-    },
-    {
-        "type": 1,
-        "title": "ArchiveBox",
-        "name": "archivebox",
-        "description": "ArchiveBox is a powerful, self-hosted internet archiving solution to collect, save, and view sites you want to preserve offline.",
-        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/archivebox.png",
-        "image": "archivebox/archivebox",
-        "categories": [
-            "Archival"
-        ],
-        "platform": "linux",
-        "restart_policy": "unless-stopped",
-        "ports": [],
-        "network_mode": "bridge",
-        "volumes": [
-            {
-                "container": "/data",
-                "bind": "data"
-            }
-        ],
-        "env": [
-            {
-                "name": "ALLOWED_HOSTS",
-                "label": "ALLOWED_HOSTS",
-                "default": "*                   # add any config options you want as env vars"
-            },
-            {
-                "name": "MEDIA_MAX_SIZE",
-                "label": "MEDIA_MAX_SIZE",
-                "default": "750m"
-            },
-            {
-                "name": "#SEARCH_BACKEND_ENGINE",
-                "label": "#SEARCH_BACKEND_ENGINE",
-                "default": "sonic      # uncomment these if you enable sonic below"
-            },
-            {
-                "name": "#SEARCH_BACKEND_HOST_NAME",
-                "label": "#SEARCH_BACKEND_HOST_NAME",
-                "default": "sonic"
-            },
-            {
-                "name": "#SEARCH_BACKEND_PASSWORD",
-                "label": "#SEARCH_BACKEND_PASSWORD",
-                "default": "SecretPassword"
-            }
-        ]
-    },
-    {
-        "type": 1,
-        "title": "Airsonic",
-        "name": "airsonic-advanced",
-        "description": "Airsonic is a free, web-based media streamer, providing ubiquitous access to your music.",
-        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/airsonic.png",
-        "image": "lscr.io/linuxserver/airsonic-advanced",
-        "categories": [
-            "Media streaming"
-        ],
-        "platform": "linux",
-        "restart_policy": "unless-stopped",
-        "ports": [],
-        "network_mode": "bridge",
-        "volumes": [
-            {
-                "container": "/config",
-                "bind": "config"
-            },
-            {
-                "container": "/music",
-                "bind": "~/backup/Media/Music"
-            },
-            {
-                "container": "/playlists",
-                "bind": "~/backup/Media/Playlists"
-            },
-            {
-                "container": "/podcasts",
-                "bind": "~/backup/Media/Podcasts"
-            }
-        ],
-        "env": [
-            {
-                "name": "TZ",
-                "label": "TZ",
-                "default": "Europe/London"
-            },
-            {
-                "name": "#CONTEXT_PATH",
-                "label": "#CONTEXT_PATH",
-                "default": "<URL_BASE> "
-            },
-            {
-                "name": "#JAVA_OPTS",
-                "label": "#JAVA_OPTS",
-                "default": "<options>"
-            }
-        ]
-    },
-    {
-        "type": 1,
-        "title": "Dozzle",
-        "name": "dozzle",
-        "description": "Dozzle is a lightweight, web-based Docker log viewer that provides real-time monitoring and easy troubleshooting.",
-        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/dozzle.png",
-        "image": "amir20/dozzle",
-        "categories": [
-            "Docker",
-            "Containers",
-            "Logs"
-        ],
-        "platform": "linux",
-        "restart_policy": "unless-stopped",
-        "ports": [],
-        "network_mode": "bridge",
-        "volumes": [
-            {
-                "container": "/var/run/docker.sock",
-                "bind": "/var/run/docker.sock"
-            }
-        ],
-        "env": []
-    },
-    {
-        "type": 1,
-        "title": "LanCache.NET",
-        "name": "lancache-dns",
-        "description": "LanCache.NET is a caching server for gaming.",
-        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/komga.png",
-        "image": "lancachenet/lancache-dns",
-        "categories": [
-            "DNS",
-            "Networking",
-            "Gaming"
-        ],
-        "platform": "linux",
-        "restart_policy": "unless-stopped",
-        "ports": [],
-        "network_mode": "bridge",
-        "volumes": [],
-        "env": []
-    },
-    {
-        "type": 1,
-        "title": "Apache Guacamole",
-        "name": "guacamole",
-        "description": "Apache Guacamole is a clientless remote desktop gateway. It supports standard protocols like VNC, RDP, and SSH.",
-        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/guacamole.png",
-        "image": "oznu/guacamole",
-        "categories": [
-            "Remote Desktop"
-        ],
-        "platform": "linux",
-        "restart_policy": "unless-stopped",
-        "ports": [],
-        "network_mode": "bridge",
-        "volumes": [
-            {
-                "container": "/config",
-                "bind": "config"
-            }
-        ],
-        "env": []
-    },
-    {
-        "type": 1,
-        "title": "Jellyfin",
-        "name": "jellyfin",
-        "description": "Jellyfin is a Free Software Media System that puts you in control of managing and streaming your media.",
-        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/jellyfin.png",
-        "image": "jellyfin/jellyfin",
-        "categories": [
-            "Media Server"
-        ],
-        "platform": "linux",
-        "restart_policy": "unless-stopped",
-        "ports": [],
-        "network_mode": "bridge",
-        "volumes": [
-            {
-                "container": "/config",
-                "bind": "config"
-            },
-            {
-                "container": "/cache",
-                "bind": "cache"
-            },
-            {
-                "container": "/media",
-                "bind": "~/backup/Media"
-            }
-        ],
-        "env": [
-            {
-                "name": "#JELLYFIN_PublishedServerUrl",
-                "label": "#JELLYFIN_PublishedServerUrl",
-                "default": "http://example.com # Alternative address used for autodiscovery"
-            }
-        ]
-    },
-    {
-        "type": 1,
-        "title": "Heimdall",
-        "name": "heimdall",
-        "description": "Heimdall is an application dashboard and launcher",
-        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/heimdall.png",
-        "image": "lscr.io/linuxserver/heimdall",
-        "categories": [
-            "Dashboard"
-        ],
-        "platform": "linux",
-        "restart_policy": "unless-stopped",
-        "ports": [],
-        "network_mode": "bridge",
-        "volumes": [
-            {
-                "container": "/config",
-                "bind": "config"
-            }
-        ],
-        "env": [
-            {
-                "name": "#PUID",
-                "label": "#PUID",
-                "default": "1000"
-            },
-            {
-                "name": "#PGID",
-                "label": "#PGID",
-                "default": "1000"
-            },
-            {
-                "name": "#TZ",
-                "label": "#TZ",
-                "default": "Europe/London"
-            }
-        ]
-    },
-    {
-        "type": 1,
-        "title": "Ghost",
-        "name": "ghost",
-        "description": "Ghost is a free and open source blogging platform written in JavaScript.",
-        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/ghost.png",
-        "image": "ghost:alpine",
-        "categories": [
-            "CMS",
-            "Blogging"
-        ],
-        "platform": "linux",
-        "restart_policy": "unless-stopped",
-        "ports": [],
-        "network_mode": "bridge",
-        "volumes": [
-            {
-                "container": "/var/lib/ghost/content",
-                "bind": "data"
-            }
-        ],
-        "env": [
-            {
-                "name": "url",
-                "label": "url",
-                "default": "http://ghost.space.localhost"
-            }
-        ]
-    },
-    {
-        "type": 1,
-        "title": "Grimd",
-        "name": "grimd",
-        "description": "Grimd is a fast dns proxy that can run anywhere, built to black-hole internet advertisements and malware servers",
-        "logo": "https://raw.githubusercontent.com/looterz/reaper/master/images/favicon.png",
-        "image": "ghcr.io/looterz/grimd:latest",
-        "categories": [
-            "DNS",
-            "Networking"
-        ],
-        "platform": "linux",
-        "restart_policy": "unless-stopped",
-        "ports": [],
-        "network_mode": "bridge",
-        "volumes": [],
-        "env": []
-    },
-    {
-        "type": 1,
-        "title": "AdGuard Home",
-        "name": "adguardhome",
-        "description": "AdGuard Home is a network-wide software for blocking ads & tracking. After you set it up, it\u2019ll cover ALL your home devices.",
-        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/adguard-home.png",
-        "image": "adguard/adguardhome",
-        "categories": [
-            "Networking",
-            "DNS",
-            "Tools"
-        ],
-        "platform": "linux",
-        "restart_policy": "unless-stopped",
-        "ports": [],
-        "network_mode": "bridge",
-        "volumes": [
-            {
-                "container": "/opt/adguardhome/conf",
-                "bind": "config"
-            }
-        ],
-        "env": []
-    },
-    {
-        "type": 1,
-        "title": "KeeWeb",
-        "name": "keeweb",
-        "description": "KeeWeb is a free cross-platform password manager compatible with KeePass",
-        "logo": "https://keeweb.info/img/logo.png",
-        "image": "antelle/keeweb",
-        "categories": [
-            "Authentication",
-            "Tools"
-        ],
-        "platform": "linux",
-        "restart_policy": "unless-stopped",
-        "ports": [],
-        "network_mode": "bridge",
-        "volumes": [
-            {
-                "container": "/etc/nginx/external/",
-                "bind": "app"
-            }
-        ],
-        "env": []
     },
     {
         "type": 1,
@@ -888,13 +713,13 @@
     },
     {
         "type": 1,
-        "title": "Noisedash",
-        "name": "noisedash",
-        "description": "Noisedash is a self-hostable web tool for generating ambient noises",
-        "logo": "https://raw.githubusercontent.com/kaythomas0/noisedash/dev/.github/noisedash-screenshot-1.jpg",
-        "image": "noisedash/noisedash",
+        "title": "FreshRSS",
+        "name": "freshrss",
+        "description": "FreshRSS is a self-hosted RSS and Atom feed aggregator. It is lightweight, easy to work with, powerful, and customizable.",
+        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/freshrss.png",
+        "image": "freshrss/freshrss",
         "categories": [
-            "Ambient noise"
+            "Feed aggregator"
         ],
         "platform": "linux",
         "restart_policy": "unless-stopped",
@@ -902,209 +727,32 @@
         "network_mode": "bridge",
         "volumes": [
             {
-                "container": "/var/noisedash/db",
-                "bind": "db"
-            },
-            {
-                "container": "/var/noisedash/samples",
-                "bind": "samples"
-            },
-            {
-                "container": "/var/noisedash/config/default.json",
-                "bind": "~/containers/noisedash/config.json"
-            }
-        ],
-        "env": []
-    },
-    {
-        "type": 1,
-        "title": "Filebrowser",
-        "name": "filebrowser",
-        "description": "Filebrowser provides a file managing interface within a specified directory and it can be used to upload, delete, preview, rename and edit your files. It allows the creation of multiple users and each user can have its own directory. It can be used as a standalone app.",
-        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/filebrowser.png",
-        "image": "filebrowser/filebrowser",
-        "categories": [
-            "Files"
-        ],
-        "platform": "linux",
-        "restart_policy": "unless-stopped",
-        "ports": [],
-        "network_mode": "bridge",
-        "volumes": [
-            {
-                "container": "/srv",
-                "bind": "~/backup"
-            },
-            {
-                "container": "/database.db",
-                "bind": "~/containers/filebrowser/db"
-            },
-            {
-                "container": "/.filebrowser.json",
-                "bind": "~/containers/filebrowser/filebrowser.json"
-            }
-        ],
-        "env": []
-    },
-    {
-        "type": 1,
-        "title": "deemix",
-        "name": "Deemix",
-        "description": "deemix (lowercase) is a barebone deezer downloader library built from the ashes of Deezloader Remix.",
-        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/deemix.png",
-        "image": "registry.gitlab.com/bockiii/deemix-docker",
-        "categories": [
-            "Music",
-            "Media downloader"
-        ],
-        "platform": "linux",
-        "restart_policy": "unless-stopped",
-        "ports": [],
-        "network_mode": "bridge",
-        "volumes": [
-            {
-                "container": "/downloads",
-                "bind": "~/backup/Media/Music"
-            },
-            {
-                "container": "/config",
-                "bind": "config"
-            }
-        ],
-        "env": [
-            {
-                "name": "DEEMIX_SINGLE_USER",
-                "label": "DEEMIX_SINGLE_USER",
-                "default": "true"
-            }
-        ]
-    },
-    {
-        "type": 1,
-        "title": "AFFiNE",
-        "name": "affine",
-        "description": "AFFiNE is a next-gen knowledge base that brings planning, sorting and creating all together. Privacy first, open-source, customizable and ready to use.",
-        "logo": "https://affine.pro/_next/static/media/affine-text-logo.c853d422.png",
-        "image": "ghcr.io/toeverything/affine-self-hosted:latest",
-        "categories": [
-            "Knowledge base",
-            "Note taking"
-        ],
-        "platform": "linux",
-        "restart_policy": "unless-stopped",
-        "ports": [],
-        "network_mode": "bridge",
-        "volumes": [],
-        "env": []
-    },
-    {
-        "type": 1,
-        "title": "Dufs",
-        "name": "dufs",
-        "description": "Dufs is a file server that supports static serving, uploading, searching, accessing control, webdav...",
-        "logo": "https://user-images.githubusercontent.com/4012553/220513063-ff0f186b-ac54-4682-9af4-47a9781dee0d.png",
-        "image": "sigoden/dufs",
-        "categories": [
-            "Files"
-        ],
-        "platform": "linux",
-        "restart_policy": "unless-stopped",
-        "ports": [],
-        "network_mode": "bridge",
-        "volumes": [
-            {
-                "container": "/data",
-                "bind": "~/backup"
-            }
-        ],
-        "env": []
-    },
-    {
-        "type": 1,
-        "title": "Flame",
-        "name": "flame",
-        "description": "Flame is self-hosted startpage for your server. Easily manage your apps and bookmarks with built-in editors.",
-        "logo": "https://raw.githubusercontent.com/pawelmalak/flame/master/client/public/icons/apple-touch-icon-180x180.png",
-        "image": "pawelmalak/flame:multiarch",
-        "categories": [
-            "Dashboard",
-            "Start page"
-        ],
-        "platform": "linux",
-        "restart_policy": "unless-stopped",
-        "ports": [],
-        "network_mode": "bridge",
-        "volumes": [
-            {
-                "container": "/app/data",
+                "container": "/var/www/FreshRSS/data",
                 "bind": "data"
-            },
-            {
-                "container": "/var/run/docker.sock",
-                "bind": "/var/run/docker.sock"
             }
         ],
         "env": [
             {
-                "name": "#PASSWORD",
-                "label": "#PASSWORD",
-                "default": "flame_password"
+                "name": "TZ",
+                "label": "TZ",
+                "default": "UTC # ie. America/Los_Angeles"
+            },
+            {
+                "name": "CRON_MIN",
+                "label": "CRON_MIN",
+                "default": "'3,33'"
             }
         ]
     },
     {
         "type": 1,
-        "title": "Beatbump",
-        "name": "beatbump",
-        "description": "Beatbump is an alternative YouTube Music frontend built with Svelte/SvelteKit",
-        "logo": "https://raw.githubusercontent.com/snuffyDev/Beatbump/master/.repo/images/logo-header.png",
-        "image": "snuffydev/beatbump:latest",
+        "title": "Gitea",
+        "name": "gitea",
+        "description": "Gitea is a community managed lightweight code hosting solution written in Go.",
+        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/gitea.png",
+        "image": "gitea/gitea:1.17.1-rootless",
         "categories": [
-            "Alternative frontend",
-            "Music"
-        ],
-        "platform": "linux",
-        "restart_policy": "unless-stopped",
-        "ports": [],
-        "network_mode": "bridge",
-        "volumes": [],
-        "env": [
-            {
-                "name": "PORT",
-                "label": "PORT",
-                "default": "3000"
-            },
-            {
-                "name": "VITE_DOMAIN",
-                "label": "VITE_DOMAIN",
-                "default": "\"beatbump.space.localhost\""
-            },
-            {
-                "name": "VITE_SITE_URL",
-                "label": "VITE_SITE_URL",
-                "default": "\"https://beatbump.space.localhost\""
-            },
-            {
-                "name": "#VITE_DONATION_URL",
-                "label": "#VITE_DONATION_URL",
-                "default": "\"https://www.paypal.com/donate/?hosted_button_id"
-            },
-            {
-                "name": "#DOMAIN",
-                "label": "#DOMAIN",
-                "default": "\"${VITE_DOMAIN}\""
-            }
-        ]
-    },
-    {
-        "type": 1,
-        "title": "Flood",
-        "name": "flood",
-        "description": "Flood is a monitoring service for various torrent clients. It's a Node.js service that communicates with your favorite torrent client and serves a decent web UI for administration.",
-        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/flood.png",
-        "image": "jesec/flood",
-        "categories": [
-            "Torrent"
+            "Development"
         ],
         "platform": "linux",
         "restart_policy": "unless-stopped",
@@ -1112,14 +760,259 @@
         "network_mode": "bridge",
         "volumes": [
             {
-                "container": "/config",
-                "bind": "flood"
+                "container": "/var/lib/gitea",
+                "bind": "app"
             },
             {
-                "container": "/data",
-                "bind": "~/backup/Downloads"
+                "container": "/etc/gitea",
+                "bind": "config"
+            },
+            {
+                "container": "/etc/timezone",
+                "bind": "/etc/timezone"
+            },
+            {
+                "container": "/etc/localtime",
+                "bind": "/etc/localtime"
             }
         ],
+        "env": []
+    },
+    {
+        "type": 1,
+        "title": "Photoprism",
+        "name": "photoprism",
+        "description": "PhotoPrism is an AI-Powered Photos App for the Decentralized Web. It makes use of the latest technologies to tag and find pictures automatically without getting in your way. You can run it at home, on a private server, or in the cloud.",
+        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/photoprism.png",
+        "image": "photoprism/photoprism:latest",
+        "categories": [
+            "Media Server",
+            "Photo library"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/photoprism/originals",
+                "bind": "/media/beta/Backup/Pictures"
+            },
+            {
+                "container": "/photoprism/storage",
+                "bind": "./storage"
+            }
+        ],
+        "env": [
+            {
+                "name": "PHOTOPRISM_ADMIN_USER",
+                "label": "PHOTOPRISM_ADMIN_USER",
+                "default": "\"admin\""
+            },
+            {
+                "name": "PHOTOPRISM_ADMIN_PASSWORD",
+                "label": "PHOTOPRISM_ADMIN_PASSWORD",
+                "default": "\"insecure\""
+            },
+            {
+                "name": "PHOTOPRISM_AUTH_MODE",
+                "label": "PHOTOPRISM_AUTH_MODE",
+                "default": "\"password\""
+            },
+            {
+                "name": "## Run as a non-root user after initialization (supported",
+                "label": "## Run as a non-root user after initialization (supported",
+                "default": "0, 33, 50-99, 500-600, and 900-1200):"
+            },
+            {
+                "name": "PHOTOPRISM_UID",
+                "label": "PHOTOPRISM_UID",
+                "default": "1000"
+            },
+            {
+                "name": "PHOTOPRISM_GID",
+                "label": "PHOTOPRISM_GID",
+                "default": "1000"
+            },
+            {
+                "name": "# PHOTOPRISM_UMASK",
+                "label": "# PHOTOPRISM_UMASK",
+                "default": "0000"
+            },
+            {
+                "name": "# PHOTOPRISM_DATABASE_DRIVER",
+                "label": "# PHOTOPRISM_DATABASE_DRIVER",
+                "default": "\"sqlite\""
+            },
+            {
+                "name": "PHOTOPRISM_DATABASE_DRIVER",
+                "label": "PHOTOPRISM_DATABASE_DRIVER",
+                "default": "\"mysql\""
+            },
+            {
+                "name": "PHOTOPRISM_DATABASE_SERVER",
+                "label": "PHOTOPRISM_DATABASE_SERVER",
+                "default": "\"mariadb:3306\""
+            },
+            {
+                "name": "PHOTOPRISM_DATABASE_NAME",
+                "label": "PHOTOPRISM_DATABASE_NAME",
+                "default": "\"photoprism\""
+            },
+            {
+                "name": "PHOTOPRISM_DATABASE_USER",
+                "label": "PHOTOPRISM_DATABASE_USER",
+                "default": "\"photoprism\""
+            },
+            {
+                "name": "PHOTOPRISM_DATABASE_PASSWORD",
+                "label": "PHOTOPRISM_DATABASE_PASSWORD",
+                "default": "\"insecure\""
+            },
+            {
+                "name": "MARIADB_AUTO_UPGRADE",
+                "label": "MARIADB_AUTO_UPGRADE",
+                "default": "\"1\""
+            },
+            {
+                "name": "MARIADB_INITDB_SKIP_TZINFO",
+                "label": "MARIADB_INITDB_SKIP_TZINFO",
+                "default": "\"1\""
+            },
+            {
+                "name": "MARIADB_DATABASE",
+                "label": "MARIADB_DATABASE",
+                "default": "\"photoprism\""
+            },
+            {
+                "name": "MARIADB_USER",
+                "label": "MARIADB_USER",
+                "default": "\"photoprism\""
+            },
+            {
+                "name": "MARIADB_PASSWORD",
+                "label": "MARIADB_PASSWORD",
+                "default": "\"insecure\""
+            },
+            {
+                "name": "MARIADB_ROOT_PASSWORD",
+                "label": "MARIADB_ROOT_PASSWORD",
+                "default": "\"insecure\""
+            },
+            {
+                "name": "PHOTOPRISM_SITE_URL",
+                "label": "PHOTOPRISM_SITE_URL",
+                "default": "\"http://photoprism.me:2342/\""
+            },
+            {
+                "name": "PHOTOPRISM_READONLY",
+                "label": "PHOTOPRISM_READONLY",
+                "default": "\"false\""
+            },
+            {
+                "name": "PHOTOPRISM_DISABLE_WEBDAV",
+                "label": "PHOTOPRISM_DISABLE_WEBDAV",
+                "default": "\"false\""
+            },
+            {
+                "name": "PHOTOPRISM_DISABLE_SETTINGS",
+                "label": "PHOTOPRISM_DISABLE_SETTINGS",
+                "default": "\"false\""
+            },
+            {
+                "name": "PHOTOPRISM_DISABLE_TENSORFLOW",
+                "label": "PHOTOPRISM_DISABLE_TENSORFLOW",
+                "default": "\"false\""
+            },
+            {
+                "name": "PHOTOPRISM_DISABLE_FACES",
+                "label": "PHOTOPRISM_DISABLE_FACES",
+                "default": "\"false\""
+            },
+            {
+                "name": "PHOTOPRISM_DISABLE_CLASSIFICATION",
+                "label": "PHOTOPRISM_DISABLE_CLASSIFICATION",
+                "default": "\"false\""
+            },
+            {
+                "name": "PHOTOPRISM_DISABLE_RAW",
+                "label": "PHOTOPRISM_DISABLE_RAW",
+                "default": "\"false\""
+            },
+            {
+                "name": "PHOTOPRISM_RAW_PRESETS",
+                "label": "PHOTOPRISM_RAW_PRESETS",
+                "default": "\"false\""
+            },
+            {
+                "name": "PHOTOPRISM_JPEG_QUALITY",
+                "label": "PHOTOPRISM_JPEG_QUALITY",
+                "default": "85"
+            },
+            {
+                "name": "PHOTOPRISM_DETECT_NSFW",
+                "label": "PHOTOPRISM_DETECT_NSFW",
+                "default": "\"false\""
+            },
+            {
+                "name": "PHOTOPRISM_UPLOAD_NSFW",
+                "label": "PHOTOPRISM_UPLOAD_NSFW",
+                "default": "\"true\""
+            },
+            {
+                "name": "PHOTOPRISM_SITE_CAPTION",
+                "label": "PHOTOPRISM_SITE_CAPTION",
+                "default": "\"AI-Powered Photos App\""
+            },
+            {
+                "name": "PHOTOPRISM_SITE_DESCRIPTION",
+                "label": "PHOTOPRISM_SITE_DESCRIPTION",
+                "default": "\"\""
+            },
+            {
+                "name": "PHOTOPRISM_SITE_AUTHOR",
+                "label": "PHOTOPRISM_SITE_AUTHOR",
+                "default": "\"\""
+            },
+            {
+                "name": "## Run/install on first startup (options",
+                "label": "## Run/install on first startup (options",
+                "default": "update, gpu, tensorflow, davfs, clean):"
+            },
+            {
+                "name": "# PHOTOPRISM_INIT",
+                "label": "# PHOTOPRISM_INIT",
+                "default": "\"update clean\""
+            },
+            {
+                "name": "# PHOTOPRISM_FFMPEG_ENCODER",
+                "label": "# PHOTOPRISM_FFMPEG_ENCODER",
+                "default": "\"raspberry\""
+            },
+            {
+                "name": "# PHOTOPRISM_FFMPEG_BITRATE",
+                "label": "# PHOTOPRISM_FFMPEG_BITRATE",
+                "default": "\"32\""
+            }
+        ]
+    },
+    {
+        "type": 1,
+        "title": "LanCache.NET",
+        "name": "lancache-dns",
+        "description": "LanCache.NET is a caching server for gaming.",
+        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/komga.png",
+        "image": "lancachenet/lancache-dns",
+        "categories": [
+            "DNS",
+            "Networking",
+            "Gaming"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [],
         "env": []
     },
     {
@@ -1363,102 +1256,51 @@
     },
     {
         "type": 1,
-        "title": "AdguardHome Prometheus Exporter",
-        "name": "adguard-exporter",
-        "description": "AdguardHome Prometheus Exporter is a Prometheus exporter for Adguard's DNS ad blocker.",
-        "logo": "//",
-        "image": "ebrianne/adguard-exporter:latest",
+        "title": "Vaultwarden",
+        "name": "vaultwarden",
+        "description": "Unofficial Bitwarden compatible server written in Rust, formerly known as bitwarden_rs.",
+        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/vaultwarden.png",
+        "image": "vaultwarden/server:alpine",
         "categories": [
-            "Networking",
-            "DNS",
-            "Prometheus exporter"
+            "Authentication - Passwords - Tools"
         ],
         "platform": "linux",
         "restart_policy": "unless-stopped",
         "ports": [],
         "network_mode": "bridge",
-        "volumes": [],
+        "volumes": [
+            {
+                "container": "/data",
+                "bind": "data"
+            },
+            {
+                "container": "/ssl",
+                "bind": "ssl"
+            }
+        ],
         "env": [
             {
-                "name": "adguard_protocol",
-                "label": "adguard_protocol",
-                "default": "http"
+                "name": "#ADMIN_TOKEN",
+                "label": "#ADMIN_TOKEN",
+                "default": "\"YOUR_ADMIN_TOKEN\"                         # Token/login for admin panel (auto generate this with openssl command)"
             },
             {
-                "name": "adguard_hostname",
-                "label": "adguard_hostname",
-                "default": "adg.space.localhost"
-            },
-            {
-                "name": "adguard_username",
-                "label": "adguard_username",
-                "default": "USERNAME"
-            },
-            {
-                "name": "adguard_password",
-                "label": "adguard_password",
-                "default": "PASSWD"
-            },
-            {
-                "name": "#adguard_port",
-                "label": "#adguard_port",
-                "default": " optional"
-            },
-            {
-                "name": "server_port",
-                "label": "server_port",
-                "default": "9617"
-            },
-            {
-                "name": "interval",
-                "label": "interval",
-                "default": "10s"
-            },
-            {
-                "name": "log_limit",
-                "label": "log_limit",
-                "default": "10000"
-            },
-            {
-                "name": "password_from_file",
-                "label": "password_from_file",
-                "default": "false"
+                "name": "#ROCKET_TLS",
+                "label": "#ROCKET_TLS",
+                "default": "'{certs"
             }
         ]
     },
     {
         "type": 1,
-        "title": "Home Assistant",
-        "name": "homeassistant",
-        "description": "Home Assistant is a self-hosted home automation software, similar to HomeKit or Google Home.",
-        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/home-assistant.png",
-        "image": "ghcr.io/home-assistant/home-assistant:stable",
+        "title": "Gotify",
+        "name": "gotify",
+        "description": "Gotify is a simple server for sending and receiving messages.",
+        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/gotify.png",
+        "image": "gotify/server",
         "categories": [
-            "Home automation",
-            "Smart home"
-        ],
-        "platform": "linux",
-        "restart_policy": "unless-stopped",
-        "ports": [],
-        "network_mode": "host",
-        "volumes": [
-            {
-                "container": "/config",
-                "bind": "config"
-            }
-        ],
-        "env": []
-    },
-    {
-        "type": 1,
-        "title": "Portainer",
-        "name": "portainer",
-        "description": "Portainer Community Edition is a lightweight service delivery platform for containerized applications that can be used to manage Docker, Swarm, Kubernetes and ACI environments.",
-        "logo": "https://raw.githubusercontent.com/BetaPictoris/docker/dev/.icons/png/Portainer.png",
-        "image": "portainer/portainer-ce",
-        "categories": [
-            "Docker management",
-            "Kubernetes management"
+            "Development",
+            "Notifications"
         ],
         "platform": "linux",
         "restart_policy": "unless-stopped",
@@ -1466,11 +1308,7 @@
         "network_mode": "bridge",
         "volumes": [
             {
-                "container": "/var/run/docker.sock",
-                "bind": "/var/run/docker.sock"
-            },
-            {
-                "container": "/data",
+                "container": "/app/data",
                 "bind": "data"
             }
         ],
@@ -1478,13 +1316,14 @@
     },
     {
         "type": 1,
-        "title": "Dashy",
-        "name": "dashy",
-        "description": "Dashy is a self-hostable personal dashboard built for you. Includes status-checking, widgets, themes, icon packs, a UI editor and tons more!",
-        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/dashy.png",
-        "image": "lissy93/dashy:latest",
+        "title": "Ghost",
+        "name": "ghost",
+        "description": "Ghost is a free and open source blogging platform written in JavaScript.",
+        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/ghost.png",
+        "image": "ghost:alpine",
         "categories": [
-            "Dashboard"
+            "CMS",
+            "Blogging"
         ],
         "platform": "linux",
         "restart_policy": "unless-stopped",
@@ -1492,8 +1331,53 @@
         "network_mode": "bridge",
         "volumes": [
             {
-                "container": "/app/public/conf.yml",
-                "bind": "~/containers/dashy/config.yml"
+                "container": "/var/lib/ghost/content",
+                "bind": "data"
+            }
+        ],
+        "env": [
+            {
+                "name": "url",
+                "label": "url",
+                "default": "http://ghost.space.localhost"
+            }
+        ]
+    },
+    {
+        "type": 1,
+        "title": "Moodle",
+        "name": "moodle",
+        "description": "Moodle is the world's open source learning platform",
+        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/moodle.png",
+        "image": "moodlehq/moodleapp",
+        "categories": [
+            "Education"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [],
+        "env": []
+    },
+    {
+        "type": 1,
+        "title": "Apache Guacamole",
+        "name": "guacamole",
+        "description": "Apache Guacamole is a clientless remote desktop gateway. It supports standard protocols like VNC, RDP, and SSH.",
+        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/guacamole.png",
+        "image": "oznu/guacamole",
+        "categories": [
+            "Remote Desktop"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/config",
+                "bind": "config"
             }
         ],
         "env": []
@@ -1543,111 +1427,59 @@
     },
     {
         "type": 1,
-        "title": "Komga",
-        "name": "komga",
-        "description": "Komga is a media server for comics/mangas/BDs with API and OPDS support",
-        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/komga.png",
-        "image": "gotson/komga",
+        "title": "ArchiveBox",
+        "name": "archivebox",
+        "description": "ArchiveBox is a powerful, self-hosted internet archiving solution to collect, save, and view sites you want to preserve offline.",
+        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/archivebox.png",
+        "image": "archivebox/archivebox",
         "categories": [
-            "Media Server",
-            "Manga",
-            "Comics"
+            "Archival"
         ],
         "platform": "linux",
         "restart_policy": "unless-stopped",
         "ports": [],
         "network_mode": "bridge",
         "volumes": [
-            {
-                "container": "/config",
-                "bind": "config"
-            },
             {
                 "container": "/data",
                 "bind": "data"
+            }
+        ],
+        "env": [
+            {
+                "name": "ALLOWED_HOSTS",
+                "label": "ALLOWED_HOSTS",
+                "default": "*                   # add any config options you want as env vars"
             },
             {
-                "container": "/etc/timezone",
-                "bind": "/etc/timezone"
-            }
-        ],
-        "env": []
-    },
-    {
-        "type": 1,
-        "title": "Headscale",
-        "name": "headscale",
-        "description": "Headscale is an open source, self-hosted implementation of the Tailscale control server",
-        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/tailscale.png",
-        "image": "headscale/headscale-alpine",
-        "categories": [
-            "VPN",
-            "Networking"
-        ],
-        "platform": "linux",
-        "restart_policy": "unless-stopped",
-        "ports": [],
-        "network_mode": "bridge",
-        "volumes": [
-            {
-                "container": "/etc/headscale",
-                "bind": "config"
+                "name": "MEDIA_MAX_SIZE",
+                "label": "MEDIA_MAX_SIZE",
+                "default": "750m"
             },
             {
-                "container": "/var/lib/headscale",
-                "bind": "data"
-            }
-        ],
-        "env": []
-    },
-    {
-        "type": 1,
-        "title": "Doku",
-        "name": "doku",
-        "description": "Doku is a Docker disk usage dashboard",
-        "logo": "//",
-        "image": "amerkurev/doku",
-        "categories": [
-            "Docker",
-            "Containers",
-            "Disk usage"
-        ],
-        "platform": "linux",
-        "restart_policy": "unless-stopped",
-        "ports": [],
-        "network_mode": "bridge",
-        "volumes": [
+                "name": "#SEARCH_BACKEND_ENGINE",
+                "label": "#SEARCH_BACKEND_ENGINE",
+                "default": "sonic      # uncomment these if you enable sonic below"
+            },
             {
-                "container": "/hostroot",
-                "bind": "~/backup"
+                "name": "#SEARCH_BACKEND_HOST_NAME",
+                "label": "#SEARCH_BACKEND_HOST_NAME",
+                "default": "sonic"
+            },
+            {
+                "name": "#SEARCH_BACKEND_PASSWORD",
+                "label": "#SEARCH_BACKEND_PASSWORD",
+                "default": "SecretPassword"
             }
-        ],
-        "env": []
+        ]
     },
     {
         "type": 1,
-        "title": "draw.io",
-        "name": "drawio",
-        "description": "draw.io is a JavaScript, client-side editor for general diagramming and whiteboarding",
-        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/draw.png",
-        "image": "jgraph/drawio",
-        "categories": [
-            "Diagrams"
-        ],
-        "platform": "linux",
-        "restart_policy": "unless-stopped",
-        "ports": [],
-        "network_mode": "bridge",
-        "volumes": [],
-        "env": []
-    },
-    {
-        "type": 1,
-        "title": "Blocky",
-        "name": "blocky",
-        "description": "Blocky is a DNS proxy and ad-blocker for the local network written in Go.",
-        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/blocky.png",
-        "image": "spx01/blocky",
+        "title": "AdGuard Home",
+        "name": "adguardhome",
+        "description": "AdGuard Home is a network-wide software for blocking ads & tracking. After you set it up, it\u2019ll cover ALL your home devices.",
+        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/adguard-home.png",
+        "image": "adguard/adguardhome",
         "categories": [
             "Networking",
             "DNS",
@@ -1659,15 +1491,132 @@
         "network_mode": "bridge",
         "volumes": [
             {
-                "container": "/app/config.yml",
-                "bind": "~/containers/blocky/config.yml"
+                "container": "/opt/adguardhome/conf",
+                "bind": "config"
+            }
+        ],
+        "env": []
+    },
+    {
+        "type": 1,
+        "title": "Immich",
+        "name": "immich_server",
+        "description": "Immich is a self-hosted backup solution for photos and videos.",
+        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/immich.png",
+        "image": "ghcr.io/immich-app/immich-server:release",
+        "categories": [
+            "Media Server",
+            "Photo library"
+        ],
+        "platform": "linux",
+        "restart_policy": "always",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/usr/src/app/upload",
+                "bind": "${UPLOAD_LOCATION}"
             }
         ],
         "env": [
             {
-                "name": "#TZ",
-                "label": "#TZ",
-                "default": "Europe/Berlin # Optional to synchronize the log timestamp with host"
+                "name": "DB_HOSTNAME",
+                "label": "DB_HOSTNAME",
+                "default": "immich_postgres"
+            },
+            {
+                "name": "DB_USERNAME",
+                "label": "DB_USERNAME",
+                "default": "postgres"
+            },
+            {
+                "name": "DB_PASSWORD",
+                "label": "DB_PASSWORD",
+                "default": "postgres"
+            },
+            {
+                "name": "DB_DATABASE_NAME",
+                "label": "DB_DATABASE_NAME",
+                "default": "immich"
+            },
+            {
+                "name": "# DB_PORT",
+                "label": "# DB_PORT",
+                "default": "5432"
+            },
+            {
+                "name": "UPLOAD_LOCATION",
+                "label": "UPLOAD_LOCATION",
+                "default": "SomePathOnSystem"
+            },
+            {
+                "name": "TYPESENSE_API_KEY",
+                "label": "TYPESENSE_API_KEY",
+                "default": "SomeRandomString"
+            },
+            {
+                "name": "DISABLE_REVERSE_GEOCODING",
+                "label": "DISABLE_REVERSE_GEOCODING",
+                "default": "true"
+            }
+        ]
+    },
+    {
+        "type": 1,
+        "title": "Convos",
+        "name": "convos",
+        "description": "Convos is an IRC client that runs in your browser and brings the IRC experience into the 21st century. It features a persistent bouncer on the server side that will keep you online even after you close your browser window.",
+        "logo": "https://convos.chat/images/convos-icon-light.png",
+        "image": "convos/convos:stable",
+        "categories": [
+            "Communication",
+            "IRC"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/data",
+                "bind": "data"
+            }
+        ],
+        "env": []
+    },
+    {
+        "type": 1,
+        "title": "Jellyfin",
+        "name": "jellyfin",
+        "description": "Jellyfin is a Free Software Media System that puts you in control of managing and streaming your media.",
+        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/jellyfin.png",
+        "image": "jellyfin/jellyfin",
+        "categories": [
+            "Media Server"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/config",
+                "bind": "config"
+            },
+            {
+                "container": "/cache",
+                "bind": "cache"
+            },
+            {
+                "container": "/media",
+                "bind": "~/backup/Media"
+            }
+        ],
+        "env": [
+            {
+                "name": "#JELLYFIN_PublishedServerUrl",
+                "label": "#JELLYFIN_PublishedServerUrl",
+                "default": "http://example.com # Alternative address used for autodiscovery"
             }
         ]
     },
@@ -1784,5 +1733,373 @@
                 "default": "abc123 "
             }
         ]
+    },
+    {
+        "type": 1,
+        "title": "Grafana",
+        "name": "grafana",
+        "description": "Grafana is the open source analytics & monitoring solution for every database.",
+        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/grafana.png",
+        "image": "grafana/grafana-oss",
+        "categories": [
+            "Development",
+            "Data",
+            "Monitoring"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [],
+        "env": []
+    },
+    {
+        "type": 1,
+        "title": "Filebrowser",
+        "name": "filebrowser",
+        "description": "Filebrowser provides a file managing interface within a specified directory and it can be used to upload, delete, preview, rename and edit your files. It allows the creation of multiple users and each user can have its own directory. It can be used as a standalone app.",
+        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/filebrowser.png",
+        "image": "filebrowser/filebrowser",
+        "categories": [
+            "Files"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/srv",
+                "bind": "~/backup"
+            },
+            {
+                "container": "/database.db",
+                "bind": "~/containers/filebrowser/db"
+            },
+            {
+                "container": "/.filebrowser.json",
+                "bind": "~/containers/filebrowser/filebrowser.json"
+            }
+        ],
+        "env": []
+    },
+    {
+        "type": 1,
+        "title": "deemix",
+        "name": "Deemix",
+        "description": "deemix (lowercase) is a barebone deezer downloader library built from the ashes of Deezloader Remix.",
+        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/deemix.png",
+        "image": "registry.gitlab.com/bockiii/deemix-docker",
+        "categories": [
+            "Music",
+            "Media downloader"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/downloads",
+                "bind": "~/backup/Media/Music"
+            },
+            {
+                "container": "/config",
+                "bind": "config"
+            }
+        ],
+        "env": [
+            {
+                "name": "DEEMIX_SINGLE_USER",
+                "label": "DEEMIX_SINGLE_USER",
+                "default": "true"
+            }
+        ]
+    },
+    {
+        "type": 1,
+        "title": "Airsonic",
+        "name": "airsonic-advanced",
+        "description": "Airsonic is a free, web-based media streamer, providing ubiquitous access to your music.",
+        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/airsonic.png",
+        "image": "lscr.io/linuxserver/airsonic-advanced",
+        "categories": [
+            "Media streaming"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/config",
+                "bind": "config"
+            },
+            {
+                "container": "/music",
+                "bind": "~/backup/Media/Music"
+            },
+            {
+                "container": "/playlists",
+                "bind": "~/backup/Media/Playlists"
+            },
+            {
+                "container": "/podcasts",
+                "bind": "~/backup/Media/Podcasts"
+            }
+        ],
+        "env": [
+            {
+                "name": "TZ",
+                "label": "TZ",
+                "default": "Europe/London"
+            },
+            {
+                "name": "#CONTEXT_PATH",
+                "label": "#CONTEXT_PATH",
+                "default": "<URL_BASE> "
+            },
+            {
+                "name": "#JAVA_OPTS",
+                "label": "#JAVA_OPTS",
+                "default": "<options>"
+            }
+        ]
+    },
+    {
+        "type": 1,
+        "title": "AzuraCast",
+        "name": "azuracast",
+        "description": "AzuraCast is a free and open-source, self-hosted web radio station in a box.",
+        "logo": "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/azuracast.png",
+        "image": "ghcr.io/azuracast/azuracast",
+        "categories": [
+            "Media streaming",
+            "Internet radio"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/var/azuracast/uploads",
+                "bind": "uploads"
+            },
+            {
+                "container": "/var/azuracast/stations",
+                "bind": "stations"
+            },
+            {
+                "container": "/var/azuracast/backups",
+                "bind": "backups"
+            },
+            {
+                "container": "/var/lib/mysql",
+                "bind": "db"
+            }
+        ],
+        "env": [
+            {
+                "name": "APPLICATION_ENV",
+                "label": "APPLICATION_ENV",
+                "default": "production"
+            },
+            {
+                "name": "# LOG_LEVEL",
+                "label": "# LOG_LEVEL",
+                "default": "notice"
+            },
+            {
+                "name": "COMPOSER_PLUGIN_MODE",
+                "label": "COMPOSER_PLUGIN_MODE",
+                "default": "false"
+            },
+            {
+                "name": "AUTO_ASSIGN_PORT_MIN",
+                "label": "AUTO_ASSIGN_PORT_MIN",
+                "default": "8000"
+            },
+            {
+                "name": "AUTO_ASSIGN_PORT_MAX",
+                "label": "AUTO_ASSIGN_PORT_MAX",
+                "default": "8499"
+            },
+            {
+                "name": "SHOW_DETAILED_ERRORS",
+                "label": "SHOW_DETAILED_ERRORS",
+                "default": "false "
+            },
+            {
+                "name": "# MYSQL_HOST",
+                "label": "# MYSQL_HOST",
+                "default": "localhost"
+            },
+            {
+                "name": "# MYSQL_PORT",
+                "label": "# MYSQL_PORT",
+                "default": "3306"
+            },
+            {
+                "name": "# MYSQL_USER",
+                "label": "# MYSQL_USER",
+                "default": "azuracast"
+            },
+            {
+                "name": "MYSQL_PASSWORD",
+                "label": "MYSQL_PASSWORD",
+                "default": "azur4c457"
+            },
+            {
+                "name": "# MYSQL_DATABASE",
+                "label": "# MYSQL_DATABASE",
+                "default": "azuracast"
+            },
+            {
+                "name": "MYSQL_RANDOM_ROOT_PASSWORD",
+                "label": "MYSQL_RANDOM_ROOT_PASSWORD",
+                "default": "yes"
+            },
+            {
+                "name": "# MYSQL_SLOW_QUERY_LOG",
+                "label": "# MYSQL_SLOW_QUERY_LOG",
+                "default": "0"
+            },
+            {
+                "name": "# MYSQL_MAX_CONNECTIONS",
+                "label": "# MYSQL_MAX_CONNECTIONS",
+                "default": "100"
+            },
+            {
+                "name": "# ENABLE_REDIS",
+                "label": "# ENABLE_REDIS",
+                "default": "true"
+            },
+            {
+                "name": "# REDIS_HOST",
+                "label": "# REDIS_HOST",
+                "default": "localhost"
+            },
+            {
+                "name": "# REDIS_PORT",
+                "label": "# REDIS_PORT",
+                "default": "6379"
+            },
+            {
+                "name": "# REDIS_DB",
+                "label": "# REDIS_DB",
+                "default": "1"
+            },
+            {
+                "name": "# PHP_MAX_FILE_SIZE",
+                "label": "# PHP_MAX_FILE_SIZE",
+                "default": "25M"
+            },
+            {
+                "name": "# PHP_MEMORY_LIMIT",
+                "label": "# PHP_MEMORY_LIMIT",
+                "default": "128M"
+            },
+            {
+                "name": "# PHP_MAX_EXECUTION_TIME",
+                "label": "# PHP_MAX_EXECUTION_TIME",
+                "default": "30"
+            },
+            {
+                "name": "# SYNC_SHORT_EXECUTION_TIME",
+                "label": "# SYNC_SHORT_EXECUTION_TIME",
+                "default": "600"
+            },
+            {
+                "name": "# SYNC_LONG_EXECUTION_TIME",
+                "label": "# SYNC_LONG_EXECUTION_TIME",
+                "default": "1800"
+            },
+            {
+                "name": "# PHP_FPM_MAX_CHILDREN",
+                "label": "# PHP_FPM_MAX_CHILDREN",
+                "default": "5"
+            },
+            {
+                "name": "# The profiling dashboard can be accessed by visting https://yourdomain.com/?SPX_KEY",
+                "label": "# The profiling dashboard can be accessed by visting https://yourdomain.com/?SPX_KEY",
+                "default": "dev&SPX_UI_URI"
+            },
+            {
+                "name": "# Profiling data can be viewed by visiting http://your-azuracast-site/?SPX_KEY",
+                "label": "# Profiling data can be viewed by visiting http://your-azuracast-site/?SPX_KEY",
+                "default": "dev&SPX_UI_URI"
+            },
+            {
+                "name": "# PROFILING_EXTENSION_ENABLED",
+                "label": "# PROFILING_EXTENSION_ENABLED",
+                "default": "0"
+            },
+            {
+                "name": "# PROFILING_EXTENSION_ALWAYS_ON",
+                "label": "# PROFILING_EXTENSION_ALWAYS_ON",
+                "default": "0"
+            },
+            {
+                "name": "# PROFILING_EXTENSION_HTTP_KEY",
+                "label": "# PROFILING_EXTENSION_HTTP_KEY",
+                "default": "dev"
+            },
+            {
+                "name": "# PROFILING_EXTENSION_HTTP_IP_WHITELIST",
+                "label": "# PROFILING_EXTENSION_HTTP_IP_WHITELIST",
+                "default": "*"
+            }
+        ]
+    },
+    {
+        "type": 1,
+        "title": "Portainer",
+        "name": "portainer",
+        "description": "Portainer Community Edition is a lightweight service delivery platform for containerized applications that can be used to manage Docker, Swarm, Kubernetes and ACI environments.",
+        "logo": "https://raw.githubusercontent.com/BetaPictoris/docker/dev/.icons/png/Portainer.png",
+        "image": "portainer/portainer-ce",
+        "categories": [
+            "Docker management",
+            "Kubernetes management"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/var/run/docker.sock",
+                "bind": "/var/run/docker.sock"
+            },
+            {
+                "container": "/data",
+                "bind": "data"
+            }
+        ],
+        "env": []
+    },
+    {
+        "type": 1,
+        "title": "KeeWeb",
+        "name": "keeweb",
+        "description": "KeeWeb is a free cross-platform password manager compatible with KeePass",
+        "logo": "https://keeweb.info/img/logo.png",
+        "image": "antelle/keeweb",
+        "categories": [
+            "Authentication",
+            "Tools"
+        ],
+        "platform": "linux",
+        "restart_policy": "unless-stopped",
+        "ports": [],
+        "network_mode": "bridge",
+        "volumes": [
+            {
+                "container": "/etc/nginx/external/",
+                "bind": "app"
+            }
+        ],
+        "env": []
     }
 ]
