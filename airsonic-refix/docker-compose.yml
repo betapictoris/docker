@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  airsonic-refix:
+    container_name: airsonic-refix
+    image: tamland/airsonic-refix:latest
+
+    ports:
+      - 8092:80
+    labels:
+       - traefik.http.routers.airsonicrefix.rule=Host(`airrefix.space.localhost`)
+      - traefik.http.routers.airsonicrefix.service=adguardhome
+      - traefik.http.services.airsonicrefix.loadbalancer.server.port=443
+      - flame.type=app
+      - flame.name=Airsonic (refix)
+      - flame.url=http://airrefix.space.localhost
+      - flame.icon=https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/airsonic.png
